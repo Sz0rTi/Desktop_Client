@@ -31,7 +31,6 @@
             this.CategoryCB = new System.Windows.Forms.ComboBox();
             this.CategoryLabel = new System.Windows.Forms.Label();
             this.ProductsListBox = new System.Windows.Forms.ListBox();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // CategoryCB
@@ -64,20 +63,11 @@
             this.ProductsListBox.Size = new System.Drawing.Size(250, 160);
             this.ProductsListBox.TabIndex = 2;
             // 
-            // listView1
-            // 
-            this.listView1.Location = new System.Drawing.Point(518, 217);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(121, 97);
-            this.listView1.TabIndex = 3;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
             // ProductsList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.listView1);
             this.Controls.Add(this.ProductsListBox);
             this.Controls.Add(this.CategoryLabel);
             this.Controls.Add(this.CategoryCB);
@@ -93,6 +83,5 @@
         private System.Windows.Forms.ComboBox CategoryCB;
         private System.Windows.Forms.Label CategoryLabel;
         private System.Windows.Forms.ListBox ProductsListBox;
-        private System.Windows.Forms.ListView listView1;
     }
 }

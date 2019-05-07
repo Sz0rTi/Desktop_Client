@@ -23,6 +23,9 @@ namespace ClientRest.Forms
             CategoryCB_SelectedIndexChanged(this, EventArgs.Empty);
         }
 
+
+        /*pobieranie produktów, filtrowanie ich pod względem wybranej kategorii i wrzucanie ich na listę.
+         * */
         private void CategoryCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             RestClass rest = new RestClass();
