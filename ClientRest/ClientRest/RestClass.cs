@@ -21,9 +21,15 @@ namespace ClientRest
     {
         clients,
         categories,
-        invoices,
+        invoicebuys,
+        invoicesells,
         products,
-        productsinorder,
+        productbuys,
+        productsells,
+        roles,
+        units,
+        users,
+        sellers,
         taxstages
     }
     class RestClass
@@ -69,10 +75,11 @@ namespace ClientRest
             return strResponceValue;
         }
 
-        public Test postRequest(Test item)
+        public T postRequest<T>(T item, controller controller)
         {
-            string a = JsonConvert.SerializeObject(item);
+            var a = JsonConvert.SerializeObject(item);
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint);
+            endPoint = address + controller.ToString();
             httpMethod = httpVerb.POST;
             request.Method = httpMethod.ToString();
             request.ContentType = "application/json";
@@ -97,6 +104,13 @@ namespace ClientRest
         {
             endPoint = address + controller.ToString();
             return JsonDeserialize<T>(makeRequest());
+        }
+
+        public int intFromValue(string a)
+        {
+            int fid;
+            bool parseOK = Int32.TryParse(a, out fid);
+            return fid;
         }
     }
 }

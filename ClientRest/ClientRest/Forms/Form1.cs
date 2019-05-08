@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ClientRest.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,11 +43,11 @@ namespace ClientRest
         private void Button2_Click(object sender, EventArgs e)
         {
             RestClass rest = new RestClass();
-            rest.endPoint = InputTB.Text;
+            rest.endPoint = InputTB.Text + ".json";
             string json = OutputTB.Text;
-            Test test = new Test();
-            test = JsonConvert.DeserializeObject<Test>(json);
-            rest.postRequest(test);
+            Unit product = new Unit();
+            product = JsonConvert.DeserializeObject<Unit>(json);
+            rest.postRequest<Unit>(product,controller.products);
         }
     }
 }

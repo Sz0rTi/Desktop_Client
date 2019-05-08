@@ -10,7 +10,7 @@ namespace ClientRest
     class Test
     {
         //[JsonProperty("id")]
-        public long ID { get; set; }
+        public int ID { get; set; }
         //[JsonProperty("name")]
         public string Name { get; set; }
         //[JsonProperty("isComplete")]

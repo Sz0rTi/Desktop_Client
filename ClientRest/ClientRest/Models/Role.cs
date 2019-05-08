@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ClientRest.Models
 {
-    class Category
+    class Role
     {
-        public int CategoryId { get; set; }
+        public int RoleId { get; set; }
         public string Name { get; set; }
     }
 }
