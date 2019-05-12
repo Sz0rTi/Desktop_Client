@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using ClientRest.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace ClientRest
 {
@@ -77,21 +80,53 @@ namespace ClientRest
 
         public T postRequest<T>(T item, controller controller)
         {
-            var a = JsonConvert.SerializeObject(item);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint);
+            string a = JsonConvert.SerializeObject(item, Formatting.Indented);
+            var byteData = Encoding.ASCII.GetBytes(a);
             endPoint = address + controller.ToString();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint); 
             httpMethod = httpVerb.POST;
             request.Method = httpMethod.ToString();
             request.ContentType = "application/json";
-            using(StreamWriter sw = new StreamWriter(request.GetRequestStream()))
+            using(var stream = request.GetRequestStream())
             {
-                sw.Write(a);
-                sw.Flush();
-                sw.Close();
+                stream.Write(byteData, 0, byteData.Length);
+                //sw.Write(a);
+                //sw.Flush();
+                //sw.Close();
             }
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            HttpWebResponse response = (HttpWebResponse) request.GetResponse();
+            var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
             httpMethod = httpVerb.GET;
             return item;
+        }
+
+        public void post(Product p)
+        {
+            /*using (var client = new HttpClient())
+            {
+                
+                client.BaseAddress = new Uri("https://localhost:44361/");
+                var response = client.PostAsJsonAsync("api/products", p).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.Write("Success");
+                }
+                else
+                    Console.Write("Error");   
+            }*/
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44361/");
+                var response = client.PostAsJsonAsync("api/products", p).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.Write("Success");
+                }
+                else
+                    Console.Write("Error");
+            }
+
         }
 
         public T JsonDeserialize<T>(string json)

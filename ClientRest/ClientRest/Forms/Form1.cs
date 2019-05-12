@@ -27,10 +27,11 @@ namespace ClientRest
         {
             RestClass rest = new RestClass();
             rest.endPoint = InputTB.Text;
-            string json = OutputTB.Text = rest.makeRequest();
+            string json = rest.makeRequest();
             Test test = new Test();
             TestCollection ts = new TestCollection();
             ts.tests = JsonConvert.DeserializeObject<List<Test>>(json);
+            OutputTB.Clear();
             comboBox1.DataSource = ts.tests;
             comboBox1.ValueMember = "id";
             comboBox1.DisplayMember = "name";

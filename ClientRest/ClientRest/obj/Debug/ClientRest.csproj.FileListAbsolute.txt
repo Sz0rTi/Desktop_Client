@@ -42,3 +42,6 @@ E:\Projekty\GitHub\KLIENT_DESKTOP\ClientRest\ClientRest\obj\Debug\ClientRest.pdb
 E:\Projekty\GitHub\KLIENT_DESKTOP\ClientRest\ClientRest\obj\Debug\ClientRest.Forms.InvoiceSell.resources
 E:\Projekty\GitHub\KLIENT_DESKTOP\ClientRest\ClientRest\obj\Debug\ClientRest.Forms.NewProduct.resources
 E:\Projekty\GitHub\KLIENT_DESKTOP\ClientRest\ClientRest\obj\Debug\ClientRest.Forms.TEST.resources
+E:\Projekty\GitHub\KLIENT_DESKTOP\ClientRest\ClientRest\bin\Debug\System.Net.Http.Extensions.dll
+E:\Projekty\GitHub\KLIENT_DESKTOP\ClientRest\ClientRest\bin\Debug\System.Net.Http.Formatting.dll
+E:\Projekty\GitHub\KLIENT_DESKTOP\ClientRest\ClientRest\bin\Debug\System.Net.Http.Primitives.dll

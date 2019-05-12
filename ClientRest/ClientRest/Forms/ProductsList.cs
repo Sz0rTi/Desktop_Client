@@ -35,7 +35,7 @@ namespace ClientRest.Forms
             products = rest.JsonDeserialize<List<Product>>(rest.makeRequest());
             int fid;
             bool parseOK = Int32.TryParse(CategoryCB.SelectedValue.ToString(), out fid);
-            ProductsListBox.DataSource = products.FindAll(m => m.CategoryId == fid);
+            ProductsListBox.DataSource = products.FindAll(m => m.CategoryID == fid);
             ProductsListBox.ValueMember = "productid";
             ProductsListBox.DisplayMember = "name";
         }

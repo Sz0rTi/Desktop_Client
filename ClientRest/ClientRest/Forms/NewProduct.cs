@@ -8,15 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace ClientRest.Forms
 {
     public partial class NewProduct : Form
     {
         RestClass rest = new RestClass();
-        int CategoryId = -1;
-        int TaxStageId = -1;
-        int UnitId = -1;
+        int CategoryId = 0;
+        int TaxStageId = 0;
+        int UnitId = 0;
         public NewProduct()
         {
             InitializeComponent();
@@ -41,9 +42,9 @@ namespace ClientRest.Forms
             UnitCB.ValueMember = "unitid";
             UnitCB.DisplayMember = "name";
 
-            CategoryCB_SelectedIndexChanged(this, EventArgs.Empty);
-            TaxStageCB_SelectedIndexChanged(this, EventArgs.Empty);
-            UnitCB_SelectedIndexChanged(this, EventArgs.Empty);
+            //CategoryCB_SelectedIndexChanged(this, EventArgs.Empty);
+            //TaxStageCB_SelectedIndexChanged(this, EventArgs.Empty);
+            //UnitCB_SelectedIndexChanged(this, EventArgs.Empty);
         }
 
         private void CategoryCB_SelectedIndexChanged(object sender, EventArgs e)
@@ -66,13 +67,17 @@ namespace ClientRest.Forms
             if(CategoryId != -1 && UnitId != -1 && NameTB.Text != "" && PriceNUD.Value != 0 && DescriptionTB.Text != "")
             {
                 Product product = new Product();
+                product.ID = 0;
                 product.Name = NameTB.Text;
                 product.Description = DescriptionTB.Text;
-                product.CategoryId = CategoryId;
-                product.TaxStageId = TaxStageId;
-                product.UnitId = UnitId;
+                product.CategoryID = CategoryId;
+                product.TaxStageID = TaxStageId;
+                product.UnitID = UnitId;
                 product.PriceNetto = (double) PriceNUD.Value;
-                Product a = rest.postRequest<Product>(product, controller.products);
+                //rest.post(JsonConvert.SerializeObject(product));
+                rest.post(product);
+                
+                /*Product a = rest.postRequest<Product>(product, controller.products);
                 if (product == a)
                 {
                     IsOk.Text = "OK";
@@ -80,7 +85,7 @@ namespace ClientRest.Forms
                 else
                 {
                     IsOk.Text = "COŚ NIE PYKŁO"; ;
-                }
+                }*/
             }
             else
             {
