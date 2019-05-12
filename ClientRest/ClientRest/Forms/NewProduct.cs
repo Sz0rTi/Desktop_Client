@@ -31,26 +31,26 @@ namespace ClientRest.Forms
             
 
             CategoryCB.DataSource = rest.getRequest<List<Category>>(controller.categories);
-            CategoryCB.ValueMember = "categoryid";
+            CategoryCB.ValueMember = "id";
             CategoryCB.DisplayMember = "name";
 
             TaxStageCB.DataSource = rest.getRequest<List<TaxStage>>(controller.taxstages);
-            TaxStageCB.ValueMember = "taxstageid";
+            TaxStageCB.ValueMember = "id";
             TaxStageCB.DisplayMember = "stage";
 
             UnitCB.DataSource = rest.getRequest<List<Unit>>(controller.units);
-            UnitCB.ValueMember = "unitid";
+            UnitCB.ValueMember = "id";
             UnitCB.DisplayMember = "name";
 
-            //CategoryCB_SelectedIndexChanged(this, EventArgs.Empty);
-            //TaxStageCB_SelectedIndexChanged(this, EventArgs.Empty);
-            //UnitCB_SelectedIndexChanged(this, EventArgs.Empty);
+            CategoryCB_SelectedIndexChanged(this, EventArgs.Empty);
+            TaxStageCB_SelectedIndexChanged(this, EventArgs.Empty);
+            UnitCB_SelectedIndexChanged(this, EventArgs.Empty);
         }
 
         private void CategoryCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             CategoryId = rest.intFromValue(CategoryCB.SelectedValue.ToString());
-        }
+        } 
 
         private void TaxStageCB_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -67,15 +67,16 @@ namespace ClientRest.Forms
             if(CategoryId != -1 && UnitId != -1 && NameTB.Text != "" && PriceNUD.Value != 0 && DescriptionTB.Text != "")
             {
                 Product product = new Product();
-                product.ID = 0;
+                List<Category> categories = rest.getRequest<List<Category>>(controller.categories);
                 product.Name = NameTB.Text;
                 product.Description = DescriptionTB.Text;
                 product.CategoryID = CategoryId;
                 product.TaxStageID = TaxStageId;
                 product.UnitID = UnitId;
                 product.PriceNetto = (double) PriceNUD.Value;
-                //rest.post(JsonConvert.SerializeObject(product));
-                rest.post(product);
+                product.Amount = (int)AmountNUD.Value;
+                rest.postRequest<Product>(product,controller.products);
+                //rest.post(product);
                 
                 /*Product a = rest.postRequest<Product>(product, controller.products);
                 if (product == a)

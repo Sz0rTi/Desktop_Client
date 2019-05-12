@@ -8,7 +8,7 @@ namespace ClientRest.Models
 {
     class Role
     {
-        public int RoleId { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
     }
 }

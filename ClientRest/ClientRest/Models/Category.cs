@@ -8,7 +8,7 @@ namespace ClientRest.Models
 {
     class Category
     {
-        public int CategoryId { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
     }
 }

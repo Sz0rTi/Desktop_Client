@@ -8,7 +8,7 @@ namespace ClientRest.Models
 {
     class Client
     {
-        public int ClientId { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public string Adress { get; set; }
         public string Mail { get; set; }

@@ -8,10 +8,10 @@ namespace ClientRest.Models
 {
     class User
     {
-        public int UserId { get; set; }
+        public int ID { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public int RoleId { get; set; }
+        public int RoleID { get; set; }
         public virtual Role Role { get; set; }
     }
 }

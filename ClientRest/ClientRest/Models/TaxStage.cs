@@ -8,7 +8,7 @@ namespace ClientRest.Models
 {
     class TaxStage
     {
-        public int TaxStageId { get; set; }
+        public int ID { get; set; }
         public double Stage { get; set; }
     }
 }
