@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ClientRest.Models
 {
-    class TaxStage
+    public class TaxStage
     {
-        public int ID { get; set; }
+        public Guid ID { get; set; }
         public double Stage { get; set; }
     }
 }

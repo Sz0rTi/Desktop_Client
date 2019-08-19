@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace ClientRest.Models
 {
-    class InvoiceBuy
+    public class InvoiceBuy
     {
-        public int ID { get; set; }
-        public int SellerID { get; set; }
+        public Guid ID { get; set; }
+        public Guid SellerID { get; set; }
         public DateTime Date { get; set; }
         public double PriceNetto { get; set; }
         public double PriceBrutto { get; set; }
         public bool IsPaid { get; set; }
+        public List<ProductBuy> Products { get; set; }
     }
 }

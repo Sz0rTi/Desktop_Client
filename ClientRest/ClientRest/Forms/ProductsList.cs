@@ -33,8 +33,7 @@ namespace ClientRest.Forms
             rest.endPoint = rest.address + controller.products.ToString();
             rest.httpMethod = httpVerb.GET;
             products = rest.JsonDeserialize<List<Product>>(rest.makeRequest());
-            int fid;
-            bool parseOK = Int32.TryParse(CategoryCB.SelectedValue.ToString(), out fid);
+            Guid fid = new Guid(CategoryCB.SelectedValue.ToString());
             ProductsListBox.DataSource = products.FindAll(m => m.CategoryID == fid);
             ProductsListBox.ValueMember = "productid";
             ProductsListBox.DisplayMember = "name";

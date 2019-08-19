@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ClientRest.Models
 {
-    class Client
+    public class Client
     {
-        public int ID { get; set; }
+        public Guid ID { get; set; }
         public string Name { get; set; }
         public string Adress { get; set; }
         public string Mail { get; set; }
