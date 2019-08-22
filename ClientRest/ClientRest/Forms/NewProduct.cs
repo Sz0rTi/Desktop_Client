@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using ClientRest.Models.In.In;
+using ClientRest.Models.In;
 
 namespace ClientRest.Forms
 {

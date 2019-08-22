@@ -1,12 +1,7 @@
-﻿using ClientRest.Models;
+﻿using ClientRest.Models.In;
+using ClientRest.Models.In.In;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ClientRest.Forms
@@ -18,7 +13,7 @@ namespace ClientRest.Forms
             InitializeComponent();
             RestClass rest = new RestClass();
             CategoryCB.DataSource = rest.getRequest<List<Category>>(controller.categories);
-            CategoryCB.ValueMember = "categoryid";
+            CategoryCB.ValueMember = "id";
             CategoryCB.DisplayMember = "name";
             CategoryCB_SelectedIndexChanged(this, EventArgs.Empty);
         }
@@ -32,10 +27,10 @@ namespace ClientRest.Forms
             List<Product> products = new List<Product>();
             rest.endPoint = rest.address + controller.products.ToString();
             rest.httpMethod = httpVerb.GET;
-            products = rest.JsonDeserialize<List<Product>>(rest.makeRequest());
-            Guid fid = new Guid(CategoryCB.SelectedValue.ToString());
-            ProductsListBox.DataSource = products.FindAll(m => m.CategoryID == fid);
-            ProductsListBox.ValueMember = "productid";
+            Category cat = (Category)CategoryCB.SelectedItem;
+            products = rest.getRequest<List<Product>>(controller.products, "/bycategoryid/" + cat.ID.ToString());
+            ProductsListBox.DataSource = products;
+            ProductsListBox.ValueMember = "id";
             ProductsListBox.DisplayMember = "name";
         }
     }

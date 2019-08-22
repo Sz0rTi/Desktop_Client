@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientRest.Models
+namespace ClientRest.Models.In
 {
     public class InvoiceSell
     {

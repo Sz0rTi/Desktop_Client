@@ -35,7 +35,7 @@
             // 
             // CategoryCB
             // 
-            this.CategoryCB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.CategoryCB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.CategoryCB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CategoryCB.FormattingEnabled = true;
             this.CategoryCB.Location = new System.Drawing.Point(129, 114);

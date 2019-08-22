@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using ClientRest.Models;
+using ClientRest.Models.In.In;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -91,9 +92,6 @@ namespace ClientRest
             using(var stream = request.GetRequestStream())
             {
                 stream.Write(byteData, 0, byteData.Length);
-                //sw.Write(a);
-                //sw.Flush();
-                //sw.Close();
             }
             HttpWebResponse response = (HttpWebResponse) request.GetResponse();
             var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
@@ -136,9 +134,30 @@ namespace ClientRest
             return obj;
         }
 
+        /// <summary>
+        /// Returns data from server as object of given type. 
+        /// </summary>
+        /// <typeparam name="T">Expected type of returned object.</typeparam>
+        /// <param name="controller">Name of controller.</param>
+        /// <returns>Object of T type created from JSON.</returns>
         public T getRequest<T>(controller controller)
         {
             endPoint = address + controller.ToString();
+            return JsonDeserialize<T>(makeRequest());
+        }
+
+        /// <summary>
+        /// Returns data from server as object of given type.
+        /// Used when HTTP method has additional route.
+        /// E.g. .../api/ControllerName/AdditionalRoute 
+        /// </summary>
+        /// <typeparam name="T">Expected type of returned object.</typeparam>
+        /// <param name="controller">Name of controller.</param>
+        /// <param name="parameter">Additional routing.</param>
+        /// <returns>Object of T type created from JSON.</returns>
+        public T getRequest<T>(controller controller, string parameter)
+        {
+            endPoint = address + controller.ToString() + parameter;
             return JsonDeserialize<T>(makeRequest());
         }
 

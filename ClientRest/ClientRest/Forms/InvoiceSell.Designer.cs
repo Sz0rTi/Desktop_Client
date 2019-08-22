@@ -28,19 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.ProductsList = new System.Windows.Forms.ListView();
             this.AddProductButton = new System.Windows.Forms.Button();
-            this.ProductNameButton = new System.Windows.Forms.ComboBox();
+            this.ProductNameCB = new System.Windows.Forms.ComboBox();
             this.NameCBLabel = new System.Windows.Forms.Label();
             this.CategoryCB = new System.Windows.Forms.ComboBox();
             this.CategoryCBLabel = new System.Windows.Forms.Label();
             this.PricePerItemNUD = new System.Windows.Forms.NumericUpDown();
             this.PriceLabel = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.AmountTB = new System.Windows.Forms.NumericUpDown();
             this.AmountLabel = new System.Windows.Forms.Label();
+            this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ProductsList = new System.Windows.Forms.ToolStrip();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.Nazwa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Ilość = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Jednostka = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Netto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Brutto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.PricePerItemNUD)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AmountTB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productSellOutBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dateTimePicker1
@@ -50,14 +59,6 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 0;
             // 
-            // ProductsList
-            // 
-            this.ProductsList.Location = new System.Drawing.Point(191, 91);
-            this.ProductsList.Name = "ProductsList";
-            this.ProductsList.Size = new System.Drawing.Size(518, 143);
-            this.ProductsList.TabIndex = 1;
-            this.ProductsList.UseCompatibleStateImageBehavior = false;
-            // 
             // AddProductButton
             // 
             this.AddProductButton.Location = new System.Drawing.Point(191, 364);
@@ -66,16 +67,17 @@
             this.AddProductButton.TabIndex = 2;
             this.AddProductButton.Text = "Dodaj ";
             this.AddProductButton.UseVisualStyleBackColor = true;
+            this.AddProductButton.Click += new System.EventHandler(this.AddProductButton_Click);
             // 
-            // ProductNameButton
+            // ProductNameCB
             // 
-            this.ProductNameButton.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.ProductNameButton.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.ProductNameButton.FormattingEnabled = true;
-            this.ProductNameButton.Location = new System.Drawing.Point(191, 423);
-            this.ProductNameButton.Name = "ProductNameButton";
-            this.ProductNameButton.Size = new System.Drawing.Size(142, 21);
-            this.ProductNameButton.TabIndex = 3;
+            this.ProductNameCB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.ProductNameCB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.ProductNameCB.FormattingEnabled = true;
+            this.ProductNameCB.Location = new System.Drawing.Point(191, 423);
+            this.ProductNameCB.Name = "ProductNameCB";
+            this.ProductNameCB.Size = new System.Drawing.Size(142, 21);
+            this.ProductNameCB.TabIndex = 3;
             // 
             // NameCBLabel
             // 
@@ -95,6 +97,7 @@
             this.CategoryCB.Name = "CategoryCB";
             this.CategoryCB.Size = new System.Drawing.Size(121, 21);
             this.CategoryCB.TabIndex = 5;
+            this.CategoryCB.SelectedIndexChanged += new System.EventHandler(this.CategoryCB_SelectedIndexChanged);
             // 
             // CategoryCBLabel
             // 
@@ -122,12 +125,12 @@
             this.PriceLabel.TabIndex = 8;
             this.PriceLabel.Text = "Cena za sztuke";
             // 
-            // numericUpDown1
+            // AmountTB
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(191, 477);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 9;
+            this.AmountTB.Location = new System.Drawing.Point(191, 477);
+            this.AmountTB.Name = "AmountTB";
+            this.AmountTB.Size = new System.Drawing.Size(120, 20);
+            this.AmountTB.TabIndex = 9;
             // 
             // AmountLabel
             // 
@@ -138,26 +141,81 @@
             this.AmountLabel.TabIndex = 10;
             this.AmountLabel.Text = "Ilosc";
             // 
+            // productSellOutBindingSource
+            // 
+            this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
+            // 
+            // ProductsList
+            // 
+            this.ProductsList.Location = new System.Drawing.Point(0, 0);
+            this.ProductsList.Name = "ProductsList";
+            this.ProductsList.Size = new System.Drawing.Size(995, 25);
+            this.ProductsList.TabIndex = 12;
+            this.ProductsList.Text = "toolStrip1";
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Nazwa,
+            this.Ilość,
+            this.Jednostka,
+            this.Netto,
+            this.Brutto});
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(191, 29);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(518, 187);
+            this.listView1.TabIndex = 13;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // Nazwa
+            // 
+            this.Nazwa.Text = "Nazwa";
+            this.Nazwa.Width = 152;
+            // 
+            // Ilość
+            // 
+            this.Ilość.Text = "Ilość";
+            this.Ilość.Width = 73;
+            // 
+            // Jednostka
+            // 
+            this.Jednostka.Text = "Jednostka";
+            this.Jednostka.Width = 71;
+            // 
+            // Netto
+            // 
+            this.Netto.Text = "Cena Netto";
+            this.Netto.Width = 85;
+            // 
+            // Brutto
+            // 
+            this.Brutto.Text = "Cena Brutto";
+            this.Brutto.Width = 91;
+            // 
             // InvoiceSell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(995, 685);
+            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.ProductsList);
             this.Controls.Add(this.AmountLabel);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.AmountTB);
             this.Controls.Add(this.PriceLabel);
             this.Controls.Add(this.PricePerItemNUD);
             this.Controls.Add(this.CategoryCBLabel);
             this.Controls.Add(this.CategoryCB);
             this.Controls.Add(this.NameCBLabel);
-            this.Controls.Add(this.ProductNameButton);
+            this.Controls.Add(this.ProductNameCB);
             this.Controls.Add(this.AddProductButton);
-            this.Controls.Add(this.ProductsList);
             this.Controls.Add(this.dateTimePicker1);
             this.Name = "InvoiceSell";
             this.Text = "InvoiceSell";
             ((System.ComponentModel.ISupportInitialize)(this.PricePerItemNUD)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AmountTB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productSellOutBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,15 +224,22 @@
         #endregion
 
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ListView ProductsList;
         private System.Windows.Forms.Button AddProductButton;
-        private System.Windows.Forms.ComboBox ProductNameButton;
+        private System.Windows.Forms.ComboBox ProductNameCB;
         private System.Windows.Forms.Label NameCBLabel;
         private System.Windows.Forms.ComboBox CategoryCB;
         private System.Windows.Forms.Label CategoryCBLabel;
         private System.Windows.Forms.NumericUpDown PricePerItemNUD;
         private System.Windows.Forms.Label PriceLabel;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown AmountTB;
         private System.Windows.Forms.Label AmountLabel;
+        private System.Windows.Forms.BindingSource productSellOutBindingSource;
+        private System.Windows.Forms.ToolStrip ProductsList;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader Nazwa;
+        private System.Windows.Forms.ColumnHeader Ilość;
+        private System.Windows.Forms.ColumnHeader Jednostka;
+        private System.Windows.Forms.ColumnHeader Netto;
+        private System.Windows.Forms.ColumnHeader Brutto;
     }
 }

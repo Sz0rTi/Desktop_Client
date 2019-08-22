@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientRest.Models
+namespace ClientRest.Models.In
 {
-    public class ProductBuy
+    public class ProductSell
     {
         public Guid ID { get; set; }
-        public Guid InvoiceBuyID { get; set; }
+        public Guid InvoiceSellID { get; set; }
         public Guid ProductID { get; set; }
         public int Amount { get; set; }
         public double PricePerItemNetto { get; set; }
