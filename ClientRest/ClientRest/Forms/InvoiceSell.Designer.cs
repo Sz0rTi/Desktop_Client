@@ -39,14 +39,13 @@
             this.PriceLabel = new System.Windows.Forms.Label();
             this.AmountTB = new System.Windows.Forms.NumericUpDown();
             this.AmountLabel = new System.Windows.Forms.Label();
-            this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ProductsList = new System.Windows.Forms.ToolStrip();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.Nazwa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Ilość = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Jednostka = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Netto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Brutto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PricePerItemNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmountTB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productSellOutBindingSource)).BeginInit();
@@ -78,6 +77,7 @@
             this.ProductNameCB.Name = "ProductNameCB";
             this.ProductNameCB.Size = new System.Drawing.Size(142, 21);
             this.ProductNameCB.TabIndex = 3;
+            this.ProductNameCB.SelectedIndexChanged += new System.EventHandler(this.ProductNameCB_SelectedIndexChanged);
             // 
             // NameCBLabel
             // 
@@ -141,58 +141,45 @@
             this.AmountLabel.TabIndex = 10;
             this.AmountLabel.Text = "Ilosc";
             // 
-            // productSellOutBindingSource
-            // 
-            this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
-            // 
-            // ProductsList
-            // 
-            this.ProductsList.Location = new System.Drawing.Point(0, 0);
-            this.ProductsList.Name = "ProductsList";
-            this.ProductsList.Size = new System.Drawing.Size(995, 25);
-            this.ProductsList.TabIndex = 12;
-            this.ProductsList.Text = "toolStrip1";
-            // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Nazwa,
-            this.Ilość,
-            this.Jednostka,
-            this.Netto,
-            this.Brutto});
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(191, 29);
+            this.listView1.Location = new System.Drawing.Point(191, 47);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(518, 187);
-            this.listView1.TabIndex = 13;
+            this.listView1.Size = new System.Drawing.Size(518, 135);
+            this.listView1.TabIndex = 11;
             this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged);
             // 
-            // Nazwa
+            // columnHeader1
             // 
-            this.Nazwa.Text = "Nazwa";
-            this.Nazwa.Width = 152;
+            this.columnHeader1.Text = "Nazwa";
             // 
-            // Ilość
+            // columnHeader2
             // 
-            this.Ilość.Text = "Ilość";
-            this.Ilość.Width = 73;
+            this.columnHeader2.Text = "Ilość";
             // 
-            // Jednostka
+            // columnHeader3
             // 
-            this.Jednostka.Text = "Jednostka";
-            this.Jednostka.Width = 71;
+            this.columnHeader3.Text = "J.M";
             // 
-            // Netto
+            // columnHeader4
             // 
-            this.Netto.Text = "Cena Netto";
-            this.Netto.Width = 85;
+            this.columnHeader4.Text = "Cena netto";
             // 
-            // Brutto
+            // columnHeader5
             // 
-            this.Brutto.Text = "Cena Brutto";
-            this.Brutto.Width = 91;
+            this.columnHeader5.Text = "Wartość netto";
+            // 
+            // productSellOutBindingSource
+            // 
+            this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
             // 
             // InvoiceSell
             // 
@@ -200,7 +187,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(995, 685);
             this.Controls.Add(this.listView1);
-            this.Controls.Add(this.ProductsList);
             this.Controls.Add(this.AmountLabel);
             this.Controls.Add(this.AmountTB);
             this.Controls.Add(this.PriceLabel);
@@ -213,6 +199,7 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Name = "InvoiceSell";
             this.Text = "InvoiceSell";
+            this.Load += new System.EventHandler(this.InvoiceSell_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PricePerItemNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmountTB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productSellOutBindingSource)).EndInit();
@@ -234,12 +221,11 @@
         private System.Windows.Forms.NumericUpDown AmountTB;
         private System.Windows.Forms.Label AmountLabel;
         private System.Windows.Forms.BindingSource productSellOutBindingSource;
-        private System.Windows.Forms.ToolStrip ProductsList;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader Nazwa;
-        private System.Windows.Forms.ColumnHeader Ilość;
-        private System.Windows.Forms.ColumnHeader Jednostka;
-        private System.Windows.Forms.ColumnHeader Netto;
-        private System.Windows.Forms.ColumnHeader Brutto;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }
