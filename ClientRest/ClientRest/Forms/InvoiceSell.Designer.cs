@@ -45,6 +45,8 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.UnitsCB = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PricePerItemNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmountTB)).BeginInit();
@@ -149,8 +151,10 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5});
+            this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(191, 47);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(518, 135);
             this.listView1.TabIndex = 11;
@@ -160,6 +164,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Nazwa";
+            this.columnHeader1.Width = 270;
             // 
             // columnHeader2
             // 
@@ -177,6 +182,23 @@
             // 
             this.columnHeader5.Text = "Wartość netto";
             // 
+            // UnitsCB
+            // 
+            this.UnitsCB.FormattingEnabled = true;
+            this.UnitsCB.Location = new System.Drawing.Point(399, 423);
+            this.UnitsCB.Name = "UnitsCB";
+            this.UnitsCB.Size = new System.Drawing.Size(121, 21);
+            this.UnitsCB.TabIndex = 12;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(366, 426);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "J.M.";
+            // 
             // productSellOutBindingSource
             // 
             this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
@@ -186,6 +208,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(995, 685);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.UnitsCB);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.AmountLabel);
             this.Controls.Add(this.AmountTB);
@@ -227,5 +251,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ComboBox UnitsCB;
+        private System.Windows.Forms.Label label1;
     }
 }
