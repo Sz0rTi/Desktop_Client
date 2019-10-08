@@ -48,6 +48,7 @@
             this.UnitsCB = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.CreateButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PricePerItemNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmountTB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productSellOutBindingSource)).BeginInit();
@@ -121,11 +122,11 @@
             // PriceLabel
             // 
             this.PriceLabel.AutoSize = true;
-            this.PriceLabel.Location = new System.Drawing.Point(105, 452);
+            this.PriceLabel.Location = new System.Drawing.Point(76, 452);
             this.PriceLabel.Name = "PriceLabel";
-            this.PriceLabel.Size = new System.Drawing.Size(80, 13);
+            this.PriceLabel.Size = new System.Drawing.Size(109, 13);
             this.PriceLabel.TabIndex = 8;
-            this.PriceLabel.Text = "Cena za sztuke";
+            this.PriceLabel.Text = "Cena sprzedaży netto";
             // 
             // AmountTB
             // 
@@ -203,11 +204,22 @@
             // 
             this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
             // 
+            // CreateButton
+            // 
+            this.CreateButton.Location = new System.Drawing.Point(634, 531);
+            this.CreateButton.Name = "CreateButton";
+            this.CreateButton.Size = new System.Drawing.Size(75, 23);
+            this.CreateButton.TabIndex = 14;
+            this.CreateButton.Text = "Wystaw";
+            this.CreateButton.UseVisualStyleBackColor = true;
+            this.CreateButton.Click += new System.EventHandler(this.CreateButton_Click);
+            // 
             // InvoiceSell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(995, 685);
+            this.Controls.Add(this.CreateButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.UnitsCB);
             this.Controls.Add(this.listView1);
@@ -221,6 +233,7 @@
             this.Controls.Add(this.ProductNameCB);
             this.Controls.Add(this.AddProductButton);
             this.Controls.Add(this.dateTimePicker1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "InvoiceSell";
             this.Text = "InvoiceSell";
             this.Load += new System.EventHandler(this.InvoiceSell_Load);
@@ -253,5 +266,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ComboBox UnitsCB;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button CreateButton;
     }
 }

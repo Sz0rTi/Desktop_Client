@@ -71,6 +71,7 @@
             this.Controls.Add(this.ProductsListBox);
             this.Controls.Add(this.CategoryLabel);
             this.Controls.Add(this.CategoryCB);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ProductsList";
             this.Text = "ProductsList";
             this.ResumeLayout(false);

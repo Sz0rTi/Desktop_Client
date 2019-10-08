@@ -83,18 +83,18 @@ namespace ClientRest
         public T postRequest<T>(T item, controller controller)
         {
             string a = JsonConvert.SerializeObject(item, Formatting.Indented);
-            var byteData = Encoding.ASCII.GetBytes(a);
+            var byteData = Encoding.UTF8.GetBytes(a);
             endPoint = address + controller.ToString();
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint); 
             httpMethod = httpVerb.POST;
             request.Method = httpMethod.ToString();
             request.ContentType = "application/json";
-            using(var stream = request.GetRequestStream())
+            using (var stream = request.GetRequestStream())
             {
                 stream.Write(byteData, 0, byteData.Length);
             }
             HttpWebResponse response = (HttpWebResponse) request.GetResponse();
-            var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            var responseString = new StreamReader(response.GetResponseStream(), Encoding.UTF8).ReadToEnd();
             httpMethod = httpVerb.GET;
             return item;
         }

@@ -20,7 +20,8 @@ namespace ClientRest
             //Application.Run(new Form1());
             //Application.Run(new ProductsList());
             //Application.Run(new NewProduct());
-            Application.Run(new InvoiceSell());
+            //Application.Run(new InvoiceSell());
+            Application.Run(new MainForm());
         }
     }
 }

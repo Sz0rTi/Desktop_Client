@@ -32,6 +32,7 @@ namespace ClientRest.Forms
             ProductsListBox.DataSource = products;
             ProductsListBox.ValueMember = "id";
             ProductsListBox.DisplayMember = "name";
+            CategoryLabel.Focus();
         }
     }
 }

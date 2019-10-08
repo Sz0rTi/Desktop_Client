@@ -37,7 +37,7 @@ namespace ClientRest.Forms
         {
             //dodać jednostkę miary
             ProductSellOut temp = new ProductSellOut { ProductID = Guid.Parse(ProductNameCB.SelectedValue.ToString()), Name = ProductNameCB.Text, Amount = (int)AmountTB.Value, Unit = UnitsCB.Text, PricePerItemNetto = (double)PricePerItemNUD.Value, PricePerItemBrutto = (double)PricePerItemNUD.Value + ((double)PricePerItemNUD.Value) * 0.23 };
-            //products.Add(temp);
+            products.Add(temp);
             var item = new ListViewItem(new[] { temp.Name.ToString(), temp.Amount.ToString(), temp.Unit, temp.PricePerItemNetto.ToString("C2"), ((double)(temp.Amount*temp.PricePerItemNetto)).ToString("C2")});
             foreach(ListViewItem x in listView1.Items)
             {
@@ -48,6 +48,7 @@ namespace ClientRest.Forms
                 }
             }
             listView1.Items.Add(item);
+            ProductNameCB.SelectedIndex = -1;
             ((CurrencyManager)BindingContext[products]).Refresh();
         }
 
@@ -58,7 +59,7 @@ namespace ClientRest.Forms
             ProductNameCB.ValueMember = "id";
             ProductNameCB.DisplayMember = "name";
             ProductNameCB.DataSource = list;
-            
+            CategoryCBLabel.Focus();
         }
 
         private void InvoiceSell_Load(object sender, EventArgs e)
@@ -73,16 +74,37 @@ namespace ClientRest.Forms
                Uśredniona cena zakupu. 
             */
             Product product = (Product)ProductNameCB.SelectedItem;
-            UnitsCB.SelectedValue = rest.getRequest<Unit>(controller.units, "/byproductid/" + product.ID.ToString()).ID;
+            if (ProductNameCB.SelectedIndex == -1) UnitsCB.SelectedIndex = -1;
+            else
+            {
+                UnitsCB.SelectedValue = rest.getRequest<Unit>(controller.units, "/byproductid/" + product.ID.ToString()).ID;
+            }
+            CategoryCBLabel.Focus();
         }
 
         private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count > 0) {
-                ProductNameCB.SelectedText = listView1.SelectedItems[0].SubItems[0].Text;
+                ProductNameCB.SelectedValue = products[listView1.SelectedIndices[0]].ProductID;
                 PricePerItemNUD.Value = decimal.Parse(listView1.SelectedItems[0].SubItems[3].Text,System.Globalization.NumberStyles.Currency);
                 AmountTB.Value = decimal.Parse(listView1.SelectedItems[0].SubItems[1].Text);
             }
+        }
+
+        private void CreateButton_Click(object sender, EventArgs e)
+        {
+            double sum = 0;
+            foreach(ProductSellOut item in products)
+            {
+                sum += item.PricePerItemNetto * item.Amount;
+            }
+            InvoiceSellOut invoiceSellOut = new InvoiceSellOut();
+            invoiceSellOut.ClientId = Guid.Parse("4750b501-9121-4432-959b-defb16f17e64");
+            invoiceSellOut.IsPaid = false;
+            invoiceSellOut.PaymentDeadline = DateTime.Now;
+            invoiceSellOut.Products = products;
+            invoiceSellOut.PriceNetto = sum;
+            rest.postRequest<InvoiceSellOut>(invoiceSellOut, controller.invoicesells);
         }
     }
 }
