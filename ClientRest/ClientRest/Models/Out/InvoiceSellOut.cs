@@ -12,6 +12,6 @@ namespace ClientRest.Models.Out
         public double PriceNetto { get; set; }
         public DateTime PaymentDeadline { get; set; }
         public bool IsPaid { get; set; }
-        public List<ProductSellOut> Products { get; set; }
+        public List<ProductSellOut> ProductsSell { get; set; }
     }
 }
