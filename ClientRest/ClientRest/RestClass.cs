@@ -44,7 +44,8 @@ namespace ClientRest
 
         public RestClass()
         {
-            address = "https://localhost:44361/api/";
+            //address = "https://localhost:44361/api/";
+            address = "https://localhost:5001/api/";
             endPoint = string.Empty;
             httpMethod = httpVerb.GET;
         }

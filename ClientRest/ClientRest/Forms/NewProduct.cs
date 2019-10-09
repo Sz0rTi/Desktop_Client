@@ -15,9 +15,9 @@ namespace ClientRest.Forms
     public partial class NewProduct : Form
     {
         RestClass rest = new RestClass();
-        int CategoryId = 0;
-        int TaxStageId = 0;
-        int UnitId = 0;
+        int CategoryId = -1;
+        int TaxStageId = -1;
+        int UnitId = -1;
         public NewProduct()
         {
             InitializeComponent();
@@ -64,15 +64,15 @@ namespace ClientRest.Forms
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            if(CategoryId != -1 && UnitId != -1 && NameTB.Text != "" && PriceNUD.Value != 0 && DescriptionTB.Text != "")
+            if(/*CategoryId != Guid.Empty && UnitId != Guid.Empty && NameTB.Text != "" && PriceNUD.Value != 0 && DescriptionTB.Text != ""*/true)
             {
                 Product product = new Product();
                 List<Category> categories = rest.getRequest<List<Category>>(controller.categories);
                 product.Name = NameTB.Text;
                 product.Description = DescriptionTB.Text;
-                product.CategoryID = CategoryId;
-                product.TaxStageID = TaxStageId;
-                product.UnitID = UnitId;
+                product.CategoryID = Guid.Parse(CategoryCB.SelectedValue.ToString());
+                product.TaxStageID = Guid.Parse(TaxStageCB.SelectedValue.ToString());
+                product.UnitID = Guid.Parse(UnitCB.SelectedValue.ToString());
                 product.PriceNetto = (double) PriceNUD.Value;
                 product.Amount = (int)AmountNUD.Value;
                 rest.postRequest<Product>(product,controller.products);

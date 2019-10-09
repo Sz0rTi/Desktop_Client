@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace ClientRest
 {
-    class Test
+    public class Test
     {
         //[JsonProperty("id")]
-        public int ID { get; set; }
+        public Guid ID { get; set; }
         //[JsonProperty("name")]
         public string Name { get; set; }
         //[JsonProperty("isComplete")]
