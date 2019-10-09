@@ -36,7 +36,11 @@ namespace ClientRest.Forms
         private void AddProductButton_Click(object sender, EventArgs e)
         {
             //dodać jednostkę miary
-            ProductSellOut temp = new ProductSellOut { ProductID = Guid.Parse(ProductNameCB.SelectedValue.ToString()), Name = ProductNameCB.Text, Amount = (int)AmountTB.Value, Unit = UnitsCB.Text, PricePerItemNetto = (double)PricePerItemNUD.Value, PricePerItemBrutto = (double)PricePerItemNUD.Value + ((double)PricePerItemNUD.Value) * 0.23 };
+            Product a = (Product)ProductNameCB.SelectedItem;
+            ProductSellOut temp = new ProductSellOut { ProductID = Guid.Parse(ProductNameCB.SelectedValue.ToString()),
+                Name = ProductNameCB.Text, Amount = (int)AmountTB.Value, Unit = UnitsCB.Text,
+                TaxStageID = a.TaxStageID,
+                PricePerItemNetto = (double)PricePerItemNUD.Value, PricePerItemBrutto = (double)PricePerItemNUD.Value + ((double)PricePerItemNUD.Value) * 0.23 };
             products.Add(temp);
             var item = new ListViewItem(new[] { temp.Name.ToString(), temp.Amount.ToString(), temp.Unit, temp.PricePerItemNetto.ToString("C2"), ((double)(temp.Amount*temp.PricePerItemNetto)).ToString("C2")});
             foreach(ListViewItem x in listView1.Items)
@@ -102,7 +106,7 @@ namespace ClientRest.Forms
             invoiceSellOut.ClientId = Guid.Parse("4750b501-9121-4432-959b-defb16f17e64");
             invoiceSellOut.IsPaid = false;
             invoiceSellOut.PaymentDeadline = DateTime.Now;
-            invoiceSellOut.Products = products;
+            invoiceSellOut.ProductsSell = products;
             invoiceSellOut.PriceNetto = sum;
             rest.postRequest<InvoiceSellOut>(invoiceSellOut, controller.invoicesells);
         }
