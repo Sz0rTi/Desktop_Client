@@ -101,7 +101,7 @@ namespace ClientRest.Forms
             InvoiceSellOut invoiceSellOut = new InvoiceSellOut();
             invoiceSellOut.ClientId = Guid.Parse("4750b501-9121-4432-959b-defb16f17e64");
             invoiceSellOut.IsPaid = false;
-            invoiceSellOut.PaymentDeadline = DateTime.Now;
+            invoiceSellOut.PaymentDeadline = PAYDATE.Value;
             invoiceSellOut.Products = products;
             invoiceSellOut.PriceNetto = sum;
             rest.postRequest<InvoiceSellOut>(invoiceSellOut, controller.invoicesells);

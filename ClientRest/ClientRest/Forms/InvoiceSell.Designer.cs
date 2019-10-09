@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.PAYDATE = new System.Windows.Forms.DateTimePicker();
             this.AddProductButton = new System.Windows.Forms.Button();
             this.ProductNameCB = new System.Windows.Forms.ComboBox();
             this.NameCBLabel = new System.Windows.Forms.Label();
@@ -54,12 +54,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.productSellOutBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // dateTimePicker1
+            // PAYDATE
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(509, 255);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 0;
+            this.PAYDATE.Location = new System.Drawing.Point(509, 255);
+            this.PAYDATE.Name = "PAYDATE";
+            this.PAYDATE.Size = new System.Drawing.Size(200, 20);
+            this.PAYDATE.TabIndex = 0;
             // 
             // AddProductButton
             // 
@@ -232,7 +232,7 @@
             this.Controls.Add(this.NameCBLabel);
             this.Controls.Add(this.ProductNameCB);
             this.Controls.Add(this.AddProductButton);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.PAYDATE);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "InvoiceSell";
             this.Text = "InvoiceSell";
@@ -247,7 +247,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker PAYDATE;
         private System.Windows.Forms.Button AddProductButton;
         private System.Windows.Forms.ComboBox ProductNameCB;
         private System.Windows.Forms.Label NameCBLabel;
