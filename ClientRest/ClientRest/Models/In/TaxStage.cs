@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientRest.Models
+namespace ClientRest.Models.In
 {
-    public class Category
+    public class TaxStage
     {
         public Guid ID { get; set; }
-        public string Name { get; set; }
+        public double Stage { get; set; }
     }
 }

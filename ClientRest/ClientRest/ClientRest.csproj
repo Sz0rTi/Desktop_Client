@@ -80,6 +80,12 @@
     <Compile Include="Forms\InvoiceSell.Designer.cs">
       <DependentUpon>InvoiceSell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\NewProduct.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,17 +104,19 @@
     <Compile Include="Forms\TEST.Designer.cs">
       <DependentUpon>TEST.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\In\Category.cs" />
     <Compile Include="Models\Client.cs" />
-    <Compile Include="Models\InvoiceBuy.cs" />
-    <Compile Include="Models\InvoiceSell.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\ProductBuy.cs" />
-    <Compile Include="Models\ProductSell.cs" />
+    <Compile Include="Models\In\InvoiceBuy.cs" />
+    <Compile Include="Models\In\InvoiceSell.cs" />
+    <Compile Include="Models\In\Product.cs" />
+    <Compile Include="Models\In\ProductBuy.cs" />
+    <Compile Include="Models\In\ProductSell.cs" />
+    <Compile Include="Models\Out\InvoiceSellOut.cs" />
+    <Compile Include="Models\Out\ProductSellOut.cs" />
     <Compile Include="Models\Role.cs" />
-    <Compile Include="Models\Seller.cs" />
-    <Compile Include="Models\TaxStage.cs" />
-    <Compile Include="Models\Unit.cs" />
+    <Compile Include="Models\In\Seller.cs" />
+    <Compile Include="Models\In\TaxStage.cs" />
+    <Compile Include="Models\In\Unit.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InvoiceSell.resx">
       <DependentUpon>InvoiceSell.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NewProduct.resx">
       <DependentUpon>NewProduct.cs</DependentUpon>
@@ -140,6 +151,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ClientRest.Models.Out.ProductSellOut.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -153,5 +165,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

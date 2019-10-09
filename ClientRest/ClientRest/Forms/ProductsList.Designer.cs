@@ -35,7 +35,7 @@
             // 
             // CategoryCB
             // 
-            this.CategoryCB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.CategoryCB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.CategoryCB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CategoryCB.FormattingEnabled = true;
             this.CategoryCB.Location = new System.Drawing.Point(129, 114);
@@ -71,6 +71,7 @@
             this.Controls.Add(this.ProductsListBox);
             this.Controls.Add(this.CategoryLabel);
             this.Controls.Add(this.CategoryCB);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ProductsList";
             this.Text = "ProductsList";
             this.ResumeLayout(false);

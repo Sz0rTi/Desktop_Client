@@ -131,6 +131,7 @@
             this.Controls.Add(this.PriceNUD);
             this.Controls.Add(this.UnitCB);
             this.Controls.Add(this.CategoryCB);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "NewProduct";
             this.Text = "NewProduct";
             ((System.ComponentModel.ISupportInitialize)(this.PriceNUD)).EndInit();

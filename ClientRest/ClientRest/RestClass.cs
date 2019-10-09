@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using ClientRest.Models;
+using ClientRest.Models.In.In;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -82,21 +83,18 @@ namespace ClientRest
         public T postRequest<T>(T item, controller controller)
         {
             string a = JsonConvert.SerializeObject(item, Formatting.Indented);
-            var byteData = Encoding.ASCII.GetBytes(a);
+            var byteData = Encoding.UTF8.GetBytes(a);
             endPoint = address + controller.ToString();
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint); 
             httpMethod = httpVerb.POST;
             request.Method = httpMethod.ToString();
             request.ContentType = "application/json";
-            using(var stream = request.GetRequestStream())
+            using (var stream = request.GetRequestStream())
             {
                 stream.Write(byteData, 0, byteData.Length);
-                //sw.Write(a);
-                //sw.Flush();
-                //sw.Close();
             }
             HttpWebResponse response = (HttpWebResponse) request.GetResponse();
-            var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            var responseString = new StreamReader(response.GetResponseStream(), Encoding.UTF8).ReadToEnd();
             httpMethod = httpVerb.GET;
             return item;
         }
@@ -136,9 +134,30 @@ namespace ClientRest
             return obj;
         }
 
+        /// <summary>
+        /// Returns data from server as object of given type. 
+        /// </summary>
+        /// <typeparam name="T">Expected type of returned object.</typeparam>
+        /// <param name="controller">Name of controller.</param>
+        /// <returns>Object of T type created from JSON.</returns>
         public T getRequest<T>(controller controller)
         {
             endPoint = address + controller.ToString();
+            return JsonDeserialize<T>(makeRequest());
+        }
+
+        /// <summary>
+        /// Returns data from server as object of given type.
+        /// Used when HTTP method has additional route.
+        /// E.g. .../api/ControllerName/AdditionalRoute 
+        /// </summary>
+        /// <typeparam name="T">Expected type of returned object.</typeparam>
+        /// <param name="controller">Name of controller.</param>
+        /// <param name="parameter">Additional routing.</param>
+        /// <returns>Object of T type created from JSON.</returns>
+        public T getRequest<T>(controller controller, string parameter)
+        {
+            endPoint = address + controller.ToString() + parameter;
             return JsonDeserialize<T>(makeRequest());
         }
 
