@@ -37,14 +37,14 @@
             // 
             // NPPanel
             // 
-            this.NPPanel.Location = new System.Drawing.Point(399, 110);
+            this.NPPanel.Location = new System.Drawing.Point(333, 110);
             this.NPPanel.Name = "NPPanel";
             this.NPPanel.Size = new System.Drawing.Size(891, 730);
             this.NPPanel.TabIndex = 0;
             // 
             // NPButton
             // 
-            this.NPButton.Location = new System.Drawing.Point(138, 189);
+            this.NPButton.Location = new System.Drawing.Point(60, 110);
             this.NPButton.Name = "NPButton";
             this.NPButton.Size = new System.Drawing.Size(210, 23);
             this.NPButton.TabIndex = 1;
@@ -54,7 +54,7 @@
             // 
             // ISButton
             // 
-            this.ISButton.Location = new System.Drawing.Point(138, 235);
+            this.ISButton.Location = new System.Drawing.Point(60, 156);
             this.ISButton.Name = "ISButton";
             this.ISButton.Size = new System.Drawing.Size(210, 23);
             this.ISButton.TabIndex = 2;
@@ -64,7 +64,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(138, 281);
+            this.button3.Location = new System.Drawing.Point(60, 202);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(210, 23);
             this.button3.TabIndex = 3;
@@ -73,7 +73,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(138, 281);
+            this.button1.Location = new System.Drawing.Point(60, 202);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(210, 23);
             this.button1.TabIndex = 3;

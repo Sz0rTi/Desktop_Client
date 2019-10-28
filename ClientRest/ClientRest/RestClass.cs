@@ -25,6 +25,7 @@ namespace ClientRest
     {
         clients,
         categories,
+        gus,
         invoicebuys,
         invoicesells,
         products,

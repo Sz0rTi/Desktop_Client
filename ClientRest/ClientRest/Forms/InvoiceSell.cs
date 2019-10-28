@@ -109,6 +109,7 @@ namespace ClientRest.Forms
             else
             {
                 UnitsCB.SelectedValue = rest.getRequest<Unit>(controller.units, "/byproductid/" + product.ID.ToString()).ID;
+                ProductAmountLabel2.Text = product.Amount.ToString();
             }
             CategoryCBLabel.Focus();
         }
@@ -203,6 +204,37 @@ namespace ClientRest.Forms
                 SummaryNetto.Text = sumNetto.ToString("N2") + "zł";
                 SummaryBrutto.Text = sumBrutto.ToString("N2") + "zł";
                 ((CurrencyManager)BindingContext[products]).Refresh();
+            }
+        }
+
+        private void NIPButton_Click(object sender, EventArgs e)
+        {
+            string temp = ClientNIPTB.Text;
+            bool a = false;
+            if (temp != string.Empty)
+            {
+                temp = ClientNIPTB.Text.Replace("-", "");
+                foreach (char c in temp)
+                {
+                    if (c < '0' || c > '9')
+                        a = true;
+                }
+                if (a != true)
+                {
+                    Company company = new Company();
+                    company = rest.getRequest<Company>(controller.gus, "/" + temp);
+                    ClientNameTB.Text = company.Name;
+                    if (company.Number[company.Number.Length - 1].Equals('/'))
+                    {
+                        ClientStreetNumberTB.Text = company.Street + " " + company.Number.Substring(0,company.Number.Length-1);
+                    }
+                    else
+                    {
+                        ClientStreetNumberTB.Text = company.Street + " " + company.Number;
+                    }
+                    ClientCityPostCodeTB.Text = company.PostCode + " " + company.City;
+                    ClientNIPTB.Text = company.NIP;
+                } 
             }
         }
     }

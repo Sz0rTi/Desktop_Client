@@ -106,6 +106,7 @@
     </Compile>
     <Compile Include="Models\In\Category.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\In\Company.cs" />
     <Compile Include="Models\In\InvoiceBuy.cs" />
     <Compile Include="Models\In\InvoiceSell.cs" />
     <Compile Include="Models\In\Product.cs" />

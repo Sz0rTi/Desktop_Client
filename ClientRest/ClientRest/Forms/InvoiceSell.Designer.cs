@@ -54,24 +54,37 @@
             this.SummaryNetto = new System.Windows.Forms.Label();
             this.SummaryNettoLabel = new System.Windows.Forms.Label();
             this.EditButton = new System.Windows.Forms.Button();
-            this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.RemoveButton = new System.Windows.Forms.Button();
+            this.ClientGB = new System.Windows.Forms.GroupBox();
+            this.ClientNameTB = new System.Windows.Forms.TextBox();
+            this.ClientStreetNumberTB = new System.Windows.Forms.TextBox();
+            this.ClientNIPTB = new System.Windows.Forms.TextBox();
+            this.NIPButton = new System.Windows.Forms.Button();
+            this.ClientCityPostCodeTB = new System.Windows.Forms.TextBox();
+            this.ClientNameLabel = new System.Windows.Forms.Label();
+            this.ClientStreetNumberLabel = new System.Windows.Forms.Label();
+            this.ClientCityPostCodeLabel = new System.Windows.Forms.Label();
+            this.ClientNIPLabel = new System.Windows.Forms.Label();
+            this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ProductAmountLabel1 = new System.Windows.Forms.Label();
+            this.ProductAmountLabel2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PricePerItemNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmountTB)).BeginInit();
             this.Summary.SuspendLayout();
+            this.ClientGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productSellOutBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // PAYDATE
             // 
-            this.PAYDATE.Location = new System.Drawing.Point(509, 300);
+            this.PAYDATE.Location = new System.Drawing.Point(630, 431);
             this.PAYDATE.Name = "PAYDATE";
             this.PAYDATE.Size = new System.Drawing.Size(200, 20);
             this.PAYDATE.TabIndex = 0;
             // 
             // AddProductButton
             // 
-            this.AddProductButton.Location = new System.Drawing.Point(191, 364);
+            this.AddProductButton.Location = new System.Drawing.Point(387, 464);
             this.AddProductButton.Name = "AddProductButton";
             this.AddProductButton.Size = new System.Drawing.Size(75, 23);
             this.AddProductButton.TabIndex = 2;
@@ -84,7 +97,7 @@
             this.ProductNameCB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.ProductNameCB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ProductNameCB.FormattingEnabled = true;
-            this.ProductNameCB.Location = new System.Drawing.Point(191, 423);
+            this.ProductNameCB.Location = new System.Drawing.Point(251, 408);
             this.ProductNameCB.Name = "ProductNameCB";
             this.ProductNameCB.Size = new System.Drawing.Size(142, 21);
             this.ProductNameCB.TabIndex = 3;
@@ -93,7 +106,7 @@
             // NameCBLabel
             // 
             this.NameCBLabel.AutoSize = true;
-            this.NameCBLabel.Location = new System.Drawing.Point(145, 426);
+            this.NameCBLabel.Location = new System.Drawing.Point(205, 412);
             this.NameCBLabel.Name = "NameCBLabel";
             this.NameCBLabel.Size = new System.Drawing.Size(40, 13);
             this.NameCBLabel.TabIndex = 4;
@@ -104,7 +117,7 @@
             this.CategoryCB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.CategoryCB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CategoryCB.FormattingEnabled = true;
-            this.CategoryCB.Location = new System.Drawing.Point(191, 396);
+            this.CategoryCB.Location = new System.Drawing.Point(251, 381);
             this.CategoryCB.Name = "CategoryCB";
             this.CategoryCB.Size = new System.Drawing.Size(121, 21);
             this.CategoryCB.TabIndex = 5;
@@ -113,7 +126,7 @@
             // CategoryCBLabel
             // 
             this.CategoryCBLabel.AutoSize = true;
-            this.CategoryCBLabel.Location = new System.Drawing.Point(133, 399);
+            this.CategoryCBLabel.Location = new System.Drawing.Point(193, 384);
             this.CategoryCBLabel.Name = "CategoryCBLabel";
             this.CategoryCBLabel.Size = new System.Drawing.Size(52, 13);
             this.CategoryCBLabel.TabIndex = 6;
@@ -122,7 +135,7 @@
             // PricePerItemNUD
             // 
             this.PricePerItemNUD.DecimalPlaces = 2;
-            this.PricePerItemNUD.Location = new System.Drawing.Point(191, 450);
+            this.PricePerItemNUD.Location = new System.Drawing.Point(251, 435);
             this.PricePerItemNUD.Maximum = new decimal(new int[] {
             999999999,
             0,
@@ -135,7 +148,7 @@
             // PriceLabel
             // 
             this.PriceLabel.AutoSize = true;
-            this.PriceLabel.Location = new System.Drawing.Point(76, 452);
+            this.PriceLabel.Location = new System.Drawing.Point(136, 437);
             this.PriceLabel.Name = "PriceLabel";
             this.PriceLabel.Size = new System.Drawing.Size(109, 13);
             this.PriceLabel.TabIndex = 8;
@@ -143,7 +156,7 @@
             // 
             // AmountTB
             // 
-            this.AmountTB.Location = new System.Drawing.Point(191, 477);
+            this.AmountTB.Location = new System.Drawing.Point(251, 462);
             this.AmountTB.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -156,7 +169,7 @@
             // AmountLabel
             // 
             this.AmountLabel.AutoSize = true;
-            this.AmountLabel.Location = new System.Drawing.Point(156, 479);
+            this.AmountLabel.Location = new System.Drawing.Point(216, 464);
             this.AmountLabel.Name = "AmountLabel";
             this.AmountLabel.Size = new System.Drawing.Size(29, 13);
             this.AmountLabel.TabIndex = 10;
@@ -172,10 +185,10 @@
             this.columnHeader5});
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(191, 47);
+            this.listView1.Location = new System.Drawing.Point(139, 209);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(518, 135);
+            this.listView1.Size = new System.Drawing.Size(691, 135);
             this.listView1.TabIndex = 11;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged);
@@ -204,7 +217,7 @@
             // UnitsCB
             // 
             this.UnitsCB.FormattingEnabled = true;
-            this.UnitsCB.Location = new System.Drawing.Point(399, 423);
+            this.UnitsCB.Location = new System.Drawing.Point(417, 435);
             this.UnitsCB.Name = "UnitsCB";
             this.UnitsCB.Size = new System.Drawing.Size(121, 21);
             this.UnitsCB.TabIndex = 12;
@@ -212,7 +225,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(366, 426);
+            this.label1.Location = new System.Drawing.Point(384, 438);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 13;
@@ -220,7 +233,7 @@
             // 
             // CreateButton
             // 
-            this.CreateButton.Location = new System.Drawing.Point(634, 531);
+            this.CreateButton.Location = new System.Drawing.Point(755, 629);
             this.CreateButton.Name = "CreateButton";
             this.CreateButton.Size = new System.Drawing.Size(75, 23);
             this.CreateButton.TabIndex = 14;
@@ -234,7 +247,7 @@
             this.Summary.Controls.Add(this.SummaryBrutttoLabel);
             this.Summary.Controls.Add(this.SummaryNetto);
             this.Summary.Controls.Add(this.SummaryNettoLabel);
-            this.Summary.Location = new System.Drawing.Point(509, 206);
+            this.Summary.Location = new System.Drawing.Point(630, 350);
             this.Summary.Name = "Summary";
             this.Summary.Size = new System.Drawing.Size(200, 75);
             this.Summary.TabIndex = 15;
@@ -282,7 +295,7 @@
             // 
             // EditButton
             // 
-            this.EditButton.Location = new System.Drawing.Point(399, 477);
+            this.EditButton.Location = new System.Drawing.Point(468, 464);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(75, 23);
             this.EditButton.TabIndex = 16;
@@ -290,13 +303,9 @@
             this.EditButton.UseVisualStyleBackColor = true;
             this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
-            // productSellOutBindingSource
-            // 
-            this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
-            // 
             // RemoveButton
             // 
-            this.RemoveButton.Location = new System.Drawing.Point(480, 477);
+            this.RemoveButton.Location = new System.Drawing.Point(549, 464);
             this.RemoveButton.Name = "RemoveButton";
             this.RemoveButton.Size = new System.Drawing.Size(75, 23);
             this.RemoveButton.TabIndex = 17;
@@ -304,11 +313,127 @@
             this.RemoveButton.UseVisualStyleBackColor = true;
             this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
+            // ClientGB
+            // 
+            this.ClientGB.Controls.Add(this.ClientNIPLabel);
+            this.ClientGB.Controls.Add(this.ClientCityPostCodeLabel);
+            this.ClientGB.Controls.Add(this.ClientStreetNumberLabel);
+            this.ClientGB.Controls.Add(this.ClientNameLabel);
+            this.ClientGB.Controls.Add(this.ClientCityPostCodeTB);
+            this.ClientGB.Controls.Add(this.NIPButton);
+            this.ClientGB.Controls.Add(this.ClientNIPTB);
+            this.ClientGB.Controls.Add(this.ClientStreetNumberTB);
+            this.ClientGB.Controls.Add(this.ClientNameTB);
+            this.ClientGB.Location = new System.Drawing.Point(139, 12);
+            this.ClientGB.Name = "ClientGB";
+            this.ClientGB.Size = new System.Drawing.Size(485, 191);
+            this.ClientGB.TabIndex = 18;
+            this.ClientGB.TabStop = false;
+            this.ClientGB.Text = "Dane klienta";
+            // 
+            // ClientNameTB
+            // 
+            this.ClientNameTB.Location = new System.Drawing.Point(112, 20);
+            this.ClientNameTB.Name = "ClientNameTB";
+            this.ClientNameTB.Size = new System.Drawing.Size(318, 20);
+            this.ClientNameTB.TabIndex = 0;
+            // 
+            // ClientStreetNumberTB
+            // 
+            this.ClientStreetNumberTB.Location = new System.Drawing.Point(112, 46);
+            this.ClientStreetNumberTB.Name = "ClientStreetNumberTB";
+            this.ClientStreetNumberTB.Size = new System.Drawing.Size(318, 20);
+            this.ClientStreetNumberTB.TabIndex = 1;
+            // 
+            // ClientNIPTB
+            // 
+            this.ClientNIPTB.Location = new System.Drawing.Point(112, 99);
+            this.ClientNIPTB.Name = "ClientNIPTB";
+            this.ClientNIPTB.Size = new System.Drawing.Size(194, 20);
+            this.ClientNIPTB.TabIndex = 2;
+            // 
+            // NIPButton
+            // 
+            this.NIPButton.Location = new System.Drawing.Point(208, 148);
+            this.NIPButton.Name = "NIPButton";
+            this.NIPButton.Size = new System.Drawing.Size(75, 23);
+            this.NIPButton.TabIndex = 3;
+            this.NIPButton.Text = "Szukaj";
+            this.NIPButton.UseVisualStyleBackColor = true;
+            this.NIPButton.Click += new System.EventHandler(this.NIPButton_Click);
+            // 
+            // ClientCityPostCodeTB
+            // 
+            this.ClientCityPostCodeTB.Location = new System.Drawing.Point(112, 73);
+            this.ClientCityPostCodeTB.Name = "ClientCityPostCodeTB";
+            this.ClientCityPostCodeTB.Size = new System.Drawing.Size(318, 20);
+            this.ClientCityPostCodeTB.TabIndex = 4;
+            // 
+            // ClientNameLabel
+            // 
+            this.ClientNameLabel.AutoSize = true;
+            this.ClientNameLabel.Location = new System.Drawing.Point(66, 23);
+            this.ClientNameLabel.Name = "ClientNameLabel";
+            this.ClientNameLabel.Size = new System.Drawing.Size(40, 13);
+            this.ClientNameLabel.TabIndex = 5;
+            this.ClientNameLabel.Text = "Nazwa";
+            // 
+            // ClientStreetNumberLabel
+            // 
+            this.ClientStreetNumberLabel.AutoSize = true;
+            this.ClientStreetNumberLabel.Location = new System.Drawing.Point(38, 49);
+            this.ClientStreetNumberLabel.Name = "ClientStreetNumberLabel";
+            this.ClientStreetNumberLabel.Size = new System.Drawing.Size(68, 13);
+            this.ClientStreetNumberLabel.TabIndex = 6;
+            this.ClientStreetNumberLabel.Text = "Ulica i numer";
+            // 
+            // ClientCityPostCodeLabel
+            // 
+            this.ClientCityPostCodeLabel.AutoSize = true;
+            this.ClientCityPostCodeLabel.Location = new System.Drawing.Point(12, 76);
+            this.ClientCityPostCodeLabel.Name = "ClientCityPostCodeLabel";
+            this.ClientCityPostCodeLabel.Size = new System.Drawing.Size(94, 13);
+            this.ClientCityPostCodeLabel.TabIndex = 7;
+            this.ClientCityPostCodeLabel.Text = "Kod i miejscowość";
+            // 
+            // ClientNIPLabel
+            // 
+            this.ClientNIPLabel.AutoSize = true;
+            this.ClientNIPLabel.Location = new System.Drawing.Point(81, 102);
+            this.ClientNIPLabel.Name = "ClientNIPLabel";
+            this.ClientNIPLabel.Size = new System.Drawing.Size(25, 13);
+            this.ClientNIPLabel.TabIndex = 8;
+            this.ClientNIPLabel.Text = "NIP";
+            // 
+            // productSellOutBindingSource
+            // 
+            this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
+            // 
+            // ProductAmountLabel1
+            // 
+            this.ProductAmountLabel1.AutoSize = true;
+            this.ProductAmountLabel1.Location = new System.Drawing.Point(399, 411);
+            this.ProductAmountLabel1.Name = "ProductAmountLabel1";
+            this.ProductAmountLabel1.Size = new System.Drawing.Size(55, 13);
+            this.ProductAmountLabel1.TabIndex = 19;
+            this.ProductAmountLabel1.Text = "Na stanie:";
+            // 
+            // ProductAmountLabel2
+            // 
+            this.ProductAmountLabel2.AutoSize = true;
+            this.ProductAmountLabel2.Location = new System.Drawing.Point(460, 412);
+            this.ProductAmountLabel2.Name = "ProductAmountLabel2";
+            this.ProductAmountLabel2.Size = new System.Drawing.Size(0, 13);
+            this.ProductAmountLabel2.TabIndex = 20;
+            // 
             // InvoiceSell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(995, 685);
+            this.Controls.Add(this.ProductAmountLabel2);
+            this.Controls.Add(this.ProductAmountLabel1);
+            this.Controls.Add(this.ClientGB);
             this.Controls.Add(this.RemoveButton);
             this.Controls.Add(this.EditButton);
             this.Controls.Add(this.Summary);
@@ -334,6 +459,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.AmountTB)).EndInit();
             this.Summary.ResumeLayout(false);
             this.Summary.PerformLayout();
+            this.ClientGB.ResumeLayout(false);
+            this.ClientGB.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productSellOutBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -369,5 +496,17 @@
         private System.Windows.Forms.Label SummaryBrutto;
         private System.Windows.Forms.Label SummaryBrutttoLabel;
         private System.Windows.Forms.Button RemoveButton;
+        private System.Windows.Forms.GroupBox ClientGB;
+        private System.Windows.Forms.Button NIPButton;
+        private System.Windows.Forms.TextBox ClientNIPTB;
+        private System.Windows.Forms.TextBox ClientStreetNumberTB;
+        private System.Windows.Forms.TextBox ClientNameTB;
+        private System.Windows.Forms.TextBox ClientCityPostCodeTB;
+        private System.Windows.Forms.Label ClientNIPLabel;
+        private System.Windows.Forms.Label ClientCityPostCodeLabel;
+        private System.Windows.Forms.Label ClientStreetNumberLabel;
+        private System.Windows.Forms.Label ClientNameLabel;
+        private System.Windows.Forms.Label ProductAmountLabel1;
+        private System.Windows.Forms.Label ProductAmountLabel2;
     }
 }
