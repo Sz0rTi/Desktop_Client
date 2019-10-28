@@ -25,7 +25,6 @@ namespace ClientRest.Forms
             NPPanel.Controls.Clear();
             NPPanel.Controls.Add(newProduct);
             newProduct.Show();
-            //NPPanel.Visible = true;
         }
 
         private void ISButton_Click(object sender, EventArgs e)

@@ -47,16 +47,23 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.UnitsCB = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CreateButton = new System.Windows.Forms.Button();
+            this.Summary = new System.Windows.Forms.GroupBox();
+            this.SummaryBrutto = new System.Windows.Forms.Label();
+            this.SummaryBrutttoLabel = new System.Windows.Forms.Label();
+            this.SummaryNetto = new System.Windows.Forms.Label();
+            this.SummaryNettoLabel = new System.Windows.Forms.Label();
+            this.EditButton = new System.Windows.Forms.Button();
+            this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PricePerItemNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmountTB)).BeginInit();
+            this.Summary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productSellOutBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // PAYDATE
             // 
-            this.PAYDATE.Location = new System.Drawing.Point(509, 255);
+            this.PAYDATE.Location = new System.Drawing.Point(509, 300);
             this.PAYDATE.Name = "PAYDATE";
             this.PAYDATE.Size = new System.Drawing.Size(200, 20);
             this.PAYDATE.TabIndex = 0;
@@ -115,6 +122,11 @@
             // 
             this.PricePerItemNUD.DecimalPlaces = 2;
             this.PricePerItemNUD.Location = new System.Drawing.Point(191, 450);
+            this.PricePerItemNUD.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
             this.PricePerItemNUD.Name = "PricePerItemNUD";
             this.PricePerItemNUD.Size = new System.Drawing.Size(120, 20);
             this.PricePerItemNUD.TabIndex = 7;
@@ -131,6 +143,11 @@
             // AmountTB
             // 
             this.AmountTB.Location = new System.Drawing.Point(191, 477);
+            this.AmountTB.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
             this.AmountTB.Name = "AmountTB";
             this.AmountTB.Size = new System.Drawing.Size(120, 20);
             this.AmountTB.TabIndex = 9;
@@ -200,10 +217,6 @@
             this.label1.TabIndex = 13;
             this.label1.Text = "J.M.";
             // 
-            // productSellOutBindingSource
-            // 
-            this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
-            // 
             // CreateButton
             // 
             this.CreateButton.Location = new System.Drawing.Point(634, 531);
@@ -214,11 +227,79 @@
             this.CreateButton.UseVisualStyleBackColor = true;
             this.CreateButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
+            // Summary
+            // 
+            this.Summary.Controls.Add(this.SummaryBrutto);
+            this.Summary.Controls.Add(this.SummaryBrutttoLabel);
+            this.Summary.Controls.Add(this.SummaryNetto);
+            this.Summary.Controls.Add(this.SummaryNettoLabel);
+            this.Summary.Location = new System.Drawing.Point(509, 206);
+            this.Summary.Name = "Summary";
+            this.Summary.Size = new System.Drawing.Size(200, 75);
+            this.Summary.TabIndex = 15;
+            this.Summary.TabStop = false;
+            this.Summary.Text = "Podsumowanie";
+            // 
+            // SummaryBrutto
+            // 
+            this.SummaryBrutto.AutoSize = true;
+            this.SummaryBrutto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.SummaryBrutto.Location = new System.Drawing.Point(109, 43);
+            this.SummaryBrutto.Name = "SummaryBrutto";
+            this.SummaryBrutto.Size = new System.Drawing.Size(0, 13);
+            this.SummaryBrutto.TabIndex = 3;
+            this.SummaryBrutto.DoubleClick += new System.EventHandler(this.SummaryBrutto_DoubleClick);
+            // 
+            // SummaryBrutttoLabel
+            // 
+            this.SummaryBrutttoLabel.AutoSize = true;
+            this.SummaryBrutttoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.SummaryBrutttoLabel.Location = new System.Drawing.Point(7, 44);
+            this.SummaryBrutttoLabel.Name = "SummaryBrutttoLabel";
+            this.SummaryBrutttoLabel.Size = new System.Drawing.Size(95, 13);
+            this.SummaryBrutttoLabel.TabIndex = 2;
+            this.SummaryBrutttoLabel.Text = "Wartość brutto:";
+            // 
+            // SummaryNetto
+            // 
+            this.SummaryNetto.AutoSize = true;
+            this.SummaryNetto.Location = new System.Drawing.Point(96, 20);
+            this.SummaryNetto.Name = "SummaryNetto";
+            this.SummaryNetto.Size = new System.Drawing.Size(0, 13);
+            this.SummaryNetto.TabIndex = 1;
+            this.SummaryNetto.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.SummaryNetto_MouseDoubleClick);
+            // 
+            // SummaryNettoLabel
+            // 
+            this.SummaryNettoLabel.AutoSize = true;
+            this.SummaryNettoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.SummaryNettoLabel.Location = new System.Drawing.Point(7, 20);
+            this.SummaryNettoLabel.Name = "SummaryNettoLabel";
+            this.SummaryNettoLabel.Size = new System.Drawing.Size(91, 13);
+            this.SummaryNettoLabel.TabIndex = 0;
+            this.SummaryNettoLabel.Text = "Wartość netto:";
+            // 
+            // EditButton
+            // 
+            this.EditButton.Location = new System.Drawing.Point(399, 477);
+            this.EditButton.Name = "EditButton";
+            this.EditButton.Size = new System.Drawing.Size(75, 23);
+            this.EditButton.TabIndex = 16;
+            this.EditButton.Text = "Edytuj";
+            this.EditButton.UseVisualStyleBackColor = true;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
+            // 
+            // productSellOutBindingSource
+            // 
+            this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
+            // 
             // InvoiceSell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(995, 685);
+            this.Controls.Add(this.EditButton);
+            this.Controls.Add(this.Summary);
             this.Controls.Add(this.CreateButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.UnitsCB);
@@ -239,6 +320,8 @@
             this.Load += new System.EventHandler(this.InvoiceSell_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PricePerItemNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmountTB)).EndInit();
+            this.Summary.ResumeLayout(false);
+            this.Summary.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productSellOutBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -267,5 +350,11 @@
         private System.Windows.Forms.ComboBox UnitsCB;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button CreateButton;
+        private System.Windows.Forms.GroupBox Summary;
+        private System.Windows.Forms.Label SummaryNetto;
+        private System.Windows.Forms.Label SummaryNettoLabel;
+        private System.Windows.Forms.Button EditButton;
+        private System.Windows.Forms.Label SummaryBrutto;
+        private System.Windows.Forms.Label SummaryBrutttoLabel;
     }
 }
