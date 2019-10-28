@@ -147,7 +147,8 @@ namespace ClientRest.Forms
                 int amount = int.Parse(listView1.SelectedItems[0].SubItems[1].Text);
                 string priceNetto = listView1.SelectedItems[0].SubItems[3].Text;
                 TaxStage taxStage = rest.getRequest<TaxStage>(controller.taxstages, "/" + a.TaxStageID.ToString());
-                double ppn = double.Parse(priceNetto.Substring(0,priceNetto.Length - 4));
+                double ppn = double.Parse(priceNetto.Substring(0,priceNetto.Length - 3));
+                double ppb = ppn * ((taxStage.Stage + 100.0) / 100.0);
                 products[i].ProductID = Guid.Parse(ProductNameCB.SelectedValue.ToString());
                 products[i].Name = ProductNameCB.Text;
                 products[i].TaxStageID = a.TaxStageID;
@@ -159,7 +160,7 @@ namespace ClientRest.Forms
                     products[i].Unit, products[i].PricePerItemNetto.ToString("C2"),
                     (products[i].Amount * products[i].PricePerItemNetto).ToString("C2") });
                 double x = (products[i].PricePerItemNetto * products[i].Amount) - (ppn * amount);
-                double xb = (products[i].PricePerItemBrutto * products[i].Amount) - (ppn*(taxStage.Stage+100.0)/100.0) * amount;
+                double xb = (products[i].PricePerItemBrutto * products[i].Amount) - (ppb * amount);
                 sumNetto += x;
                 sumBrutto += xb;
                 listView1.Items[i] = item;
@@ -180,6 +181,29 @@ namespace ClientRest.Forms
         {
             string temp = SummaryNetto.Text;
             Clipboard.SetText(temp.Substring(0, temp.Length - 2));
+        }
+
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedIndices.Count > 0)
+            {
+                int i = listView1.SelectedIndices[0];
+                double sumN = 0;
+                double sumB = 0;
+                Product a = (Product)ProductNameCB.SelectedItem;
+                TaxStage taxStage = rest.getRequest<TaxStage>(controller.taxstages, "/" + a.TaxStageID.ToString());
+                sumN = (double)PricePerItemNUD.Value;
+                sumB = ((double)PricePerItemNUD.Value) * (taxStage.Stage + 100.0) / 100.0;
+                sumN *= (int)AmountTB.Value;
+                sumB *= (int)AmountTB.Value;
+                products.RemoveAt(i);
+                listView1.Items.RemoveAt(i);
+                sumNetto -= sumN;
+                sumBrutto -= sumB;
+                SummaryNetto.Text = sumNetto.ToString("N2") + "zł";
+                SummaryBrutto.Text = sumBrutto.ToString("N2") + "zł";
+                ((CurrencyManager)BindingContext[products]).Refresh();
+            }
         }
     }
 }

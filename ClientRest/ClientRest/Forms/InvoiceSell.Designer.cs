@@ -55,6 +55,7 @@
             this.SummaryNettoLabel = new System.Windows.Forms.Label();
             this.EditButton = new System.Windows.Forms.Button();
             this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.RemoveButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PricePerItemNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmountTB)).BeginInit();
             this.Summary.SuspendLayout();
@@ -293,11 +294,22 @@
             // 
             this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
             // 
+            // RemoveButton
+            // 
+            this.RemoveButton.Location = new System.Drawing.Point(480, 477);
+            this.RemoveButton.Name = "RemoveButton";
+            this.RemoveButton.Size = new System.Drawing.Size(75, 23);
+            this.RemoveButton.TabIndex = 17;
+            this.RemoveButton.Text = "Usuń";
+            this.RemoveButton.UseVisualStyleBackColor = true;
+            this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
+            // 
             // InvoiceSell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(995, 685);
+            this.Controls.Add(this.RemoveButton);
             this.Controls.Add(this.EditButton);
             this.Controls.Add(this.Summary);
             this.Controls.Add(this.CreateButton);
@@ -356,5 +368,6 @@
         private System.Windows.Forms.Button EditButton;
         private System.Windows.Forms.Label SummaryBrutto;
         private System.Windows.Forms.Label SummaryBrutttoLabel;
+        private System.Windows.Forms.Button RemoveButton;
     }
 }
