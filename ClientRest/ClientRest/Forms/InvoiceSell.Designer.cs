@@ -56,18 +56,18 @@
             this.EditButton = new System.Windows.Forms.Button();
             this.RemoveButton = new System.Windows.Forms.Button();
             this.ClientGB = new System.Windows.Forms.GroupBox();
-            this.ClientNameTB = new System.Windows.Forms.TextBox();
-            this.ClientStreetNumberTB = new System.Windows.Forms.TextBox();
-            this.ClientNIPTB = new System.Windows.Forms.TextBox();
-            this.NIPButton = new System.Windows.Forms.Button();
-            this.ClientCityPostCodeTB = new System.Windows.Forms.TextBox();
-            this.ClientNameLabel = new System.Windows.Forms.Label();
-            this.ClientStreetNumberLabel = new System.Windows.Forms.Label();
-            this.ClientCityPostCodeLabel = new System.Windows.Forms.Label();
             this.ClientNIPLabel = new System.Windows.Forms.Label();
-            this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ClientCityPostCodeLabel = new System.Windows.Forms.Label();
+            this.ClientStreetNumberLabel = new System.Windows.Forms.Label();
+            this.ClientNameLabel = new System.Windows.Forms.Label();
+            this.ClientCityPostCodeTB = new System.Windows.Forms.TextBox();
+            this.NIPButton = new System.Windows.Forms.Button();
+            this.ClientNIPTB = new System.Windows.Forms.TextBox();
+            this.ClientStreetNumberTB = new System.Windows.Forms.TextBox();
             this.ProductAmountLabel1 = new System.Windows.Forms.Label();
             this.ProductAmountLabel2 = new System.Windows.Forms.Label();
+            this.ClientNameCB = new System.Windows.Forms.ComboBox();
+            this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PricePerItemNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmountTB)).BeginInit();
             this.Summary.SuspendLayout();
@@ -315,6 +315,7 @@
             // 
             // ClientGB
             // 
+            this.ClientGB.Controls.Add(this.ClientNameCB);
             this.ClientGB.Controls.Add(this.ClientNIPLabel);
             this.ClientGB.Controls.Add(this.ClientCityPostCodeLabel);
             this.ClientGB.Controls.Add(this.ClientStreetNumberLabel);
@@ -323,7 +324,6 @@
             this.ClientGB.Controls.Add(this.NIPButton);
             this.ClientGB.Controls.Add(this.ClientNIPTB);
             this.ClientGB.Controls.Add(this.ClientStreetNumberTB);
-            this.ClientGB.Controls.Add(this.ClientNameTB);
             this.ClientGB.Location = new System.Drawing.Point(139, 12);
             this.ClientGB.Name = "ClientGB";
             this.ClientGB.Size = new System.Drawing.Size(485, 191);
@@ -331,26 +331,48 @@
             this.ClientGB.TabStop = false;
             this.ClientGB.Text = "Dane klienta";
             // 
-            // ClientNameTB
+            // ClientNIPLabel
             // 
-            this.ClientNameTB.Location = new System.Drawing.Point(112, 20);
-            this.ClientNameTB.Name = "ClientNameTB";
-            this.ClientNameTB.Size = new System.Drawing.Size(318, 20);
-            this.ClientNameTB.TabIndex = 0;
+            this.ClientNIPLabel.AutoSize = true;
+            this.ClientNIPLabel.Location = new System.Drawing.Point(81, 102);
+            this.ClientNIPLabel.Name = "ClientNIPLabel";
+            this.ClientNIPLabel.Size = new System.Drawing.Size(25, 13);
+            this.ClientNIPLabel.TabIndex = 8;
+            this.ClientNIPLabel.Text = "NIP";
             // 
-            // ClientStreetNumberTB
+            // ClientCityPostCodeLabel
             // 
-            this.ClientStreetNumberTB.Location = new System.Drawing.Point(112, 46);
-            this.ClientStreetNumberTB.Name = "ClientStreetNumberTB";
-            this.ClientStreetNumberTB.Size = new System.Drawing.Size(318, 20);
-            this.ClientStreetNumberTB.TabIndex = 1;
+            this.ClientCityPostCodeLabel.AutoSize = true;
+            this.ClientCityPostCodeLabel.Location = new System.Drawing.Point(12, 76);
+            this.ClientCityPostCodeLabel.Name = "ClientCityPostCodeLabel";
+            this.ClientCityPostCodeLabel.Size = new System.Drawing.Size(94, 13);
+            this.ClientCityPostCodeLabel.TabIndex = 7;
+            this.ClientCityPostCodeLabel.Text = "Kod i miejscowość";
             // 
-            // ClientNIPTB
+            // ClientStreetNumberLabel
             // 
-            this.ClientNIPTB.Location = new System.Drawing.Point(112, 99);
-            this.ClientNIPTB.Name = "ClientNIPTB";
-            this.ClientNIPTB.Size = new System.Drawing.Size(194, 20);
-            this.ClientNIPTB.TabIndex = 2;
+            this.ClientStreetNumberLabel.AutoSize = true;
+            this.ClientStreetNumberLabel.Location = new System.Drawing.Point(38, 49);
+            this.ClientStreetNumberLabel.Name = "ClientStreetNumberLabel";
+            this.ClientStreetNumberLabel.Size = new System.Drawing.Size(68, 13);
+            this.ClientStreetNumberLabel.TabIndex = 6;
+            this.ClientStreetNumberLabel.Text = "Ulica i numer";
+            // 
+            // ClientNameLabel
+            // 
+            this.ClientNameLabel.AutoSize = true;
+            this.ClientNameLabel.Location = new System.Drawing.Point(66, 23);
+            this.ClientNameLabel.Name = "ClientNameLabel";
+            this.ClientNameLabel.Size = new System.Drawing.Size(40, 13);
+            this.ClientNameLabel.TabIndex = 5;
+            this.ClientNameLabel.Text = "Nazwa";
+            // 
+            // ClientCityPostCodeTB
+            // 
+            this.ClientCityPostCodeTB.Location = new System.Drawing.Point(112, 73);
+            this.ClientCityPostCodeTB.Name = "ClientCityPostCodeTB";
+            this.ClientCityPostCodeTB.Size = new System.Drawing.Size(318, 20);
+            this.ClientCityPostCodeTB.TabIndex = 4;
             // 
             // NIPButton
             // 
@@ -362,52 +384,19 @@
             this.NIPButton.UseVisualStyleBackColor = true;
             this.NIPButton.Click += new System.EventHandler(this.NIPButton_Click);
             // 
-            // ClientCityPostCodeTB
+            // ClientNIPTB
             // 
-            this.ClientCityPostCodeTB.Location = new System.Drawing.Point(112, 73);
-            this.ClientCityPostCodeTB.Name = "ClientCityPostCodeTB";
-            this.ClientCityPostCodeTB.Size = new System.Drawing.Size(318, 20);
-            this.ClientCityPostCodeTB.TabIndex = 4;
+            this.ClientNIPTB.Location = new System.Drawing.Point(112, 99);
+            this.ClientNIPTB.Name = "ClientNIPTB";
+            this.ClientNIPTB.Size = new System.Drawing.Size(194, 20);
+            this.ClientNIPTB.TabIndex = 2;
             // 
-            // ClientNameLabel
+            // ClientStreetNumberTB
             // 
-            this.ClientNameLabel.AutoSize = true;
-            this.ClientNameLabel.Location = new System.Drawing.Point(66, 23);
-            this.ClientNameLabel.Name = "ClientNameLabel";
-            this.ClientNameLabel.Size = new System.Drawing.Size(40, 13);
-            this.ClientNameLabel.TabIndex = 5;
-            this.ClientNameLabel.Text = "Nazwa";
-            // 
-            // ClientStreetNumberLabel
-            // 
-            this.ClientStreetNumberLabel.AutoSize = true;
-            this.ClientStreetNumberLabel.Location = new System.Drawing.Point(38, 49);
-            this.ClientStreetNumberLabel.Name = "ClientStreetNumberLabel";
-            this.ClientStreetNumberLabel.Size = new System.Drawing.Size(68, 13);
-            this.ClientStreetNumberLabel.TabIndex = 6;
-            this.ClientStreetNumberLabel.Text = "Ulica i numer";
-            // 
-            // ClientCityPostCodeLabel
-            // 
-            this.ClientCityPostCodeLabel.AutoSize = true;
-            this.ClientCityPostCodeLabel.Location = new System.Drawing.Point(12, 76);
-            this.ClientCityPostCodeLabel.Name = "ClientCityPostCodeLabel";
-            this.ClientCityPostCodeLabel.Size = new System.Drawing.Size(94, 13);
-            this.ClientCityPostCodeLabel.TabIndex = 7;
-            this.ClientCityPostCodeLabel.Text = "Kod i miejscowość";
-            // 
-            // ClientNIPLabel
-            // 
-            this.ClientNIPLabel.AutoSize = true;
-            this.ClientNIPLabel.Location = new System.Drawing.Point(81, 102);
-            this.ClientNIPLabel.Name = "ClientNIPLabel";
-            this.ClientNIPLabel.Size = new System.Drawing.Size(25, 13);
-            this.ClientNIPLabel.TabIndex = 8;
-            this.ClientNIPLabel.Text = "NIP";
-            // 
-            // productSellOutBindingSource
-            // 
-            this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
+            this.ClientStreetNumberTB.Location = new System.Drawing.Point(112, 46);
+            this.ClientStreetNumberTB.Name = "ClientStreetNumberTB";
+            this.ClientStreetNumberTB.Size = new System.Drawing.Size(318, 20);
+            this.ClientStreetNumberTB.TabIndex = 1;
             // 
             // ProductAmountLabel1
             // 
@@ -425,6 +414,19 @@
             this.ProductAmountLabel2.Name = "ProductAmountLabel2";
             this.ProductAmountLabel2.Size = new System.Drawing.Size(0, 13);
             this.ProductAmountLabel2.TabIndex = 20;
+            // 
+            // ClientNameCB
+            // 
+            this.ClientNameCB.FormattingEnabled = true;
+            this.ClientNameCB.Location = new System.Drawing.Point(112, 19);
+            this.ClientNameCB.Name = "ClientNameCB";
+            this.ClientNameCB.Size = new System.Drawing.Size(317, 21);
+            this.ClientNameCB.TabIndex = 9;
+            this.ClientNameCB.SelectedIndexChanged += new System.EventHandler(this.ClientNameCB_SelectedIndexChanged);
+            // 
+            // productSellOutBindingSource
+            // 
+            this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
             // 
             // InvoiceSell
             // 
@@ -500,7 +502,6 @@
         private System.Windows.Forms.Button NIPButton;
         private System.Windows.Forms.TextBox ClientNIPTB;
         private System.Windows.Forms.TextBox ClientStreetNumberTB;
-        private System.Windows.Forms.TextBox ClientNameTB;
         private System.Windows.Forms.TextBox ClientCityPostCodeTB;
         private System.Windows.Forms.Label ClientNIPLabel;
         private System.Windows.Forms.Label ClientCityPostCodeLabel;
@@ -508,5 +509,6 @@
         private System.Windows.Forms.Label ClientNameLabel;
         private System.Windows.Forms.Label ProductAmountLabel1;
         private System.Windows.Forms.Label ProductAmountLabel2;
+        private System.Windows.Forms.ComboBox ClientNameCB;
     }
 }

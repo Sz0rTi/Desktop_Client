@@ -1,4 +1,5 @@
-﻿using ClientRest.Models.In;
+﻿using ClientRest.Models;
+using ClientRest.Models.In;
 using ClientRest.Models.In.In;
 using ClientRest.Models.Out;
 using System;
@@ -16,18 +17,24 @@ namespace ClientRest.Forms
     public partial class InvoiceSell : Form
     {
         List<ProductSellOut> products = new List<ProductSellOut>();
+        Company company = new Company();
         RestClass rest = new RestClass();
         double sumNetto = 0;
         double sumBrutto = 0;
         public InvoiceSell()
         {
             InitializeComponent();
+
+            ClientNameCB.SelectedIndex = -1;
+            ClientNameCB.ValueMember = "id";
+            ClientNameCB.DisplayMember = "name";
+            ClientNameCB.DataSource = rest.getRequest<List<Client>>(controller.clients);
+            ClientNameCB.SelectedIndex = -1;
+
+
             CategoryCB.ValueMember = "id";
             CategoryCB.DisplayMember = "name";
             CategoryCB.DataSource = rest.getRequest<List<Category>>(controller.categories);
-
-            //CategoryCB_SelectedIndexChanged(this, EventArgs.Empty);
-            //ProductNameCB_SelectedIndexChanged(this, EventArgs.Empty);
 
             UnitsCB.ValueMember = "id";
             UnitsCB.DisplayMember = "name";
@@ -125,18 +132,35 @@ namespace ClientRest.Forms
 
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            double x = 0;
-            foreach(ProductSellOut item in products)
+            if(ClientNameCB.Text != "" && ClientCityPostCodeTB.Text != "" && ClientNIPTB.Text != "" && ClientStreetNumberTB.Text != "" && listView1.Items.Count != 0)
             {
-                x += item.PricePerItemNetto * item.Amount;
+                double x = 0;
+                foreach (ProductSellOut item in products)
+                {
+                    x += item.PricePerItemNetto * item.Amount;
+                }
+                InvoiceSellOut invoiceSellOut = new InvoiceSellOut();
+                if (rest.getRequest<bool>(controller.clients, "/check/" + ClientNIPTB.Text))
+                {
+                    Client temp = (Client)ClientNameCB.SelectedItem;
+                    invoiceSellOut.ClientId = temp.ID;
+                }
+                else
+                {
+                    Client clientout = new Client { Name = company.Name, City = company.City, NIP = company.NIP, Number = company.Number, PostCode = company.PostCode, Street = company.Street };
+                    Client temp = rest.postRequest<Client>(clientout, controller.clients);
+                    invoiceSellOut.ClientId = temp.ID;
+                }
+                invoiceSellOut.IsPaid = false;
+                invoiceSellOut.PaymentDeadline = PAYDATE.Value;
+                invoiceSellOut.ProductsSell = products;
+                invoiceSellOut.PriceNetto = x;
+                rest.postRequest<InvoiceSellOut>(invoiceSellOut, controller.invoicesells);
             }
-            InvoiceSellOut invoiceSellOut = new InvoiceSellOut();
-            invoiceSellOut.ClientId = Guid.Parse("4750b501-9121-4432-959b-defb16f17e64");
-            invoiceSellOut.IsPaid = false;
-            invoiceSellOut.PaymentDeadline = PAYDATE.Value;
-            invoiceSellOut.ProductsSell = products;
-            invoiceSellOut.PriceNetto = x;
-            rest.postRequest<InvoiceSellOut>(invoiceSellOut, controller.invoicesells);
+            else
+            {
+                MessageBox.Show("Niewypełnione pola!");
+            }
         }
 
         private void EditButton_Click(object sender, EventArgs e)
@@ -221,9 +245,8 @@ namespace ClientRest.Forms
                 }
                 if (a != true)
                 {
-                    Company company = new Company();
                     company = rest.getRequest<Company>(controller.gus, "/" + temp);
-                    ClientNameTB.Text = company.Name;
+                    ClientNameCB.Text = company.Name;
                     if (company.Number[company.Number.Length - 1].Equals('/'))
                     {
                         ClientStreetNumberTB.Text = company.Street + " " + company.Number.Substring(0,company.Number.Length-1);
@@ -235,6 +258,30 @@ namespace ClientRest.Forms
                     ClientCityPostCodeTB.Text = company.PostCode + " " + company.City;
                     ClientNIPTB.Text = company.NIP;
                 } 
+            }
+        }
+
+        private void ClientNameCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(ClientNameCB.SelectedIndex != -1)
+            {
+                Client client = (Client)ClientNameCB.SelectedItem;
+                ClientCityPostCodeTB.Text = client.PostCode;
+                ClientNIPTB.Text = client.NIP;
+                if (client.Number[client.Number.Length - 1].Equals('/'))
+                {
+                    ClientStreetNumberTB.Text = client.Street + " " + client.Number.Substring(0, client.Number.Length - 1);
+                }
+                else
+                {
+                    ClientStreetNumberTB.Text = client.Street + " " + client.Number;
+                }
+            }
+            else
+            {
+                ClientCityPostCodeTB.Text = "";
+                ClientNIPTB.Text = "";
+                ClientStreetNumberTB.Text = "";
             }
         }
     }

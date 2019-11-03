@@ -106,12 +106,14 @@
     </Compile>
     <Compile Include="Models\In\Category.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\In\ClientIn.cs" />
     <Compile Include="Models\In\Company.cs" />
     <Compile Include="Models\In\InvoiceBuy.cs" />
     <Compile Include="Models\In\InvoiceSell.cs" />
     <Compile Include="Models\In\Product.cs" />
     <Compile Include="Models\In\ProductBuy.cs" />
     <Compile Include="Models\In\ProductSell.cs" />
+    <Compile Include="Models\Out\ClientOut.cs" />
     <Compile Include="Models\Out\InvoiceSellOut.cs" />
     <Compile Include="Models\Out\ProductSellOut.cs" />
     <Compile Include="Models\Role.cs" />

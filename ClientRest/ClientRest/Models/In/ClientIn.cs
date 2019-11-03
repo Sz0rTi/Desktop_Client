@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientRest.Models
+namespace ClientRest.Models.In
 {
-    public class Client
+    public class ClientIn
     {
         public Guid ID { get; set; }
         public string Name { get; set; }

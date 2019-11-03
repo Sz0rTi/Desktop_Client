@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientRest.Models
+namespace ClientRest.Models.Out
 {
-    public class Client
+    public class ClientOut
     {
-        public Guid ID { get; set; }
         public string Name { get; set; }
         public string PostCode { get; set; }
         public string City { get; set; }
