@@ -56,6 +56,7 @@
             this.EditButton = new System.Windows.Forms.Button();
             this.RemoveButton = new System.Windows.Forms.Button();
             this.ClientGB = new System.Windows.Forms.GroupBox();
+            this.ClientNameCB = new System.Windows.Forms.ComboBox();
             this.ClientNIPLabel = new System.Windows.Forms.Label();
             this.ClientCityPostCodeLabel = new System.Windows.Forms.Label();
             this.ClientStreetNumberLabel = new System.Windows.Forms.Label();
@@ -66,7 +67,6 @@
             this.ClientStreetNumberTB = new System.Windows.Forms.TextBox();
             this.ProductAmountLabel1 = new System.Windows.Forms.Label();
             this.ProductAmountLabel2 = new System.Windows.Forms.Label();
-            this.ClientNameCB = new System.Windows.Forms.ComboBox();
             this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PricePerItemNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmountTB)).BeginInit();
@@ -101,6 +101,7 @@
             this.ProductNameCB.Name = "ProductNameCB";
             this.ProductNameCB.Size = new System.Drawing.Size(142, 21);
             this.ProductNameCB.TabIndex = 3;
+            this.ProductNameCB.DropDown += new System.EventHandler(this.ProductNameCB_DropDown);
             this.ProductNameCB.SelectedIndexChanged += new System.EventHandler(this.ProductNameCB_SelectedIndexChanged);
             // 
             // NameCBLabel
@@ -331,6 +332,15 @@
             this.ClientGB.TabStop = false;
             this.ClientGB.Text = "Dane klienta";
             // 
+            // ClientNameCB
+            // 
+            this.ClientNameCB.FormattingEnabled = true;
+            this.ClientNameCB.Location = new System.Drawing.Point(112, 19);
+            this.ClientNameCB.Name = "ClientNameCB";
+            this.ClientNameCB.Size = new System.Drawing.Size(317, 21);
+            this.ClientNameCB.TabIndex = 9;
+            this.ClientNameCB.SelectedIndexChanged += new System.EventHandler(this.ClientNameCB_SelectedIndexChanged);
+            // 
             // ClientNIPLabel
             // 
             this.ClientNIPLabel.AutoSize = true;
@@ -414,15 +424,6 @@
             this.ProductAmountLabel2.Name = "ProductAmountLabel2";
             this.ProductAmountLabel2.Size = new System.Drawing.Size(0, 13);
             this.ProductAmountLabel2.TabIndex = 20;
-            // 
-            // ClientNameCB
-            // 
-            this.ClientNameCB.FormattingEnabled = true;
-            this.ClientNameCB.Location = new System.Drawing.Point(112, 19);
-            this.ClientNameCB.Name = "ClientNameCB";
-            this.ClientNameCB.Size = new System.Drawing.Size(317, 21);
-            this.ClientNameCB.TabIndex = 9;
-            this.ClientNameCB.SelectedIndexChanged += new System.EventHandler(this.ClientNameCB_SelectedIndexChanged);
             // 
             // productSellOutBindingSource
             // 

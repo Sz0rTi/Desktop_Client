@@ -17,6 +17,7 @@ namespace ClientRest.Forms
     public partial class InvoiceSell : Form
     {
         List<ProductSellOut> products = new List<ProductSellOut>();
+        List<Product> list = new List<Product>();
         Company company = new Company();
         RestClass rest = new RestClass();
         double sumNetto = 0;
@@ -28,17 +29,25 @@ namespace ClientRest.Forms
             ClientNameCB.SelectedIndex = -1;
             ClientNameCB.ValueMember = "id";
             ClientNameCB.DisplayMember = "name";
-            ClientNameCB.DataSource = rest.getRequest<List<Client>>(controller.clients);
+            List<Client> tempClients = rest.getRequest<List<Client>>(controller.clients);
+            tempClients.Sort((p, q) => p.Name.CompareTo(q.Name));
+            ClientNameCB.DataSource = tempClients;
             ClientNameCB.SelectedIndex = -1;
 
-
+            List<Category> tempCategories = rest.getRequest<List<Category>>(controller.categories);
+            tempCategories.Sort((p, q) => p.Name.CompareTo(q.Name));
             CategoryCB.ValueMember = "id";
             CategoryCB.DisplayMember = "name";
-            CategoryCB.DataSource = rest.getRequest<List<Category>>(controller.categories);
+            CategoryCB.DataSource = tempCategories;
 
+            ProductNameCB.SelectedIndex = -1;
+
+
+            List<Unit> tempUnits = rest.getRequest<List<Unit>>(controller.units);
+            tempUnits.Sort((p, q) => p.Name.CompareTo(q.Name));
             UnitsCB.ValueMember = "id";
             UnitsCB.DisplayMember = "name";
-            UnitsCB.DataSource = rest.getRequest<List<Unit>>(controller.units);
+            UnitsCB.DataSource = tempUnits;
 
             SummaryNetto.Text = sumNetto.ToString() + "zł";
             SummaryBrutto.Text = sumBrutto.ToString() + "zł";
@@ -93,10 +102,12 @@ namespace ClientRest.Forms
         private void CategoryCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             Category cat = (Category)CategoryCB.SelectedItem;
-            List<Product> list = rest.getRequest<List<Product>>(controller.products, "/bycategoryid/" + cat.ID.ToString());
+            list = rest.getRequest<List<Product>>(controller.products, "/bycategoryid/" + cat.ID.ToString());
+            list.Sort((p, q) => p.Name.CompareTo(q.Name));
             ProductNameCB.ValueMember = "id";
             ProductNameCB.DisplayMember = "name";
             ProductNameCB.DataSource = list;
+            ProductNameCB.SelectedIndex = -1;
             CategoryCBLabel.Focus();
         }
 
@@ -246,17 +257,24 @@ namespace ClientRest.Forms
                 if (a != true)
                 {
                     company = rest.getRequest<Company>(controller.gus, "/" + temp);
-                    ClientNameCB.Text = company.Name;
-                    if (company.Number[company.Number.Length - 1].Equals('/'))
+                    if(company.Name == null)
                     {
-                        ClientStreetNumberTB.Text = company.Street + " " + company.Number.Substring(0,company.Number.Length-1);
+                        ClientNameCB.Text = "Zły NIP!";
                     }
                     else
                     {
-                        ClientStreetNumberTB.Text = company.Street + " " + company.Number;
+                        ClientNameCB.Text = company.Name;
+                        if (company.Number[company.Number.Length - 1].Equals('/'))
+                        {
+                            ClientStreetNumberTB.Text = company.Street + " " + company.Number.Substring(0, company.Number.Length - 1);
+                        }
+                        else
+                        {
+                            ClientStreetNumberTB.Text = company.Street + " " + company.Number;
+                        }
+                        ClientCityPostCodeTB.Text = company.PostCode + " " + company.City;
+                        ClientNIPTB.Text = company.NIP;
                     }
-                    ClientCityPostCodeTB.Text = company.PostCode + " " + company.City;
-                    ClientNIPTB.Text = company.NIP;
                 } 
             }
         }
@@ -282,6 +300,33 @@ namespace ClientRest.Forms
                 ClientCityPostCodeTB.Text = "";
                 ClientNIPTB.Text = "";
                 ClientStreetNumberTB.Text = "";
+            }
+        }
+
+        private void ProductNameCB_DropDown(object sender, EventArgs e)
+        {
+            string a = ProductNameCB.Text;
+            if (ProductNameCB.Text != "")
+            {
+                if (!(a.Length < 3))
+                {
+                    List<Product> temp = new List<Product>();
+                    foreach (Product item in list)
+                    {
+                        if (item.Name.ToUpper().Contains(a.ToUpper()))
+                        {
+                            temp.Add(item);
+                        }
+                    }
+                    ProductNameCB.DataSource = temp;
+                    ProductNameCB.SelectedIndex = -1;
+                    ProductNameCB.Text = a;
+                }
+
+            }
+            else
+            {
+                ProductNameCB.DataSource = list;
             }
         }
     }
