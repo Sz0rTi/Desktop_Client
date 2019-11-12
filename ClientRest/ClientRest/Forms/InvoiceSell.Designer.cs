@@ -68,6 +68,8 @@
             this.ProductAmountLabel1 = new System.Windows.Forms.Label();
             this.ProductAmountLabel2 = new System.Windows.Forms.Label();
             this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.PricePerItemNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmountTB)).BeginInit();
             this.Summary.SuspendLayout();
@@ -429,11 +431,31 @@
             // 
             this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(631, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(199, 190);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Płatność";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Location = new System.Drawing.Point(139, 510);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(691, 96);
+            this.groupBox2.TabIndex = 22;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Marża itd";
+            // 
             // InvoiceSell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(995, 685);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ProductAmountLabel2);
             this.Controls.Add(this.ProductAmountLabel1);
             this.Controls.Add(this.ClientGB);
@@ -511,5 +533,7 @@
         private System.Windows.Forms.Label ProductAmountLabel1;
         private System.Windows.Forms.Label ProductAmountLabel2;
         private System.Windows.Forms.ComboBox ClientNameCB;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
