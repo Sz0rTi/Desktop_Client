@@ -1,6 +1,6 @@
 ﻿namespace ClientRest.Forms
 {
-    partial class InvoiceSell
+    partial class InvoiceSellForm
     {
         /// <summary>
         /// Required designer variable.

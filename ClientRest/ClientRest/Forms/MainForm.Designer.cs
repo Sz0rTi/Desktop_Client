@@ -33,6 +33,9 @@
             this.ISButton = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.InvoiceSellsButton = new System.Windows.Forms.Button();
+            this.InvoiceBuysButton = new System.Windows.Forms.Button();
+            this.ListBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // NPPanel
@@ -81,11 +84,43 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // InvoiceSellsButton
+            // 
+            this.InvoiceSellsButton.Location = new System.Drawing.Point(60, 333);
+            this.InvoiceSellsButton.Name = "InvoiceSellsButton";
+            this.InvoiceSellsButton.Size = new System.Drawing.Size(210, 26);
+            this.InvoiceSellsButton.TabIndex = 5;
+            this.InvoiceSellsButton.Text = "Faktury sprzedaży";
+            this.InvoiceSellsButton.UseVisualStyleBackColor = true;
+            this.InvoiceSellsButton.Click += new System.EventHandler(this.InvoiceSellsButton_Click);
+            // 
+            // InvoiceBuysButton
+            // 
+            this.InvoiceBuysButton.Location = new System.Drawing.Point(60, 365);
+            this.InvoiceBuysButton.Name = "InvoiceBuysButton";
+            this.InvoiceBuysButton.Size = new System.Drawing.Size(210, 23);
+            this.InvoiceBuysButton.TabIndex = 6;
+            this.InvoiceBuysButton.Text = "Faktury zakupowe";
+            this.InvoiceBuysButton.UseVisualStyleBackColor = true;
+            this.InvoiceBuysButton.Click += new System.EventHandler(this.InvoiceBuysButton_Click);
+            // 
+            // ListBox1
+            // 
+            this.ListBox1.FormattingEnabled = true;
+            this.ListBox1.Location = new System.Drawing.Point(60, 408);
+            this.ListBox1.Name = "ListBox1";
+            this.ListBox1.Size = new System.Drawing.Size(210, 433);
+            this.ListBox1.TabIndex = 7;
+            this.ListBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1320, 900);
+            this.Controls.Add(this.ListBox1);
+            this.Controls.Add(this.InvoiceBuysButton);
+            this.Controls.Add(this.InvoiceSellsButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.ISButton);
@@ -104,5 +139,8 @@
         private System.Windows.Forms.Button ISButton;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button InvoiceSellsButton;
+        private System.Windows.Forms.Button InvoiceBuysButton;
+        private System.Windows.Forms.ListBox ListBox1;
     }
 }

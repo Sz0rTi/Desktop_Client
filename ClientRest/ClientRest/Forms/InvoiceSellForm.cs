@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace ClientRest.Forms
 {
-    public partial class InvoiceSell : Form
+    public partial class InvoiceSellForm : Form
     {
         List<ProductSellOut> products = new List<ProductSellOut>();
         List<Product> list = new List<Product>();
@@ -22,7 +22,7 @@ namespace ClientRest.Forms
         RestClass rest = new RestClass();
         double sumNetto = 0;
         double sumBrutto = 0;
-        public InvoiceSell()
+        public InvoiceSellForm()
         {
             InitializeComponent();
 
@@ -101,14 +101,17 @@ namespace ClientRest.Forms
 
         private void CategoryCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Category cat = (Category)CategoryCB.SelectedItem;
-            list = rest.getRequest<List<Product>>(controller.products, "/bycategoryid/" + cat.ID.ToString());
-            list.Sort((p, q) => p.Name.CompareTo(q.Name));
-            ProductNameCB.ValueMember = "id";
-            ProductNameCB.DisplayMember = "name";
-            ProductNameCB.DataSource = list;
-            ProductNameCB.SelectedIndex = -1;
-            CategoryCBLabel.Focus();
+            if(CategoryCB.SelectedIndex != -1)
+            {
+                Category cat = (Category)CategoryCB.SelectedItem;
+                list = rest.getRequest<List<Product>>(controller.products, "/bycategoryid/" + cat.ID.ToString());
+                list.Sort((p, q) => p.Name.CompareTo(q.Name));
+                ProductNameCB.ValueMember = "id";
+                ProductNameCB.DisplayMember = "name";
+                ProductNameCB.DataSource = list;
+                ProductNameCB.SelectedIndex = -1;
+                CategoryCBLabel.Focus();
+            } 
         }
 
         private void InvoiceSell_Load(object sender, EventArgs e)
@@ -167,11 +170,42 @@ namespace ClientRest.Forms
                 invoiceSellOut.ProductsSell = products;
                 invoiceSellOut.PriceNetto = x;
                 rest.postRequest<InvoiceSellOut>(invoiceSellOut, controller.invoicesells);
+                Reset();
+                
             }
             else
             {
                 MessageBox.Show("Niewypełnione pola!");
             }
+        }
+
+        private void Reset()
+        {
+            ProductNameCB.SelectedIndex = -1;
+            CategoryCB.SelectedIndex = -1;
+            
+            ClientCityPostCodeTB.Text = string.Empty;
+            ClientNIPTB.Text = string.Empty;
+            ClientStreetNumberTB.Text = string.Empty;
+            ClientCityPostCodeTB.Text = string.Empty;
+            ClientNameCB.SelectedIndex = -1;
+
+            products = new List<ProductSellOut>();
+            list = new List<Product>();
+            
+            ProductAmountLabel2.Text = string.Empty;
+            AmountTB.Value = 0;
+            PricePerItemNUD.Value = 0;
+
+            SummaryBrutto.Text = "0.00zł";
+            SummaryNetto.Text = "0.00zł";
+
+            sumNetto = 0;
+            sumBrutto = 0;
+
+            
+
+            listView1.Items.Clear();
         }
 
         private void EditButton_Click(object sender, EventArgs e)

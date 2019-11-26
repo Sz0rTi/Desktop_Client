@@ -74,11 +74,11 @@
     <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\InvoiceSell.cs">
+    <Compile Include="Forms\InvoiceSellForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\InvoiceSell.Designer.cs">
-      <DependentUpon>InvoiceSell.cs</DependentUpon>
+    <Compile Include="Forms\InvoiceSellForm.Designer.cs">
+      <DependentUpon>InvoiceSellForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -129,8 +129,8 @@
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\InvoiceSell.resx">
-      <DependentUpon>InvoiceSell.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\InvoiceSellForm.resx">
+      <DependentUpon>InvoiceSellForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
