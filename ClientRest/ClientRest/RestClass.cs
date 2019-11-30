@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using ClientRest.Models;
-using ClientRest.Models.In.In;
+using ClientRest.Models.In;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -97,6 +97,7 @@ namespace ClientRest
             HttpWebResponse response = (HttpWebResponse) request.GetResponse();
             var responseString = new StreamReader(response.GetResponseStream(), Encoding.UTF8).ReadToEnd();
             httpMethod = httpVerb.GET;
+
             return item;
         }
 

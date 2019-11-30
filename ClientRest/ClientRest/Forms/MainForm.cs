@@ -1,5 +1,4 @@
 ﻿using ClientRest.Models.In;
-using ClientRest.Models.In.In;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,6 +44,16 @@ namespace ClientRest.Forms
             NPPanel.Controls.Clear();
             NPPanel.Controls.Add(invoiceSell);
             invoiceSell.Show();
+        }
+
+        private void IBButton_Click(object sender, EventArgs e)
+        {
+            NewInvoiceBuyForm invoiceBuy = new NewInvoiceBuyForm();
+            invoiceBuy.TopLevel = false;
+            invoiceBuy.AutoScroll = true;
+            NPPanel.Controls.Clear();
+            NPPanel.Controls.Add(invoiceBuy);
+            invoiceBuy.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -93,12 +102,14 @@ namespace ClientRest.Forms
             List<InvoiceBuy> invoiceBuys = new List<InvoiceBuy>();
             invoiceBuys = rest.getRequest<List<InvoiceBuy>>(controller.invoicebuys);
             ListBox1.DataSource = invoiceBuys;
-            ListBox1.DisplayMember = "postcode";
+            ListBox1.DisplayMember = "name";
             ListBox1.ValueMember = "id";
 
             //ListBox1.Refresh();
             //ListBox1.SelectedIndex = -1;
             ListBox1.SelectedIndexChanged += new EventHandler(ListBox1_SelectedIndexChanged);
         }
+
+        
     }
 }

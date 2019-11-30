@@ -10,6 +10,7 @@ namespace ClientRest.Models.In
     {
         public Guid ID { get; set; }
         public string Name { get; set; }
+        public string Code { get; set; }
         public DateTime Date { get; set; }
         public Guid ClientID { get; set; }
         public double PriceNetto { get; set; }

@@ -86,6 +86,12 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\NewInvoiceBuyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewInvoiceBuyForm.Designer.cs">
+      <DependentUpon>NewInvoiceBuyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\NewProduct.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,7 +120,10 @@
     <Compile Include="Models\In\ProductBuy.cs" />
     <Compile Include="Models\In\ProductSell.cs" />
     <Compile Include="Models\Out\ClientOut.cs" />
+    <Compile Include="Models\Out\InvoiceBuyOut.cs" />
     <Compile Include="Models\Out\InvoiceSellOut.cs" />
+    <Compile Include="Models\Out\ProductBuyOut.cs" />
+    <Compile Include="Models\Out\ProductOut.cs" />
     <Compile Include="Models\Out\ProductSellOut.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\In\Seller.cs" />
@@ -134,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewInvoiceBuyForm.resx">
+      <DependentUpon>NewInvoiceBuyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NewProduct.resx">
       <DependentUpon>NewProduct.cs</DependentUpon>

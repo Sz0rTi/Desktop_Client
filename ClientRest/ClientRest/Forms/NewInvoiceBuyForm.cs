@@ -1,4 +1,6 @@
-﻿using ClientRest.Models;
+﻿using ClientRest;
+using ClientRest.Models.In;
+using ClientRest.Models;
 using ClientRest.Models.In;
 using ClientRest.Models.Out;
 using System;
@@ -13,25 +15,25 @@ using System.Windows.Forms;
 
 namespace ClientRest.Forms
 {
-    public partial class InvoiceSellForm : Form
+    public partial class NewInvoiceBuyForm : Form
     {
-        List<ProductSellOut> products = new List<ProductSellOut>();
+        List<ProductBuyOut> products = new List<ProductBuyOut>();
         List<Product> list = new List<Product>();
         Company company = new Company();
         RestClass rest = new RestClass();
         double sumNetto = 0;
         double sumBrutto = 0;
-        public InvoiceSellForm()
+        public NewInvoiceBuyForm()
         {
             InitializeComponent();
 
-            ClientNameCB.SelectedIndex = -1;
-            ClientNameCB.ValueMember = "id";
-            ClientNameCB.DisplayMember = "name";
-            List<Client> tempClients = rest.getRequest<List<Client>>(controller.clients);
-            tempClients.Sort((p, q) => p.Name.CompareTo(q.Name));
-            ClientNameCB.DataSource = tempClients;
-            ClientNameCB.SelectedIndex = -1;
+            SellerNameCB.SelectedIndex = -1;
+            SellerNameCB.ValueMember = "id";
+            SellerNameCB.DisplayMember = "name";
+            List<Seller> tempSellers = rest.getRequest<List<Seller>>(controller.sellers);
+            tempSellers.Sort((p, q) => p.Name.CompareTo(q.Name));
+            SellerNameCB.DataSource = tempSellers;
+            SellerNameCB.SelectedIndex = -1;
 
             List<Category> tempCategories = rest.getRequest<List<Category>>(controller.categories);
             tempCategories.Sort((p, q) => p.Name.CompareTo(q.Name));
@@ -55,12 +57,12 @@ namespace ClientRest.Forms
         private void AddProductButton_Click(object sender, EventArgs e)
         {
             //dodać jednostkę miary
-            if(PricePerItemNUD.Value == 0)
+            if (PricePerItemNUD.Value == 0)
             {
                 MessageBox.Show("Cena nie może wynosić 0zł!");
                 return;
             }
-            else if(AmountTB.Value == 0)
+            else if (AmountTB.Value == 0)
             {
                 MessageBox.Show("Ilość nie może wynosić 0!");
                 return;
@@ -68,16 +70,52 @@ namespace ClientRest.Forms
             else
             {
                 Product a = (Product)ProductNameCB.SelectedItem;
-                ProductSellOut temp = new ProductSellOut
+                ProductBuyOut temp = new ProductBuyOut();
+
+                if (list.Where(p=>p.Name == ProductNameCB.Text).FirstOrDefault() == null)
                 {
-                    ProductID = Guid.Parse(ProductNameCB.SelectedValue.ToString()),
-                    Name = ProductNameCB.Text,
-                    TaxStageID = a.TaxStageID,
-                    Amount = (int)AmountTB.Value,
-                    Unit = UnitsCB.Text,
-                    PricePerItemNetto = (double)PricePerItemNUD.Value,
-                    PricePerItemBrutto = ((double)PricePerItemNUD.Value) * (rest.getRequest<TaxStage>(controller.taxstages, "/" + a.TaxStageID.ToString()).Stage + 100.0) / 100.0
-                };
+                    if(UnitsCB.SelectedItem != null)
+                    {
+                        ProductOut newProduct = new ProductOut
+                        {
+                            Name = ProductNameCB.Text,
+                            Amount = 0,
+                            CategoryID = (Guid)CategoryCB.SelectedValue,
+                            UnitID = (Guid)UnitsCB.SelectedValue,
+                            PriceNetto = 0.0,
+                            Description = "",
+                            TaxStageID = new Guid("ba78d24d-fef4-4b96-716f-08d7317c8e05")
+                        };
+                        //Product tempProduct = rest.postRequest<Product>(
+                        temp = new ProductBuyOut
+                        {
+                            //ProductID = 
+                            Name = ProductNameCB.Text,
+                            TaxStageID = a.TaxStageID,
+                            Amount = (int)AmountTB.Value,
+                            Unit = UnitsCB.Text,
+                            PricePerItemNetto = (double)PricePerItemNUD.Value,
+                            PricePerItemBrutto = ((double)PricePerItemNUD.Value) * (rest.getRequest<TaxStage>(controller.taxstages, "/" + a.TaxStageID.ToString()).Stage + 100.0) / 100.0
+                        };
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nie wybrano jednostki miary!");
+                    }
+                }
+                else
+                {
+                    temp = new ProductBuyOut
+                    {
+                        ProductID = Guid.Parse(ProductNameCB.SelectedValue.ToString()),
+                        Name = ProductNameCB.Text,
+                        TaxStageID = a.TaxStageID,
+                        Amount = (int)AmountTB.Value,
+                        Unit = UnitsCB.Text,
+                        PricePerItemNetto = (double)PricePerItemNUD.Value,
+                        PricePerItemBrutto = ((double)PricePerItemNUD.Value) * (rest.getRequest<TaxStage>(controller.taxstages, "/" + a.TaxStageID.ToString()).Stage + 100.0) / 100.0
+                    };
+                }
                 products.Add(temp);
                 var item = new ListViewItem(new[] { temp.Name.ToString(), temp.Amount.ToString(), temp.Unit, temp.PricePerItemNetto.ToString("C2"), ((double)(temp.Amount * temp.PricePerItemNetto)).ToString("C2") });
                 foreach (ListViewItem x in listView1.Items)
@@ -95,12 +133,12 @@ namespace ClientRest.Forms
                 SummaryNetto.Text = sumNetto.ToString("N2") + "zł";
                 SummaryBrutto.Text = sumBrutto.ToString("N2") + "zł";
                 ((CurrencyManager)BindingContext[products]).Refresh();
-            } 
+            }
         }
 
         private void CategoryCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(CategoryCB.SelectedIndex != -1)
+            if (CategoryCB.SelectedIndex != -1)
             {
                 Category cat = (Category)CategoryCB.SelectedItem;
                 list = rest.getRequest<List<Product>>(controller.products, "/bycategoryid/" + cat.ID.ToString());
@@ -110,13 +148,13 @@ namespace ClientRest.Forms
                 ProductNameCB.DataSource = list;
                 ProductNameCB.SelectedIndex = -1;
                 CategoryCBLabel.Focus();
-            } 
+            }
         }
 
         private void InvoiceSell_Load(object sender, EventArgs e)
         {
             listView1.View = View.Details;
-            
+
         }
 
         private void ProductNameCB_SelectedIndexChanged(object sender, EventArgs e)
@@ -136,41 +174,42 @@ namespace ClientRest.Forms
 
         private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count > 0) {
+            if (listView1.SelectedItems.Count > 0)
+            {
                 ProductNameCB.SelectedValue = products[listView1.SelectedIndices[0]].ProductID;
-                PricePerItemNUD.Value = decimal.Parse(listView1.SelectedItems[0].SubItems[3].Text,System.Globalization.NumberStyles.Currency);
+                PricePerItemNUD.Value = decimal.Parse(listView1.SelectedItems[0].SubItems[3].Text, System.Globalization.NumberStyles.Currency);
                 AmountTB.Value = decimal.Parse(listView1.SelectedItems[0].SubItems[1].Text);
             }
         }
 
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            if(ClientNameCB.Text != "" && ClientCityPostCodeTB.Text != "" && ClientNIPTB.Text != "" && ClientStreetNumberTB.Text != "" && listView1.Items.Count != 0)
+            if (SellerNameCB.Text != "" && SellerCityPostCodeTB.Text != "" && SellerNIPTB.Text != "" && SellerStreetNumberTB.Text != "" && listView1.Items.Count != 0)
             {
                 double x = 0;
-                foreach (ProductSellOut item in products)
+                foreach (ProductBuyOut item in products)
                 {
                     x += item.PricePerItemNetto * item.Amount;
                 }
-                InvoiceSellOut invoiceSellOut = new InvoiceSellOut();
-                if (rest.getRequest<bool>(controller.clients, "/check/" + ClientNIPTB.Text))
+                InvoiceBuyOut invoiceBuyOut = new InvoiceBuyOut();
+                if (rest.getRequest<bool>(controller.sellers, "/check/" + SellerNIPTB.Text))
                 {
-                    Client temp = (Client)ClientNameCB.SelectedItem;
-                    invoiceSellOut.ClientId = temp.ID;
+                    Seller temp = (Seller)SellerNameCB.SelectedItem;
+                    invoiceBuyOut.SellerID = temp.ID;
                 }
                 else
                 {
-                    Client clientout = new Client { Name = company.Name, City = company.City, NIP = company.NIP, Number = company.Number, PostCode = company.PostCode, Street = company.Street };
-                    Client temp = rest.postRequest<Client>(clientout, controller.clients);
-                    invoiceSellOut.ClientId = temp.ID;
+                    Seller Sellerout = new Seller { Name = company.Name, City = company.City, NIP = company.NIP, Number = company.Number, PostCode = company.PostCode, Street = company.Street };
+                    Seller temp = rest.postRequest<Seller>(Sellerout, controller.sellers);
+                    invoiceBuyOut.SellerID = temp.ID;
                 }
-                invoiceSellOut.IsPaid = false;
-                invoiceSellOut.PaymentDeadline = PAYDATE.Value;
-                invoiceSellOut.ProductsSell = products;
-                invoiceSellOut.PriceNetto = x;
-                rest.postRequest<InvoiceSellOut>(invoiceSellOut, controller.invoicesells);
+                invoiceBuyOut.IsPaid = false;
+                invoiceBuyOut.PaymentDeadline = PAYDATE.Value;
+                invoiceBuyOut.ProductsBuy = products;
+                invoiceBuyOut.PriceNetto = x;
+                rest.postRequest<InvoiceBuyOut>(invoiceBuyOut, controller.invoicebuys);
                 Reset();
-                
+
             }
             else
             {
@@ -182,16 +221,16 @@ namespace ClientRest.Forms
         {
             ProductNameCB.SelectedIndex = -1;
             CategoryCB.SelectedIndex = -1;
-            
-            ClientCityPostCodeTB.Text = string.Empty;
-            ClientNIPTB.Text = string.Empty;
-            ClientStreetNumberTB.Text = string.Empty;
-            ClientCityPostCodeTB.Text = string.Empty;
-            ClientNameCB.SelectedIndex = -1;
 
-            products = new List<ProductSellOut>();
+            SellerCityPostCodeTB.Text = string.Empty;
+            SellerNIPTB.Text = string.Empty;
+            SellerStreetNumberTB.Text = string.Empty;
+            SellerCityPostCodeTB.Text = string.Empty;
+            SellerNameCB.SelectedIndex = -1;
+
+            products = new List<ProductBuyOut>();
             list = new List<Product>();
-            
+
             ProductAmountLabel2.Text = string.Empty;
             AmountTB.Value = 0;
             PricePerItemNUD.Value = 0;
@@ -202,21 +241,21 @@ namespace ClientRest.Forms
             sumNetto = 0;
             sumBrutto = 0;
 
-            
+
 
             listView1.Items.Clear();
         }
 
         private void EditButton_Click(object sender, EventArgs e)
         {
-            if(listView1.SelectedIndices.Count > 0)
+            if (listView1.SelectedIndices.Count > 0)
             {
                 Product a = (Product)ProductNameCB.SelectedItem;
                 int i = listView1.SelectedIndices[0];
                 int amount = int.Parse(listView1.SelectedItems[0].SubItems[1].Text);
                 string priceNetto = listView1.SelectedItems[0].SubItems[3].Text;
                 TaxStage taxStage = rest.getRequest<TaxStage>(controller.taxstages, "/" + a.TaxStageID.ToString());
-                double ppn = double.Parse(priceNetto.Substring(0,priceNetto.Length - 3));
+                double ppn = double.Parse(priceNetto.Substring(0, priceNetto.Length - 3));
                 double ppb = ppn * ((taxStage.Stage + 100.0) / 100.0);
                 products[i].ProductID = Guid.Parse(ProductNameCB.SelectedValue.ToString());
                 products[i].Name = ProductNameCB.Text;
@@ -236,14 +275,14 @@ namespace ClientRest.Forms
                 SummaryNetto.Text = sumNetto.ToString("N2") + "zł";
                 SummaryBrutto.Text = sumBrutto.ToString("N2") + "zł";
                 ((CurrencyManager)BindingContext[products]).Refresh();
-                
+
             }
         }
 
         private void SummaryBrutto_DoubleClick(object sender, EventArgs e)
         {
             string temp = SummaryBrutto.Text;
-            Clipboard.SetText(temp.Substring(0,temp.Length-2));
+            Clipboard.SetText(temp.Substring(0, temp.Length - 2));
         }
 
         private void SummaryNetto_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -277,11 +316,11 @@ namespace ClientRest.Forms
 
         private void NIPButton_Click(object sender, EventArgs e)
         {
-            string temp = ClientNIPTB.Text;
+            string temp = SellerNIPTB.Text;
             bool a = false;
             if (temp != string.Empty)
             {
-                temp = ClientNIPTB.Text.Replace("-", "");
+                temp = SellerNIPTB.Text.Replace("-", "");
                 foreach (char c in temp)
                 {
                     if (c < '0' || c > '9')
@@ -290,49 +329,49 @@ namespace ClientRest.Forms
                 if (a != true)
                 {
                     company = rest.getRequest<Company>(controller.gus, "/" + temp);
-                    if(company.Name == null)
+                    if (company.Name == null)
                     {
-                        ClientNameCB.Text = "Zły NIP!";
+                        SellerNameCB.Text = "Zły NIP!";
                     }
                     else
                     {
-                        ClientNameCB.Text = company.Name;
+                        SellerNameCB.Text = company.Name;
                         if (company.Number[company.Number.Length - 1].Equals('/'))
                         {
-                            ClientStreetNumberTB.Text = company.Street + " " + company.Number.Substring(0, company.Number.Length - 1);
+                            SellerStreetNumberTB.Text = company.Street + " " + company.Number.Substring(0, company.Number.Length - 1);
                         }
                         else
                         {
-                            ClientStreetNumberTB.Text = company.Street + " " + company.Number;
+                            SellerStreetNumberTB.Text = company.Street + " " + company.Number;
                         }
-                        ClientCityPostCodeTB.Text = company.PostCode + " " + company.City;
-                        ClientNIPTB.Text = company.NIP;
+                        SellerCityPostCodeTB.Text = company.PostCode + " " + company.City;
+                        SellerNIPTB.Text = company.NIP;
                     }
-                } 
+                }
             }
         }
 
-        private void ClientNameCB_SelectedIndexChanged(object sender, EventArgs e)
+        private void SellerNameCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(ClientNameCB.SelectedIndex != -1)
+            if (SellerNameCB.SelectedIndex != -1)
             {
-                Client client = (Client)ClientNameCB.SelectedItem;
-                ClientCityPostCodeTB.Text = client.PostCode;
-                ClientNIPTB.Text = client.NIP;
-                if (client.Number[client.Number.Length - 1].Equals('/'))
+                Seller Seller = (Seller)SellerNameCB.SelectedItem;
+                SellerCityPostCodeTB.Text = Seller.PostCode;
+                SellerNIPTB.Text = Seller.NIP;
+                if (Seller.Number[Seller.Number.Length - 1].Equals('/'))
                 {
-                    ClientStreetNumberTB.Text = client.Street + " " + client.Number.Substring(0, client.Number.Length - 1);
+                    SellerStreetNumberTB.Text = Seller.Street + " " + Seller.Number.Substring(0, Seller.Number.Length - 1);
                 }
                 else
                 {
-                    ClientStreetNumberTB.Text = client.Street + " " + client.Number;
+                    SellerStreetNumberTB.Text = Seller.Street + " " + Seller.Number;
                 }
             }
             else
             {
-                ClientCityPostCodeTB.Text = "";
-                ClientNIPTB.Text = "";
-                ClientStreetNumberTB.Text = "";
+                SellerCityPostCodeTB.Text = "";
+                SellerNIPTB.Text = "";
+                SellerStreetNumberTB.Text = "";
             }
         }
 
