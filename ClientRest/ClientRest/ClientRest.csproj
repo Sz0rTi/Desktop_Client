@@ -74,6 +74,12 @@
     <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\InvoiceSellShowForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InvoiceSellShowForm.Designer.cs">
+      <DependentUpon>InvoiceSellShowForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\InvoiceSellForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,7 @@
     <Compile Include="Models\Out\ProductBuyOut.cs" />
     <Compile Include="Models\Out\ProductOut.cs" />
     <Compile Include="Models\Out\ProductSellOut.cs" />
+    <Compile Include="Models\Out\SellerOut.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\In\Seller.cs" />
     <Compile Include="Models\In\TaxStage.cs" />
@@ -137,6 +144,9 @@
     <Compile Include="Models\TestCollection.cs" />
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InvoiceSellShowForm.resx">
+      <DependentUpon>InvoiceSellShowForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InvoiceSellForm.resx">
       <DependentUpon>InvoiceSellForm.cs</DependentUpon>

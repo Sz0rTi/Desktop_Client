@@ -81,7 +81,7 @@ namespace ClientRest
             return strResponceValue;
         }
 
-        public T postRequest<T>(T item, controller controller)
+        public T postRequest<T,T2>(T2 item, controller controller)
         {
             string a = JsonConvert.SerializeObject(item, Formatting.Indented);
             var byteData = Encoding.UTF8.GetBytes(a);
@@ -97,8 +97,8 @@ namespace ClientRest
             HttpWebResponse response = (HttpWebResponse) request.GetResponse();
             var responseString = new StreamReader(response.GetResponseStream(), Encoding.UTF8).ReadToEnd();
             httpMethod = httpVerb.GET;
-
-            return item;
+            return JsonConvert.DeserializeObject<T>(responseString);
+            //return item;
         }
 
         public void post(Product p)

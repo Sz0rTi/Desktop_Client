@@ -109,6 +109,7 @@ namespace ClientRest.Forms
                 ProductNameCB.DisplayMember = "name";
                 ProductNameCB.DataSource = list;
                 ProductNameCB.SelectedIndex = -1;
+                ProductAmountLabel2.Text = "";
                 CategoryCBLabel.Focus();
             } 
         }
@@ -160,15 +161,15 @@ namespace ClientRest.Forms
                 }
                 else
                 {
-                    Client clientout = new Client { Name = company.Name, City = company.City, NIP = company.NIP, Number = company.Number, PostCode = company.PostCode, Street = company.Street };
-                    Client temp = rest.postRequest<Client>(clientout, controller.clients);
+                    ClientOut clientout = new ClientOut { Name = company.Name, City = company.City, NIP = company.NIP, Number = company.Number, PostCode = company.PostCode, Street = company.Street };
+                    Client temp = rest.postRequest<Client,ClientOut>(clientout, controller.clients);
                     invoiceSellOut.ClientId = temp.ID;
                 }
                 invoiceSellOut.IsPaid = false;
                 invoiceSellOut.PaymentDeadline = PAYDATE.Value;
                 invoiceSellOut.ProductsSell = products;
                 invoiceSellOut.PriceNetto = x;
-                rest.postRequest<InvoiceSellOut>(invoiceSellOut, controller.invoicesells);
+                InvoiceSell responseInvoiceSell = rest.postRequest<InvoiceSell,InvoiceSellOut>(invoiceSellOut, controller.invoicesells);
                 Reset();
                 
             }

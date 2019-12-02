@@ -9,8 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using ClientRest.Models.In.In;
 using ClientRest.Models.In;
+using ClientRest.Models.Out;
 
 namespace ClientRest.Forms
 {
@@ -68,7 +68,7 @@ namespace ClientRest.Forms
         {
             if(/*CategoryId != Guid.Empty && UnitId != Guid.Empty && NameTB.Text != "" && PriceNUD.Value != 0 && DescriptionTB.Text != ""*/true)
             {
-                Product product = new Product();
+                ProductOut product = new ProductOut();
                 List<Category> categories = rest.getRequest<List<Category>>(controller.categories);
                 product.Name = NameTB.Text;
                 product.Description = DescriptionTB.Text;
@@ -77,7 +77,7 @@ namespace ClientRest.Forms
                 product.UnitID = Guid.Parse(UnitCB.SelectedValue.ToString());
                 product.PriceNetto = (double) PriceNUD.Value;
                 product.Amount = (int)AmountNUD.Value;
-                rest.postRequest<Product>(product,controller.products);
+                Product responseProduct = rest.postRequest<Product,ProductOut>(product,controller.products);
                 //rest.post(product);
                 
                 /*Product a = rest.postRequest<Product>(product, controller.products);

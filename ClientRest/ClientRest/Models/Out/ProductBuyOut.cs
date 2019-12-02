@@ -15,6 +15,5 @@ namespace ClientRest.Models.Out
         public double PricePerItemNetto { get; set; }
         public double PricePerItemBrutto { get; set; }
         public Guid TaxStageID { get; set; }
-        public Guid UnitID { get; set; }
     }
 }

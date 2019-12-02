@@ -18,9 +18,10 @@ namespace ClientRest.Forms
         RestClass rest = new RestClass();
         public delegate void Delegacik();
         public Delegacik OnFormChange;
+        public int SelectedType { get; set; }
         public MainForm()
         {
-            
+            SelectedType = -1;
             //InvoiceSells = rest.getRequest<List<InvoiceSell>>(controller.invoicesells);
             //InvoiceBuys = rest.getRequest<List<InvoiceBuy>>(controller.productbuys);
             InitializeComponent();
@@ -68,6 +69,7 @@ namespace ClientRest.Forms
 
         public void InvoiceSellsButton_Click(object sender, EventArgs e)
         {
+            SelectedType = 0;
             ListBox1.SelectedIndexChanged -= new EventHandler(ListBox1_SelectedIndexChanged);
             List<InvoiceSell> invoiceSells = new List<InvoiceSell>();
             invoiceSells = rest.getRequest<List<InvoiceSell>>(controller.invoicesells);
@@ -82,13 +84,19 @@ namespace ClientRest.Forms
 
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(ListBox1.DataBindings.GetType() == typeof(List<InvoiceBuy>))
+            if(SelectedType == 1)
             {
 
             }
-            else if(ListBox1.DataBindings.GetType() == typeof(List<InvoiceSell>))
+            else if(SelectedType == 0)
             {
-
+                InvoiceSell temp = (InvoiceSell)ListBox1.SelectedItem;
+                InvoiceSellShowForm form = new InvoiceSellShowForm(temp.ID);
+                form.TopLevel = false;
+                form.AutoScroll = true;
+                NPPanel.Controls.Clear();
+                NPPanel.Controls.Add(form);
+                form.Show();
             }
             else if(ListBox1.DataBindings.GetType() == typeof(List<Product>))
             {
@@ -98,6 +106,7 @@ namespace ClientRest.Forms
 
         private void InvoiceBuysButton_Click(object sender, EventArgs e)
         {
+            SelectedType = 1;
             ListBox1.SelectedIndexChanged -= new EventHandler(ListBox1_SelectedIndexChanged);
             List<InvoiceBuy> invoiceBuys = new List<InvoiceBuy>();
             invoiceBuys = rest.getRequest<List<InvoiceBuy>>(controller.invoicebuys);

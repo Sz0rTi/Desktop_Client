@@ -49,7 +49,7 @@ namespace ClientRest
             string json = OutputTB.Text;
             Unit product = new Unit();
             product = JsonConvert.DeserializeObject<Unit>(json);
-            rest.postRequest<Unit>(product,controller.products);
+            //rest.postRequest<Unit>(product,controller.products);
         }
     }
 }

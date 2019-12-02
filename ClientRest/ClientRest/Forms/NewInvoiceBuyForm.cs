@@ -1,7 +1,6 @@
 ﻿using ClientRest;
 using ClientRest.Models.In;
 using ClientRest.Models;
-using ClientRest.Models.In;
 using ClientRest.Models.Out;
 using System;
 using System.Collections.Generic;
@@ -82,21 +81,18 @@ namespace ClientRest.Forms
                             Amount = 0,
                             CategoryID = (Guid)CategoryCB.SelectedValue,
                             UnitID = (Guid)UnitsCB.SelectedValue,
-                            PriceNetto = 0.0,
+                            PriceNetto = (double)PricePerItemNUD.Value,
                             Description = "",
                             TaxStageID = new Guid("ba78d24d-fef4-4b96-716f-08d7317c8e05")
                         };
-                        //Product tempProduct = rest.postRequest<Product>(
-                        temp = new ProductBuyOut
-                        {
-                            //ProductID = 
-                            Name = ProductNameCB.Text,
-                            TaxStageID = a.TaxStageID,
-                            Amount = (int)AmountTB.Value,
-                            Unit = UnitsCB.Text,
-                            PricePerItemNetto = (double)PricePerItemNUD.Value,
-                            PricePerItemBrutto = ((double)PricePerItemNUD.Value) * (rest.getRequest<TaxStage>(controller.taxstages, "/" + a.TaxStageID.ToString()).Stage + 100.0) / 100.0
-                        };
+                        Product tempProduct = rest.postRequest<Product, ProductOut>(newProduct, controller.products);
+                        temp.ProductID = tempProduct.ID;
+                        temp.Name = ProductNameCB.Text;
+                        temp.TaxStageID = tempProduct.TaxStageID;
+                        temp.Amount = (int)AmountTB.Value;
+                        temp.Unit = UnitsCB.Text;
+                        temp.PricePerItemNetto = (double)PricePerItemNUD.Value;
+                        temp.PricePerItemBrutto = ((double)PricePerItemNUD.Value) * (rest.getRequest<TaxStage>(controller.taxstages, "/" + tempProduct.TaxStageID.ToString()).Stage + 100.0) / 100.0;  
                     }
                     else
                     {
@@ -105,16 +101,14 @@ namespace ClientRest.Forms
                 }
                 else
                 {
-                    temp = new ProductBuyOut
-                    {
-                        ProductID = Guid.Parse(ProductNameCB.SelectedValue.ToString()),
-                        Name = ProductNameCB.Text,
-                        TaxStageID = a.TaxStageID,
-                        Amount = (int)AmountTB.Value,
-                        Unit = UnitsCB.Text,
-                        PricePerItemNetto = (double)PricePerItemNUD.Value,
-                        PricePerItemBrutto = ((double)PricePerItemNUD.Value) * (rest.getRequest<TaxStage>(controller.taxstages, "/" + a.TaxStageID.ToString()).Stage + 100.0) / 100.0
-                    };
+                    temp.ProductID = Guid.Parse(ProductNameCB.SelectedValue.ToString());
+                        temp.Name = ProductNameCB.Text;
+                        temp.TaxStageID = a.TaxStageID;
+                        temp.Amount = (int)AmountTB.Value;
+                        temp.Unit = UnitsCB.Text;
+                        temp.PricePerItemNetto = (double)PricePerItemNUD.Value;
+                        temp.PricePerItemBrutto = ((double)PricePerItemNUD.Value) * (rest.getRequest<TaxStage>(controller.taxstages, "/" + a.TaxStageID.ToString()).Stage + 100.0) / 100.0;
+
                 }
                 products.Add(temp);
                 var item = new ListViewItem(new[] { temp.Name.ToString(), temp.Amount.ToString(), temp.Unit, temp.PricePerItemNetto.ToString("C2"), ((double)(temp.Amount * temp.PricePerItemNetto)).ToString("C2") });
@@ -147,6 +141,7 @@ namespace ClientRest.Forms
                 ProductNameCB.DisplayMember = "name";
                 ProductNameCB.DataSource = list;
                 ProductNameCB.SelectedIndex = -1;
+                ProductAmountLabel2.Text = "";
                 CategoryCBLabel.Focus();
             }
         }
@@ -199,15 +194,15 @@ namespace ClientRest.Forms
                 }
                 else
                 {
-                    Seller Sellerout = new Seller { Name = company.Name, City = company.City, NIP = company.NIP, Number = company.Number, PostCode = company.PostCode, Street = company.Street };
-                    Seller temp = rest.postRequest<Seller>(Sellerout, controller.sellers);
+                    SellerOut Sellerout = new SellerOut { Name = company.Name, City = company.City, NIP = company.NIP, Number = company.Number, PostCode = company.PostCode, Street = company.Street };
+                    Seller temp = rest.postRequest<Seller,SellerOut>(Sellerout, controller.sellers);
                     invoiceBuyOut.SellerID = temp.ID;
                 }
                 invoiceBuyOut.IsPaid = false;
                 invoiceBuyOut.PaymentDeadline = PAYDATE.Value;
                 invoiceBuyOut.ProductsBuy = products;
                 invoiceBuyOut.PriceNetto = x;
-                rest.postRequest<InvoiceBuyOut>(invoiceBuyOut, controller.invoicebuys);
+                InvoiceBuy responseInvoiceBuy = rest.postRequest<InvoiceBuy,InvoiceBuyOut>(invoiceBuyOut, controller.invoicebuys);
                 Reset();
 
             }
