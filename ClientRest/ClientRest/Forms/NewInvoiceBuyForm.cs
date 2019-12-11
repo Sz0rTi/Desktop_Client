@@ -78,7 +78,7 @@ namespace ClientRest.Forms
                         ProductOut newProduct = new ProductOut
                         {
                             Name = ProductNameCB.Text,
-                            Amount = 0,
+                            Amount = (int)AmountTB.Value,
                             CategoryID = (Guid)CategoryCB.SelectedValue,
                             UnitID = (Guid)UnitsCB.SelectedValue,
                             PriceNetto = (double)PricePerItemNUD.Value,
@@ -222,6 +222,7 @@ namespace ClientRest.Forms
             SellerStreetNumberTB.Text = string.Empty;
             SellerCityPostCodeTB.Text = string.Empty;
             SellerNameCB.SelectedIndex = -1;
+            SellerNameCB.Text = string.Empty;
 
             products = new List<ProductBuyOut>();
             list = new List<Product>();
