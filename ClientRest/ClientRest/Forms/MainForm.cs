@@ -1,12 +1,6 @@
 ﻿using ClientRest.Models.In;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ClientRest.Forms
@@ -76,7 +70,7 @@ namespace ClientRest.Forms
             ListBox1.DataSource = invoiceSells;
             ListBox1.DisplayMember = "name";
             ListBox1.ValueMember = "id";
-            
+
             //ListBox1.Refresh();
             //ListBox1.SelectedIndex = -1;
             ListBox1.SelectedIndexChanged += new EventHandler(ListBox1_SelectedIndexChanged);
@@ -84,11 +78,11 @@ namespace ClientRest.Forms
 
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(SelectedType == 1)
+            if (SelectedType == 1)
             {
 
             }
-            else if(SelectedType == 0)
+            else if (SelectedType == 0)
             {
                 InvoiceSell temp = (InvoiceSell)ListBox1.SelectedItem;
                 InvoiceSellShowForm form = new InvoiceSellShowForm(temp.ID);
@@ -98,7 +92,7 @@ namespace ClientRest.Forms
                 NPPanel.Controls.Add(form);
                 form.Show();
             }
-            else if(ListBox1.DataBindings.GetType() == typeof(List<Product>))
+            else if (ListBox1.DataBindings.GetType() == typeof(List<Product>))
             {
 
             }
@@ -119,6 +113,6 @@ namespace ClientRest.Forms
             ListBox1.SelectedIndexChanged += new EventHandler(ListBox1_SelectedIndexChanged);
         }
 
-        
+
     }
 }

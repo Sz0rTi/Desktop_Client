@@ -3,12 +3,7 @@ using ClientRest.Models.In;
 using ClientRest.Models.Out;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ClientRest.Forms
@@ -27,7 +22,7 @@ namespace ClientRest.Forms
         public InvoiceSellShowForm(Guid id)
         {
             InitializeComponent();
-            this.invoice = rest.getRequest<InvoiceSell>(controller.invoicesells,"/"+id.ToString());
+            this.invoice = rest.getRequest<InvoiceSell>(controller.invoicesells, "/" + id.ToString());
             this.Units = rest.getRequest<List<Unit>>(controller.units);
             Client = rest.getRequest<Client>(controller.clients, "/" + invoice.ClientID.ToString());
             foreach (ProductSell item in invoice.ProductsSell)
@@ -40,7 +35,7 @@ namespace ClientRest.Forms
             CStreetLabel.Text = Client.Street;
             CCodeLabel.Text = Client.PostCode + " " + Client.City;
             CNipLabel.Text = Client.NIP;
-            
+
 
             SummaryNetto.Text = invoice.PriceNetto + "zł";
             SummaryBrutto.Text = invoice.PriceBrutto + "zł";
@@ -68,5 +63,5 @@ namespace ClientRest.Forms
             Clipboard.SetText(temp.Substring(0, temp.Length - 2));
         }
 
-    }  
+    }
 }

@@ -153,9 +153,9 @@
             this.PriceLabel.AutoSize = true;
             this.PriceLabel.Location = new System.Drawing.Point(136, 437);
             this.PriceLabel.Name = "PriceLabel";
-            this.PriceLabel.Size = new System.Drawing.Size(109, 13);
+            this.PriceLabel.Size = new System.Drawing.Size(97, 13);
             this.PriceLabel.TabIndex = 8;
-            this.PriceLabel.Text = "Cena sprzedaży netto";
+            this.PriceLabel.Text = "Cena zakupu netto";
             // 
             // AmountTB
             // 
