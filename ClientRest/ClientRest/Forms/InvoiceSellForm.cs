@@ -68,15 +68,18 @@ namespace ClientRest.Forms
             else
             {
                 Product a = (Product)ProductNameCB.SelectedItem;
+                Unit unit = (Unit)UnitsCB.SelectedItem;
                 ProductSellOut temp = new ProductSellOut
                 {
                     ProductID = Guid.Parse(ProductNameCB.SelectedValue.ToString()),
                     Name = ProductNameCB.Text,
                     TaxStageID = a.TaxStageID,
+                    UnitID = unit.ID,
                     Amount = (int)AmountTB.Value,
                     Unit = UnitsCB.Text,
                     PricePerItemNetto = (double)PricePerItemNUD.Value,
-                    PricePerItemBrutto = ((double)PricePerItemNUD.Value) * (rest.getRequest<TaxStage>(controller.taxstages, "/" + a.TaxStageID.ToString()).Stage + 100.0) / 100.0
+                    PricePerItemBrutto = ((double)PricePerItemNUD.Value) * (rest.getRequest<TaxStage>(controller.taxstages, "/" + a.TaxStageID.ToString()).Stage + 100.0) / 100.0,
+                    BasePriceNetto = a.PriceNetto
                 };
                 products.Add(temp);
                 var item = new ListViewItem(new[] { temp.Name.ToString(), temp.Amount.ToString(), temp.Unit, temp.PricePerItemNetto.ToString("C2"), ((double)(temp.Amount * temp.PricePerItemNetto)).ToString("C2") });
@@ -94,6 +97,13 @@ namespace ClientRest.Forms
                 ProductNameCB.SelectedIndex = -1;
                 SummaryNetto.Text = sumNetto.ToString("N2") + "zł";
                 SummaryBrutto.Text = sumBrutto.ToString("N2") + "zł";
+                PricePerItemNUD.ValueChanged -= new EventHandler(PricePerItemNUD_ValueChanged);
+                MarginNUD.ValueChanged -= new EventHandler(MarginNUD_ValueChanged);
+                MarginNUD.Value = 0;
+                PricePerItemNUD.Value = 0;
+                PricePerItemNUD.ValueChanged += new EventHandler(PricePerItemNUD_ValueChanged);
+                MarginNUD.ValueChanged += new EventHandler(MarginNUD_ValueChanged);
+                AmountTB.Value = 0;
                 ((CurrencyManager)BindingContext[products]).Refresh();
             } 
         }
@@ -157,13 +167,13 @@ namespace ClientRest.Forms
                 if (rest.getRequest<bool>(controller.clients, "/check/" + ClientNIPTB.Text))
                 {
                     Client temp = (Client)ClientNameCB.SelectedItem;
-                    invoiceSellOut.ClientId = temp.ID;
+                    invoiceSellOut.ClientID = temp.ID;
                 }
                 else
                 {
                     ClientOut clientout = new ClientOut { Name = company.Name, City = company.City, NIP = company.NIP, Number = company.Number, PostCode = company.PostCode, Street = company.Street };
                     Client temp = rest.postRequest<Client,ClientOut>(clientout, controller.clients);
-                    invoiceSellOut.ClientId = temp.ID;
+                    invoiceSellOut.ClientID = temp.ID;
                 }
                 invoiceSellOut.IsPaid = false;
                 invoiceSellOut.PaymentDeadline = PAYDATE.Value;
@@ -189,13 +199,14 @@ namespace ClientRest.Forms
             ClientStreetNumberTB.Text = string.Empty;
             ClientCityPostCodeTB.Text = string.Empty;
             ClientNameCB.SelectedIndex = -1;
+            ClientNameCB.Text = "";
 
             products = new List<ProductSellOut>();
             list = new List<Product>();
             
             ProductAmountLabel2.Text = string.Empty;
             AmountTB.Value = 0;
-            PricePerItemNUD.Value = 0;
+            
 
             SummaryBrutto.Text = "0.00zł";
             SummaryNetto.Text = "0.00zł";
@@ -203,8 +214,12 @@ namespace ClientRest.Forms
             sumNetto = 0;
             sumBrutto = 0;
 
-            
-
+            PricePerItemNUD.ValueChanged -= new EventHandler(PricePerItemNUD_ValueChanged);
+            MarginNUD.ValueChanged -= new EventHandler(MarginNUD_ValueChanged);
+            MarginNUD.Value = 0;
+            PricePerItemNUD.Value = 0;
+            PricePerItemNUD.ValueChanged += new EventHandler(PricePerItemNUD_ValueChanged);
+            MarginNUD.ValueChanged += new EventHandler(MarginNUD_ValueChanged);
             listView1.Items.Clear();
         }
 
@@ -361,6 +376,34 @@ namespace ClientRest.Forms
             else
             {
                 ProductNameCB.DataSource = list;
+            }
+        }
+
+        private void PricePerItemNUD_ValueChanged(object sender, EventArgs e)
+        {
+            if (ProductNameCB.SelectedItem != null)
+            {
+                Product a = (Product)ProductNameCB.SelectedItem;
+                MarginNUD.ValueChanged -= new EventHandler(MarginNUD_ValueChanged);
+
+                MarginNUD.Value = Math.Round(((PricePerItemNUD.Value / (decimal)a.PriceNetto)*100)-100,1);
+
+
+                MarginNUD.ValueChanged += new EventHandler(MarginNUD_ValueChanged);
+            }
+        }
+
+        private void MarginNUD_ValueChanged(object sender, EventArgs e)
+        {
+            if (ProductNameCB.SelectedItem != null)
+            {
+                Product a = (Product)ProductNameCB.SelectedItem;
+
+                PricePerItemNUD.ValueChanged -= new EventHandler(PricePerItemNUD_ValueChanged);
+                PricePerItemNUD.Value = Math.Round((decimal)a.PriceNetto * ((MarginNUD.Value + 100) / 100), 2);
+
+
+                PricePerItemNUD.ValueChanged += new EventHandler(PricePerItemNUD_ValueChanged);
             }
         }
     }

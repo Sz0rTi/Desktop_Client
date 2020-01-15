@@ -129,6 +129,7 @@
             this.Controls.Add(this.NPPanel);
             this.Name = "MainForm";
             this.Text = "Main";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.ResumeLayout(false);
 
         }

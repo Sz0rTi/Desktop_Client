@@ -67,9 +67,13 @@
             this.SellerStreetNumberTB = new System.Windows.Forms.TextBox();
             this.ProductAmountLabel1 = new System.Windows.Forms.Label();
             this.ProductAmountLabel2 = new System.Windows.Forms.Label();
-            this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.TaxStageCB = new System.Windows.Forms.ComboBox();
+            this.NewCategoryButton = new System.Windows.Forms.Button();
+            this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.CodeLabel = new System.Windows.Forms.Label();
+            this.CodeTB = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.PricePerItemNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmountTB)).BeginInit();
             this.Summary.SuspendLayout();
@@ -79,14 +83,14 @@
             // 
             // PAYDATE
             // 
-            this.PAYDATE.Location = new System.Drawing.Point(630, 431);
+            this.PAYDATE.Location = new System.Drawing.Point(630, 508);
             this.PAYDATE.Name = "PAYDATE";
             this.PAYDATE.Size = new System.Drawing.Size(200, 20);
             this.PAYDATE.TabIndex = 0;
             // 
             // AddProductButton
             // 
-            this.AddProductButton.Location = new System.Drawing.Point(387, 464);
+            this.AddProductButton.Location = new System.Drawing.Point(389, 544);
             this.AddProductButton.Name = "AddProductButton";
             this.AddProductButton.Size = new System.Drawing.Size(75, 23);
             this.AddProductButton.TabIndex = 2;
@@ -99,7 +103,7 @@
             this.ProductNameCB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.ProductNameCB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ProductNameCB.FormattingEnabled = true;
-            this.ProductNameCB.Location = new System.Drawing.Point(251, 408);
+            this.ProductNameCB.Location = new System.Drawing.Point(251, 485);
             this.ProductNameCB.Name = "ProductNameCB";
             this.ProductNameCB.Size = new System.Drawing.Size(142, 21);
             this.ProductNameCB.TabIndex = 3;
@@ -109,7 +113,7 @@
             // NameCBLabel
             // 
             this.NameCBLabel.AutoSize = true;
-            this.NameCBLabel.Location = new System.Drawing.Point(205, 412);
+            this.NameCBLabel.Location = new System.Drawing.Point(205, 489);
             this.NameCBLabel.Name = "NameCBLabel";
             this.NameCBLabel.Size = new System.Drawing.Size(40, 13);
             this.NameCBLabel.TabIndex = 4;
@@ -120,16 +124,16 @@
             this.CategoryCB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.CategoryCB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CategoryCB.FormattingEnabled = true;
-            this.CategoryCB.Location = new System.Drawing.Point(251, 381);
+            this.CategoryCB.Location = new System.Drawing.Point(251, 458);
             this.CategoryCB.Name = "CategoryCB";
-            this.CategoryCB.Size = new System.Drawing.Size(121, 21);
+            this.CategoryCB.Size = new System.Drawing.Size(142, 21);
             this.CategoryCB.TabIndex = 5;
             this.CategoryCB.SelectedIndexChanged += new System.EventHandler(this.CategoryCB_SelectedIndexChanged);
             // 
             // CategoryCBLabel
             // 
             this.CategoryCBLabel.AutoSize = true;
-            this.CategoryCBLabel.Location = new System.Drawing.Point(193, 384);
+            this.CategoryCBLabel.Location = new System.Drawing.Point(193, 461);
             this.CategoryCBLabel.Name = "CategoryCBLabel";
             this.CategoryCBLabel.Size = new System.Drawing.Size(52, 13);
             this.CategoryCBLabel.TabIndex = 6;
@@ -138,7 +142,7 @@
             // PricePerItemNUD
             // 
             this.PricePerItemNUD.DecimalPlaces = 2;
-            this.PricePerItemNUD.Location = new System.Drawing.Point(251, 435);
+            this.PricePerItemNUD.Location = new System.Drawing.Point(251, 512);
             this.PricePerItemNUD.Maximum = new decimal(new int[] {
             999999999,
             0,
@@ -151,7 +155,7 @@
             // PriceLabel
             // 
             this.PriceLabel.AutoSize = true;
-            this.PriceLabel.Location = new System.Drawing.Point(136, 437);
+            this.PriceLabel.Location = new System.Drawing.Point(136, 514);
             this.PriceLabel.Name = "PriceLabel";
             this.PriceLabel.Size = new System.Drawing.Size(97, 13);
             this.PriceLabel.TabIndex = 8;
@@ -159,7 +163,7 @@
             // 
             // AmountTB
             // 
-            this.AmountTB.Location = new System.Drawing.Point(251, 462);
+            this.AmountTB.Location = new System.Drawing.Point(251, 539);
             this.AmountTB.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -172,7 +176,7 @@
             // AmountLabel
             // 
             this.AmountLabel.AutoSize = true;
-            this.AmountLabel.Location = new System.Drawing.Point(216, 464);
+            this.AmountLabel.Location = new System.Drawing.Point(216, 541);
             this.AmountLabel.Name = "AmountLabel";
             this.AmountLabel.Size = new System.Drawing.Size(29, 13);
             this.AmountLabel.TabIndex = 10;
@@ -188,7 +192,7 @@
             this.columnHeader5});
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(139, 209);
+            this.listView1.Location = new System.Drawing.Point(139, 286);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(691, 135);
@@ -220,7 +224,7 @@
             // UnitsCB
             // 
             this.UnitsCB.FormattingEnabled = true;
-            this.UnitsCB.Location = new System.Drawing.Point(417, 435);
+            this.UnitsCB.Location = new System.Drawing.Point(470, 486);
             this.UnitsCB.Name = "UnitsCB";
             this.UnitsCB.Size = new System.Drawing.Size(121, 21);
             this.UnitsCB.TabIndex = 12;
@@ -228,7 +232,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(384, 438);
+            this.label1.Location = new System.Drawing.Point(437, 489);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 13;
@@ -250,7 +254,7 @@
             this.Summary.Controls.Add(this.SummaryBrutttoLabel);
             this.Summary.Controls.Add(this.SummaryNetto);
             this.Summary.Controls.Add(this.SummaryNettoLabel);
-            this.Summary.Location = new System.Drawing.Point(630, 350);
+            this.Summary.Location = new System.Drawing.Point(630, 427);
             this.Summary.Name = "Summary";
             this.Summary.Size = new System.Drawing.Size(200, 75);
             this.Summary.TabIndex = 15;
@@ -298,7 +302,7 @@
             // 
             // EditButton
             // 
-            this.EditButton.Location = new System.Drawing.Point(468, 464);
+            this.EditButton.Location = new System.Drawing.Point(470, 544);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(75, 23);
             this.EditButton.TabIndex = 16;
@@ -308,7 +312,7 @@
             // 
             // RemoveButton
             // 
-            this.RemoveButton.Location = new System.Drawing.Point(549, 464);
+            this.RemoveButton.Location = new System.Drawing.Point(551, 544);
             this.RemoveButton.Name = "RemoveButton";
             this.RemoveButton.Size = new System.Drawing.Size(75, 23);
             this.RemoveButton.TabIndex = 17;
@@ -327,7 +331,7 @@
             this.SellerGB.Controls.Add(this.NIPButton);
             this.SellerGB.Controls.Add(this.SellerNIPTB);
             this.SellerGB.Controls.Add(this.SellerStreetNumberTB);
-            this.SellerGB.Location = new System.Drawing.Point(139, 12);
+            this.SellerGB.Location = new System.Drawing.Point(139, 89);
             this.SellerGB.Name = "SellerGB";
             this.SellerGB.Size = new System.Drawing.Size(485, 191);
             this.SellerGB.TabIndex = 18;
@@ -413,7 +417,7 @@
             // ProductAmountLabel1
             // 
             this.ProductAmountLabel1.AutoSize = true;
-            this.ProductAmountLabel1.Location = new System.Drawing.Point(399, 411);
+            this.ProductAmountLabel1.Location = new System.Drawing.Point(513, 461);
             this.ProductAmountLabel1.Name = "ProductAmountLabel1";
             this.ProductAmountLabel1.Size = new System.Drawing.Size(55, 13);
             this.ProductAmountLabel1.TabIndex = 19;
@@ -422,39 +426,79 @@
             // ProductAmountLabel2
             // 
             this.ProductAmountLabel2.AutoSize = true;
-            this.ProductAmountLabel2.Location = new System.Drawing.Point(460, 412);
+            this.ProductAmountLabel2.Location = new System.Drawing.Point(574, 462);
             this.ProductAmountLabel2.Name = "ProductAmountLabel2";
             this.ProductAmountLabel2.Size = new System.Drawing.Size(0, 13);
             this.ProductAmountLabel2.TabIndex = 20;
             // 
-            // productSellOutBindingSource
-            // 
-            this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
-            // 
             // groupBox1
             // 
-            this.groupBox1.Location = new System.Drawing.Point(631, 13);
+            this.groupBox1.Location = new System.Drawing.Point(631, 90);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(199, 190);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Płatność";
             // 
-            // groupBox2
+            // label2
             // 
-            this.groupBox2.Location = new System.Drawing.Point(139, 510);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(691, 96);
-            this.groupBox2.TabIndex = 22;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Marża itd";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(397, 520);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 13);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Stawka VAT";
+            // 
+            // TaxStageCB
+            // 
+            this.TaxStageCB.FormattingEnabled = true;
+            this.TaxStageCB.Location = new System.Drawing.Point(470, 513);
+            this.TaxStageCB.Name = "TaxStageCB";
+            this.TaxStageCB.Size = new System.Drawing.Size(121, 21);
+            this.TaxStageCB.TabIndex = 23;
+            // 
+            // NewCategoryButton
+            // 
+            this.NewCategoryButton.Location = new System.Drawing.Point(400, 458);
+            this.NewCategoryButton.Name = "NewCategoryButton";
+            this.NewCategoryButton.Size = new System.Drawing.Size(95, 23);
+            this.NewCategoryButton.TabIndex = 24;
+            this.NewCategoryButton.Text = "Nowa kategoria";
+            this.NewCategoryButton.UseVisualStyleBackColor = true;
+            this.NewCategoryButton.Click += new System.EventHandler(this.NewCategoryButton_Click);
+            // 
+            // productSellOutBindingSource
+            // 
+            this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
+            // 
+            // CodeLabel
+            // 
+            this.CodeLabel.AutoSize = true;
+            this.CodeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.CodeLabel.Location = new System.Drawing.Point(135, 38);
+            this.CodeLabel.Name = "CodeLabel";
+            this.CodeLabel.Size = new System.Drawing.Size(126, 24);
+            this.CodeLabel.TabIndex = 25;
+            this.CodeLabel.Text = "Numer faktury";
+            // 
+            // CodeTB
+            // 
+            this.CodeTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.CodeTB.Location = new System.Drawing.Point(267, 38);
+            this.CodeTB.Name = "CodeTB";
+            this.CodeTB.Size = new System.Drawing.Size(307, 29);
+            this.CodeTB.TabIndex = 26;
             // 
             // NewInvoiceBuyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(995, 685);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.CodeTB);
+            this.Controls.Add(this.CodeLabel);
+            this.Controls.Add(this.NewCategoryButton);
+            this.Controls.Add(this.TaxStageCB);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ProductAmountLabel2);
             this.Controls.Add(this.ProductAmountLabel1);
@@ -534,6 +578,10 @@
         private System.Windows.Forms.Label ProductAmountLabel2;
         private System.Windows.Forms.ComboBox SellerNameCB;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox TaxStageCB;
+        private System.Windows.Forms.Button NewCategoryButton;
+        private System.Windows.Forms.Label CodeLabel;
+        private System.Windows.Forms.TextBox CodeTB;
     }
 }

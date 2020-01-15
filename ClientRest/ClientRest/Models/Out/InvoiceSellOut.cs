@@ -8,8 +8,9 @@ namespace ClientRest.Models.Out
 {
     public class InvoiceSellOut
     {
-        public Guid ClientId { get; set; }
+        public Guid ClientID { get; set; }
         public double PriceNetto { get; set; }
+        public double PriceBrutto { get; set; }
         public DateTime PaymentDeadline { get; set; }
         public bool IsPaid { get; set; }
         public List<ProductSellOut> ProductsSell { get; set; }

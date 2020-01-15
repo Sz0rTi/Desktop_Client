@@ -12,9 +12,11 @@ namespace ClientRest.Models.In
         public string Name { get; set; }
         public Guid SellerID { get; set; }
         public DateTime Date { get; set; }
+        public DateTime PaymentDeadline { get; set; }
         public double PriceNetto { get; set; }
         public double PriceBrutto { get; set; }
         public bool IsPaid { get; set; }
-        public List<ProductBuy> Products { get; set; }
+        public string UserID { get; set; }
+        public List<ProductBuy> ProductsBuy { get; set; }
     }
 }

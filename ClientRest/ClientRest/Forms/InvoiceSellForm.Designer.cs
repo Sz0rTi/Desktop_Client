@@ -67,13 +67,19 @@
             this.ClientStreetNumberTB = new System.Windows.Forms.TextBox();
             this.ProductAmountLabel1 = new System.Windows.Forms.Label();
             this.ProductAmountLabel2 = new System.Windows.Forms.Label();
-            this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.BasePriceLabel = new System.Windows.Forms.Label();
+            this.BasePriceLabel2 = new System.Windows.Forms.Label();
+            this.MarginNUD = new System.Windows.Forms.NumericUpDown();
+            this.MarginLabel = new System.Windows.Forms.Label();
+            this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PricePerItemNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmountTB)).BeginInit();
             this.Summary.SuspendLayout();
             this.ClientGB.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MarginNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productSellOutBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -144,9 +150,15 @@
             0,
             0,
             0});
+            this.PricePerItemNUD.Minimum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            -2147483648});
             this.PricePerItemNUD.Name = "PricePerItemNUD";
             this.PricePerItemNUD.Size = new System.Drawing.Size(120, 20);
             this.PricePerItemNUD.TabIndex = 7;
+            this.PricePerItemNUD.ValueChanged += new System.EventHandler(this.PricePerItemNUD_ValueChanged);
             // 
             // PriceLabel
             // 
@@ -165,6 +177,11 @@
             0,
             0,
             0});
+            this.AmountTB.Minimum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            -2147483648});
             this.AmountTB.Name = "AmountTB";
             this.AmountTB.Size = new System.Drawing.Size(120, 20);
             this.AmountTB.TabIndex = 9;
@@ -427,10 +444,6 @@
             this.ProductAmountLabel2.Size = new System.Drawing.Size(0, 13);
             this.ProductAmountLabel2.TabIndex = 20;
             // 
-            // productSellOutBindingSource
-            // 
-            this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
-            // 
             // groupBox1
             // 
             this.groupBox1.Location = new System.Drawing.Point(631, 13);
@@ -442,6 +455,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.MarginLabel);
+            this.groupBox2.Controls.Add(this.MarginNUD);
+            this.groupBox2.Controls.Add(this.BasePriceLabel2);
+            this.groupBox2.Controls.Add(this.BasePriceLabel);
             this.groupBox2.Location = new System.Drawing.Point(139, 510);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(691, 96);
@@ -449,7 +466,56 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Marża itd";
             // 
-            // InvoiceSell
+            // BasePriceLabel
+            // 
+            this.BasePriceLabel.AutoSize = true;
+            this.BasePriceLabel.Location = new System.Drawing.Point(36, 25);
+            this.BasePriceLabel.Name = "BasePriceLabel";
+            this.BasePriceLabel.Size = new System.Drawing.Size(76, 13);
+            this.BasePriceLabel.TabIndex = 1;
+            this.BasePriceLabel.Text = "Cena zakupu: ";
+            // 
+            // BasePriceLabel2
+            // 
+            this.BasePriceLabel2.AutoSize = true;
+            this.BasePriceLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.BasePriceLabel2.Location = new System.Drawing.Point(119, 25);
+            this.BasePriceLabel2.Name = "BasePriceLabel2";
+            this.BasePriceLabel2.Size = new System.Drawing.Size(0, 13);
+            this.BasePriceLabel2.TabIndex = 2;
+            // 
+            // MarginNUD
+            // 
+            this.MarginNUD.Location = new System.Drawing.Point(112, 42);
+            this.MarginNUD.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.MarginNUD.Minimum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            -2147483648});
+            this.MarginNUD.Name = "MarginNUD";
+            this.MarginNUD.Size = new System.Drawing.Size(120, 20);
+            this.MarginNUD.TabIndex = 3;
+            this.MarginNUD.ValueChanged += new System.EventHandler(this.MarginNUD_ValueChanged);
+            // 
+            // MarginLabel
+            // 
+            this.MarginLabel.AutoSize = true;
+            this.MarginLabel.Location = new System.Drawing.Point(59, 44);
+            this.MarginLabel.Name = "MarginLabel";
+            this.MarginLabel.Size = new System.Drawing.Size(47, 13);
+            this.MarginLabel.TabIndex = 4;
+            this.MarginLabel.Text = "Marża %";
+            // 
+            // productSellOutBindingSource
+            // 
+            this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
+            // 
+            // InvoiceSellForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -477,7 +543,7 @@
             this.Controls.Add(this.AddProductButton);
             this.Controls.Add(this.PAYDATE);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "InvoiceSell";
+            this.Name = "InvoiceSellForm";
             this.Text = "InvoiceSell";
             this.Load += new System.EventHandler(this.InvoiceSell_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PricePerItemNUD)).EndInit();
@@ -486,6 +552,9 @@
             this.Summary.PerformLayout();
             this.ClientGB.ResumeLayout(false);
             this.ClientGB.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MarginNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productSellOutBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -535,5 +604,9 @@
         private System.Windows.Forms.ComboBox ClientNameCB;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label BasePriceLabel;
+        private System.Windows.Forms.Label MarginLabel;
+        private System.Windows.Forms.NumericUpDown MarginNUD;
+        private System.Windows.Forms.Label BasePriceLabel2;
     }
 }

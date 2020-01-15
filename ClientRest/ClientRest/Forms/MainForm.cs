@@ -113,6 +113,9 @@ namespace ClientRest.Forms
             ListBox1.SelectedIndexChanged += new EventHandler(ListBox1_SelectedIndexChanged);
         }
 
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
 
+        }
     }
 }

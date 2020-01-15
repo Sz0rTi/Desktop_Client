@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ClientRest.Models;
 using ClientRest.Models.In;
+using Hanssens.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -28,6 +29,7 @@ namespace ClientRest
         gus,
         invoicebuys,
         invoicesells,
+        login,
         products,
         productbuys,
         productsells,
@@ -58,8 +60,11 @@ namespace ClientRest
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint);
             request.Method = httpMethod.ToString();
+            //var storage = new LocalStorage();
+            string token = File.ReadAllText("token.txt");
+            request.Headers.Add("Authorization","bearer " + token);
 
-            using(HttpWebResponse response = (HttpWebResponse) request.GetResponse())
+            using (HttpWebResponse response = (HttpWebResponse) request.GetResponse())
             {
                 if(response.StatusCode != HttpStatusCode.OK)
                 {
@@ -83,6 +88,9 @@ namespace ClientRest
 
         public T postRequest<T,T2>(T2 item, controller controller)
         {
+            //var storage = new LocalStorage();
+            string token = File.ReadAllText("token.txt");
+            //request.Headers.Add("bearer", token);
             string a = JsonConvert.SerializeObject(item, Formatting.Indented);
             var byteData = Encoding.UTF8.GetBytes(a);
             endPoint = address + controller.ToString();
@@ -90,6 +98,7 @@ namespace ClientRest
             httpMethod = httpVerb.POST;
             request.Method = httpMethod.ToString();
             request.ContentType = "application/json";
+            request.Headers.Add("Authorization","bearer " + token);
             using (var stream = request.GetRequestStream())
             {
                 stream.Write(byteData, 0, byteData.Length);
@@ -98,6 +107,26 @@ namespace ClientRest
             var responseString = new StreamReader(response.GetResponseStream(), Encoding.UTF8).ReadToEnd();
             httpMethod = httpVerb.GET;
             return JsonConvert.DeserializeObject<T>(responseString);
+            //return item;
+        }
+
+        public LoginResult postLogin(LoginModel item)
+        {
+            string a = JsonConvert.SerializeObject(item, Formatting.Indented);
+            var byteData = Encoding.UTF8.GetBytes(a);
+            endPoint = address + "login";
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint);
+            httpMethod = httpVerb.POST;
+            request.Method = httpMethod.ToString();
+            request.ContentType = "application/json";
+            using (var stream = request.GetRequestStream())
+            {
+                stream.Write(byteData, 0, byteData.Length);
+            }
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            var responseString = new StreamReader(response.GetResponseStream(), Encoding.UTF8).ReadToEnd();
+            httpMethod = httpVerb.GET;
+            return JsonConvert.DeserializeObject<LoginResult>(responseString);
             //return item;
         }
 
