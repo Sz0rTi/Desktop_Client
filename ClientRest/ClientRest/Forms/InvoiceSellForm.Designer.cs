@@ -45,8 +45,9 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.UnitsCB = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.VAT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CreateButton = new System.Windows.Forms.Button();
             this.Summary = new System.Windows.Forms.GroupBox();
             this.SummaryBrutto = new System.Windows.Forms.Label();
@@ -68,16 +69,21 @@
             this.ProductAmountLabel1 = new System.Windows.Forms.Label();
             this.ProductAmountLabel2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.PaymentMethodCB = new System.Windows.Forms.ComboBox();
+            this.PaymentMethodLabel = new System.Windows.Forms.Label();
+            this.PaymentDeadlineLabel = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.BasePriceLabel = new System.Windows.Forms.Label();
-            this.BasePriceLabel2 = new System.Windows.Forms.Label();
-            this.MarginNUD = new System.Windows.Forms.NumericUpDown();
             this.MarginLabel = new System.Windows.Forms.Label();
+            this.MarginNUD = new System.Windows.Forms.NumericUpDown();
+            this.BasePriceLabel2 = new System.Windows.Forms.Label();
+            this.BasePriceLabel = new System.Windows.Forms.Label();
             this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.IsPaidChB = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.PricePerItemNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmountTB)).BeginInit();
             this.Summary.SuspendLayout();
             this.ClientGB.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MarginNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productSellOutBindingSource)).BeginInit();
@@ -85,10 +91,13 @@
             // 
             // PAYDATE
             // 
-            this.PAYDATE.Location = new System.Drawing.Point(630, 431);
+            this.PAYDATE.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.PAYDATE.Location = new System.Drawing.Point(105, 59);
+            this.PAYDATE.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.PAYDATE.Name = "PAYDATE";
-            this.PAYDATE.Size = new System.Drawing.Size(200, 20);
+            this.PAYDATE.Size = new System.Drawing.Size(99, 20);
             this.PAYDATE.TabIndex = 0;
+            this.PAYDATE.Value = new System.DateTime(2020, 1, 28, 18, 3, 19, 0);
             // 
             // AddProductButton
             // 
@@ -202,13 +211,16 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader5});
+            this.columnHeader5,
+            this.VAT,
+            this.columnHeader6,
+            this.columnHeader7});
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(139, 209);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(691, 135);
+            this.listView1.Size = new System.Drawing.Size(704, 135);
             this.listView1.TabIndex = 11;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged);
@@ -216,11 +228,12 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Nazwa";
-            this.columnHeader1.Width = 270;
+            this.columnHeader1.Width = 200;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Ilość";
+            this.columnHeader2.Width = 40;
             // 
             // columnHeader3
             // 
@@ -229,31 +242,31 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "Cena netto";
+            this.columnHeader4.Width = 85;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Wartość netto";
+            this.columnHeader5.Text = "Cena brutto";
+            this.columnHeader5.Width = 85;
             // 
-            // UnitsCB
+            // VAT
             // 
-            this.UnitsCB.FormattingEnabled = true;
-            this.UnitsCB.Location = new System.Drawing.Point(417, 435);
-            this.UnitsCB.Name = "UnitsCB";
-            this.UnitsCB.Size = new System.Drawing.Size(121, 21);
-            this.UnitsCB.TabIndex = 12;
+            this.VAT.Text = "VAT";
+            this.VAT.Width = 40;
             // 
-            // label1
+            // columnHeader6
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(384, 438);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 13);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "J.M.";
+            this.columnHeader6.Text = "Wartość netto";
+            this.columnHeader6.Width = 90;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Wartośc brutto";
+            this.columnHeader7.Width = 90;
             // 
             // CreateButton
             // 
-            this.CreateButton.Location = new System.Drawing.Point(755, 629);
+            this.CreateButton.Location = new System.Drawing.Point(768, 628);
             this.CreateButton.Name = "CreateButton";
             this.CreateButton.Size = new System.Drawing.Size(75, 23);
             this.CreateButton.TabIndex = 14;
@@ -267,7 +280,7 @@
             this.Summary.Controls.Add(this.SummaryBrutttoLabel);
             this.Summary.Controls.Add(this.SummaryNetto);
             this.Summary.Controls.Add(this.SummaryNettoLabel);
-            this.Summary.Location = new System.Drawing.Point(630, 350);
+            this.Summary.Location = new System.Drawing.Point(643, 354);
             this.Summary.Name = "Summary";
             this.Summary.Size = new System.Drawing.Size(200, 75);
             this.Summary.TabIndex = 15;
@@ -446,12 +459,43 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.IsPaidChB);
+            this.groupBox1.Controls.Add(this.PaymentMethodCB);
+            this.groupBox1.Controls.Add(this.PaymentMethodLabel);
+            this.groupBox1.Controls.Add(this.PaymentDeadlineLabel);
+            this.groupBox1.Controls.Add(this.PAYDATE);
             this.groupBox1.Location = new System.Drawing.Point(631, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(199, 190);
+            this.groupBox1.Size = new System.Drawing.Size(212, 190);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Płatność";
+            // 
+            // PaymentMethodCB
+            // 
+            this.PaymentMethodCB.FormattingEnabled = true;
+            this.PaymentMethodCB.Location = new System.Drawing.Point(105, 22);
+            this.PaymentMethodCB.Name = "PaymentMethodCB";
+            this.PaymentMethodCB.Size = new System.Drawing.Size(99, 21);
+            this.PaymentMethodCB.TabIndex = 3;
+            // 
+            // PaymentMethodLabel
+            // 
+            this.PaymentMethodLabel.AutoSize = true;
+            this.PaymentMethodLabel.Location = new System.Drawing.Point(9, 25);
+            this.PaymentMethodLabel.Name = "PaymentMethodLabel";
+            this.PaymentMethodLabel.Size = new System.Drawing.Size(90, 13);
+            this.PaymentMethodLabel.TabIndex = 2;
+            this.PaymentMethodLabel.Text = "Sposób płatności";
+            // 
+            // PaymentDeadlineLabel
+            // 
+            this.PaymentDeadlineLabel.AutoSize = true;
+            this.PaymentDeadlineLabel.Location = new System.Drawing.Point(13, 63);
+            this.PaymentDeadlineLabel.Name = "PaymentDeadlineLabel";
+            this.PaymentDeadlineLabel.Size = new System.Drawing.Size(86, 13);
+            this.PaymentDeadlineLabel.TabIndex = 1;
+            this.PaymentDeadlineLabel.Text = "Termin płatności";
             // 
             // groupBox2
             // 
@@ -461,32 +505,23 @@
             this.groupBox2.Controls.Add(this.BasePriceLabel);
             this.groupBox2.Location = new System.Drawing.Point(139, 510);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(691, 96);
+            this.groupBox2.Size = new System.Drawing.Size(704, 96);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Marża itd";
             // 
-            // BasePriceLabel
+            // MarginLabel
             // 
-            this.BasePriceLabel.AutoSize = true;
-            this.BasePriceLabel.Location = new System.Drawing.Point(36, 25);
-            this.BasePriceLabel.Name = "BasePriceLabel";
-            this.BasePriceLabel.Size = new System.Drawing.Size(76, 13);
-            this.BasePriceLabel.TabIndex = 1;
-            this.BasePriceLabel.Text = "Cena zakupu: ";
-            // 
-            // BasePriceLabel2
-            // 
-            this.BasePriceLabel2.AutoSize = true;
-            this.BasePriceLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.BasePriceLabel2.Location = new System.Drawing.Point(119, 25);
-            this.BasePriceLabel2.Name = "BasePriceLabel2";
-            this.BasePriceLabel2.Size = new System.Drawing.Size(0, 13);
-            this.BasePriceLabel2.TabIndex = 2;
+            this.MarginLabel.AutoSize = true;
+            this.MarginLabel.Location = new System.Drawing.Point(65, 54);
+            this.MarginLabel.Name = "MarginLabel";
+            this.MarginLabel.Size = new System.Drawing.Size(47, 13);
+            this.MarginLabel.TabIndex = 4;
+            this.MarginLabel.Text = "Marża %";
             // 
             // MarginNUD
             // 
-            this.MarginNUD.Location = new System.Drawing.Point(112, 42);
+            this.MarginNUD.Location = new System.Drawing.Point(118, 52);
             this.MarginNUD.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -502,18 +537,38 @@
             this.MarginNUD.TabIndex = 3;
             this.MarginNUD.ValueChanged += new System.EventHandler(this.MarginNUD_ValueChanged);
             // 
-            // MarginLabel
+            // BasePriceLabel2
             // 
-            this.MarginLabel.AutoSize = true;
-            this.MarginLabel.Location = new System.Drawing.Point(59, 44);
-            this.MarginLabel.Name = "MarginLabel";
-            this.MarginLabel.Size = new System.Drawing.Size(47, 13);
-            this.MarginLabel.TabIndex = 4;
-            this.MarginLabel.Text = "Marża %";
+            this.BasePriceLabel2.AutoSize = true;
+            this.BasePriceLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.BasePriceLabel2.Location = new System.Drawing.Point(117, 25);
+            this.BasePriceLabel2.Name = "BasePriceLabel2";
+            this.BasePriceLabel2.Size = new System.Drawing.Size(0, 13);
+            this.BasePriceLabel2.TabIndex = 2;
+            // 
+            // BasePriceLabel
+            // 
+            this.BasePriceLabel.AutoSize = true;
+            this.BasePriceLabel.Location = new System.Drawing.Point(38, 25);
+            this.BasePriceLabel.Name = "BasePriceLabel";
+            this.BasePriceLabel.Size = new System.Drawing.Size(73, 13);
+            this.BasePriceLabel.TabIndex = 1;
+            this.BasePriceLabel.Text = "Cena zakupu:";
             // 
             // productSellOutBindingSource
             // 
             this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
+            // 
+            // IsPaidChB
+            // 
+            this.IsPaidChB.AutoSize = true;
+            this.IsPaidChB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.IsPaidChB.Location = new System.Drawing.Point(105, 97);
+            this.IsPaidChB.Name = "IsPaidChB";
+            this.IsPaidChB.Size = new System.Drawing.Size(86, 19);
+            this.IsPaidChB.TabIndex = 4;
+            this.IsPaidChB.Text = "Opłacona?";
+            this.IsPaidChB.UseVisualStyleBackColor = true;
             // 
             // InvoiceSellForm
             // 
@@ -529,8 +584,6 @@
             this.Controls.Add(this.EditButton);
             this.Controls.Add(this.Summary);
             this.Controls.Add(this.CreateButton);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.UnitsCB);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.AmountLabel);
             this.Controls.Add(this.AmountTB);
@@ -541,7 +594,6 @@
             this.Controls.Add(this.NameCBLabel);
             this.Controls.Add(this.ProductNameCB);
             this.Controls.Add(this.AddProductButton);
-            this.Controls.Add(this.PAYDATE);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "InvoiceSellForm";
             this.Text = "InvoiceSell";
@@ -552,6 +604,8 @@
             this.Summary.PerformLayout();
             this.ClientGB.ResumeLayout(false);
             this.ClientGB.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MarginNUD)).EndInit();
@@ -580,8 +634,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ComboBox UnitsCB;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button CreateButton;
         private System.Windows.Forms.GroupBox Summary;
         private System.Windows.Forms.Label SummaryNetto;
@@ -608,5 +660,12 @@
         private System.Windows.Forms.Label MarginLabel;
         private System.Windows.Forms.NumericUpDown MarginNUD;
         private System.Windows.Forms.Label BasePriceLabel2;
+        private System.Windows.Forms.ComboBox PaymentMethodCB;
+        private System.Windows.Forms.Label PaymentMethodLabel;
+        private System.Windows.Forms.Label PaymentDeadlineLabel;
+        private System.Windows.Forms.ColumnHeader VAT;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.CheckBox IsPaidChB;
     }
 }

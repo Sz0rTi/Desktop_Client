@@ -33,6 +33,7 @@ namespace ClientRest
         products,
         productbuys,
         productsells,
+        payment,
         roles,
         units,
         users,

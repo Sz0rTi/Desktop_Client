@@ -1,6 +1,6 @@
 ﻿namespace ClientRest.Forms
 {
-    partial class InvoiceSellShowForm
+    partial class InvoiceBuyShowForm
     {
         /// <summary>
         /// Required designer variable.
@@ -60,9 +60,9 @@
             this.PMLabel = new System.Windows.Forms.Label();
             this.PaymentMethodLabel = new System.Windows.Forms.Label();
             this.PaymentDeadlineLabel = new System.Windows.Forms.Label();
-            this.CodeLabel = new System.Windows.Forms.Label();
-            this.DateLabel1 = new System.Windows.Forms.Label();
             this.DateLabel2 = new System.Windows.Forms.Label();
+            this.DateLabel1 = new System.Windows.Forms.Label();
+            this.CodeLabel = new System.Windows.Forms.Label();
             this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Summary.SuspendLayout();
             this.ClientGB.SuspendLayout();
@@ -83,10 +83,10 @@
             this.columnHeader8});
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(142, 280);
+            this.listView1.Location = new System.Drawing.Point(142, 283);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(709, 200);
+            this.listView1.Size = new System.Drawing.Size(709, 217);
             this.listView1.TabIndex = 11;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
@@ -135,7 +135,7 @@
             this.Summary.Controls.Add(this.SummaryBrutttoLabel);
             this.Summary.Controls.Add(this.SummaryNetto);
             this.Summary.Controls.Add(this.SummaryNettoLabel);
-            this.Summary.Location = new System.Drawing.Point(651, 486);
+            this.Summary.Location = new System.Drawing.Point(651, 506);
             this.Summary.Name = "Summary";
             this.Summary.Size = new System.Drawing.Size(200, 75);
             this.Summary.TabIndex = 15;
@@ -191,12 +191,12 @@
             this.ClientGB.Controls.Add(this.ClientCityPostCodeLabel);
             this.ClientGB.Controls.Add(this.ClientStreetNumberLabel);
             this.ClientGB.Controls.Add(this.ClientNameLabel);
-            this.ClientGB.Location = new System.Drawing.Point(142, 105);
+            this.ClientGB.Location = new System.Drawing.Point(142, 103);
             this.ClientGB.Name = "ClientGB";
-            this.ClientGB.Size = new System.Drawing.Size(485, 169);
+            this.ClientGB.Size = new System.Drawing.Size(485, 174);
             this.ClientGB.TabIndex = 18;
             this.ClientGB.TabStop = false;
-            this.ClientGB.Text = "Dane klienta";
+            this.ClientGB.Text = "Dane sprzedawcy";
             // 
             // CNipLabel
             // 
@@ -279,9 +279,9 @@
             this.groupBox1.Controls.Add(this.PMLabel);
             this.groupBox1.Controls.Add(this.PaymentMethodLabel);
             this.groupBox1.Controls.Add(this.PaymentDeadlineLabel);
-            this.groupBox1.Location = new System.Drawing.Point(634, 106);
+            this.groupBox1.Location = new System.Drawing.Point(634, 104);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(217, 168);
+            this.groupBox1.Size = new System.Drawing.Size(217, 173);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Płatność";
@@ -350,41 +350,41 @@
             this.PaymentDeadlineLabel.TabIndex = 5;
             this.PaymentDeadlineLabel.Text = "Termin płatności";
             // 
-            // CodeLabel
+            // DateLabel2
             // 
-            this.CodeLabel.AutoSize = true;
-            this.CodeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.CodeLabel.Location = new System.Drawing.Point(142, 32);
-            this.CodeLabel.Name = "CodeLabel";
-            this.CodeLabel.Size = new System.Drawing.Size(86, 31);
-            this.CodeLabel.TabIndex = 22;
-            this.CodeLabel.Text = "label2";
+            this.DateLabel2.AutoSize = true;
+            this.DateLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.DateLabel2.Location = new System.Drawing.Point(776, 55);
+            this.DateLabel2.Name = "DateLabel2";
+            this.DateLabel2.Size = new System.Drawing.Size(46, 18);
+            this.DateLabel2.TabIndex = 27;
+            this.DateLabel2.Text = "label2";
             // 
             // DateLabel1
             // 
             this.DateLabel1.AutoSize = true;
             this.DateLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DateLabel1.Location = new System.Drawing.Point(631, 50);
+            this.DateLabel1.Location = new System.Drawing.Point(640, 55);
             this.DateLabel1.Name = "DateLabel1";
             this.DateLabel1.Size = new System.Drawing.Size(130, 18);
-            this.DateLabel1.TabIndex = 23;
+            this.DateLabel1.TabIndex = 26;
             this.DateLabel1.Text = "Data wystawienia: ";
             // 
-            // DateLabel2
+            // CodeLabel
             // 
-            this.DateLabel2.AutoSize = true;
-            this.DateLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DateLabel2.Location = new System.Drawing.Point(767, 50);
-            this.DateLabel2.Name = "DateLabel2";
-            this.DateLabel2.Size = new System.Drawing.Size(46, 18);
-            this.DateLabel2.TabIndex = 24;
-            this.DateLabel2.Text = "label2";
+            this.CodeLabel.AutoSize = true;
+            this.CodeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.CodeLabel.Location = new System.Drawing.Point(151, 37);
+            this.CodeLabel.Name = "CodeLabel";
+            this.CodeLabel.Size = new System.Drawing.Size(86, 31);
+            this.CodeLabel.TabIndex = 25;
+            this.CodeLabel.Text = "label2";
             // 
             // productSellOutBindingSource
             // 
             this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
             // 
-            // InvoiceSellShowForm
+            // InvoiceBuyShowForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -397,9 +397,9 @@
             this.Controls.Add(this.Summary);
             this.Controls.Add(this.listView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "InvoiceSellShowForm";
+            this.Name = "InvoiceBuyShowForm";
             this.Text = "InvoiceSell";
-            this.Load += new System.EventHandler(this.InvoiceSell_Load);
+            this.Load += new System.EventHandler(this.InvoiceBuy_Load);
             this.Summary.ResumeLayout(false);
             this.Summary.PerformLayout();
             this.ClientGB.ResumeLayout(false);
@@ -445,8 +445,8 @@
         private System.Windows.Forms.Label PaymentMethodLabel;
         private System.Windows.Forms.Label PaymentDeadlineLabel;
         private System.Windows.Forms.Button PaidButton;
-        private System.Windows.Forms.Label CodeLabel;
-        private System.Windows.Forms.Label DateLabel1;
         private System.Windows.Forms.Label DateLabel2;
+        private System.Windows.Forms.Label DateLabel1;
+        private System.Windows.Forms.Label CodeLabel;
     }
 }

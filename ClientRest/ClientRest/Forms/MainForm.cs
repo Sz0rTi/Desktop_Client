@@ -71,7 +71,13 @@ namespace ClientRest.Forms
         {
             if (SelectedType == 1)
             {
-
+                InvoiceBuy temp = (InvoiceBuy)ListBox1.SelectedItem;
+                InvoiceBuyShowForm form = new InvoiceBuyShowForm(temp.ID);
+                form.TopLevel = false;
+                form.AutoScroll = true;
+                NPPanel.Controls.Clear();
+                NPPanel.Controls.Add(form);
+                form.Show();
             }
             else if (SelectedType == 0)
             {
