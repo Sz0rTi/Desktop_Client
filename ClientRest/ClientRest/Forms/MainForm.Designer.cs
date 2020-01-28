@@ -29,31 +29,24 @@
         private void InitializeComponent()
         {
             this.NPPanel = new System.Windows.Forms.Panel();
-            this.NPButton = new System.Windows.Forms.Button();
             this.ISButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.InvoiceSellsButton = new System.Windows.Forms.Button();
             this.InvoiceBuysButton = new System.Windows.Forms.Button();
             this.ListBox1 = new System.Windows.Forms.ListBox();
             this.IBButton = new System.Windows.Forms.Button();
+            this.TitleLabel = new System.Windows.Forms.Label();
+            this.LogoutButton = new System.Windows.Forms.Button();
+            this.NPPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // NPPanel
             // 
+            this.NPPanel.Controls.Add(this.TitleLabel);
             this.NPPanel.Location = new System.Drawing.Point(333, 110);
             this.NPPanel.Name = "NPPanel";
             this.NPPanel.Size = new System.Drawing.Size(891, 730);
             this.NPPanel.TabIndex = 0;
-            // 
-            // NPButton
-            // 
-            this.NPButton.Location = new System.Drawing.Point(60, 224);
-            this.NPButton.Name = "NPButton";
-            this.NPButton.Size = new System.Drawing.Size(210, 23);
-            this.NPButton.TabIndex = 1;
-            this.NPButton.Text = "Nowy produkt";
-            this.NPButton.UseVisualStyleBackColor = true;
-            this.NPButton.Click += new System.EventHandler(this.NPButton_Click);
             // 
             // ISButton
             // 
@@ -114,22 +107,45 @@
             this.IBButton.UseVisualStyleBackColor = true;
             this.IBButton.Click += new System.EventHandler(this.IBButton_Click);
             // 
+            // TitleLabel
+            // 
+            this.TitleLabel.AutoSize = true;
+            this.TitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TitleLabel.Location = new System.Drawing.Point(197, 298);
+            this.TitleLabel.Name = "TitleLabel";
+            this.TitleLabel.Size = new System.Drawing.Size(534, 117);
+            this.TitleLabel.TabIndex = 0;
+            this.TitleLabel.Text = "Witamy w systemie fakturowania.\r\n\r\nAutor: Marcin Flisiuk\r\n";
+            this.TitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LogoutButton
+            // 
+            this.LogoutButton.Location = new System.Drawing.Point(1233, 12);
+            this.LogoutButton.Name = "LogoutButton";
+            this.LogoutButton.Size = new System.Drawing.Size(75, 23);
+            this.LogoutButton.TabIndex = 8;
+            this.LogoutButton.Text = "Wyloguj";
+            this.LogoutButton.UseVisualStyleBackColor = true;
+            this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1320, 900);
+            this.Controls.Add(this.LogoutButton);
             this.Controls.Add(this.ListBox1);
             this.Controls.Add(this.InvoiceBuysButton);
             this.Controls.Add(this.InvoiceSellsButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.IBButton);
             this.Controls.Add(this.ISButton);
-            this.Controls.Add(this.NPButton);
             this.Controls.Add(this.NPPanel);
             this.Name = "MainForm";
             this.Text = "Main";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.NPPanel.ResumeLayout(false);
+            this.NPPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -137,12 +153,13 @@
         #endregion
 
         private System.Windows.Forms.Panel NPPanel;
-        private System.Windows.Forms.Button NPButton;
         private System.Windows.Forms.Button ISButton;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button InvoiceSellsButton;
         private System.Windows.Forms.Button InvoiceBuysButton;
         private System.Windows.Forms.ListBox ListBox1;
         private System.Windows.Forms.Button IBButton;
+        private System.Windows.Forms.Label TitleLabel;
+        private System.Windows.Forms.Button LogoutButton;
     }
 }

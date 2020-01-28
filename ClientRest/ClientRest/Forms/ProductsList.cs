@@ -7,14 +7,26 @@ namespace ClientRest.Forms
 {
     public partial class ProductsList : Form
     {
+        public List<Category> Categories { get; set; }
         public ProductsList()
         {
             InitializeComponent();
             RestClass rest = new RestClass();
-            CategoryCB.DataSource = rest.getRequest<List<Category>>(controller.categories);
-            CategoryCB.ValueMember = "id";
-            CategoryCB.DisplayMember = "name";
-            CategoryCB_SelectedIndexChanged(this, EventArgs.Empty);
+            Categories = rest.getRequest<List<Category>>(controller.categories);
+            if (Categories.Count != 0)
+            {
+                CategoryCB.DataSource = Categories;
+                CategoryCB.ValueMember = "id";
+                CategoryCB.DisplayMember = "name";
+                CategoryCB_SelectedIndexChanged(this, EventArgs.Empty);
+            }
+            else
+            {
+                CategoryCB.Hide();
+                ProductsListBox.Hide();
+                CategoryLabel.Hide();
+                InfoLabel.Text = "Brak produktów!";
+            }
         }
 
 

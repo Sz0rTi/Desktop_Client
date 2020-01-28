@@ -1,6 +1,7 @@
 ﻿using ClientRest.Forms;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,12 +18,25 @@ namespace ClientRest
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
-            //Application.Run(new ProductsList());
-            //Application.Run(new NewProduct());
-            //Application.Run(new InvoiceSell());
-            // Application.Run(new MainForm());
-            Application.Run(new TEST());
+            if (File.Exists("settings"))
+            {
+                int x;
+                using (FileStream stream = new FileStream("settings", FileMode.Open))
+                {
+                    using (BinaryReader reader = new BinaryReader(stream))
+                    {
+                        x = reader.ReadInt32();
+                    }
+                }
+                if (x == 1)
+                {
+                    Application.Run(new MainForm());
+                }
+                else
+                {
+                    Application.Run(new LoginForm());
+                }
+            }     
         }
     }
 }

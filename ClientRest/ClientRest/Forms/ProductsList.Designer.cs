@@ -31,6 +31,7 @@
             this.CategoryCB = new System.Windows.Forms.ComboBox();
             this.CategoryLabel = new System.Windows.Forms.Label();
             this.ProductsListBox = new System.Windows.Forms.ListBox();
+            this.InfoLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CategoryCB
@@ -63,11 +64,21 @@
             this.ProductsListBox.Size = new System.Drawing.Size(250, 160);
             this.ProductsListBox.TabIndex = 2;
             // 
+            // InfoLabel
+            // 
+            this.InfoLabel.AutoSize = true;
+            this.InfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.InfoLabel.Location = new System.Drawing.Point(322, 57);
+            this.InfoLabel.Name = "InfoLabel";
+            this.InfoLabel.Size = new System.Drawing.Size(0, 25);
+            this.InfoLabel.TabIndex = 3;
+            // 
             // ProductsList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.InfoLabel);
             this.Controls.Add(this.ProductsListBox);
             this.Controls.Add(this.CategoryLabel);
             this.Controls.Add(this.CategoryCB);
@@ -84,5 +95,6 @@
         private System.Windows.Forms.ComboBox CategoryCB;
         private System.Windows.Forms.Label CategoryLabel;
         private System.Windows.Forms.ListBox ProductsListBox;
+        private System.Windows.Forms.Label InfoLabel;
     }
 }

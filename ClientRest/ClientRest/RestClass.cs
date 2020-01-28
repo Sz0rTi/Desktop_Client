@@ -61,7 +61,15 @@ namespace ClientRest
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint);
             request.Method = httpMethod.ToString();
             //var storage = new LocalStorage();
-            string token = File.ReadAllText("token.txt");
+            string token;
+            using (FileStream stream = new FileStream("token", FileMode.Open))
+            {
+                using(BinaryReader reader = new BinaryReader(stream))
+                {
+                    token = reader.ReadString();
+                }
+            }
+            //token = File.ReadAllText("token.txt");
             request.Headers.Add("Authorization","bearer " + token);
 
             using (HttpWebResponse response = (HttpWebResponse) request.GetResponse())
@@ -89,7 +97,14 @@ namespace ClientRest
         public T postRequest<T,T2>(T2 item, controller controller)
         {
             //var storage = new LocalStorage();
-            string token = File.ReadAllText("token.txt");
+            string token;
+            using (FileStream stream = new FileStream("token", FileMode.Open))
+            {
+                using (BinaryReader reader = new BinaryReader(stream))
+                {
+                    token = reader.ReadString();
+                }
+            }
             //request.Headers.Add("bearer", token);
             string a = JsonConvert.SerializeObject(item, Formatting.Indented);
             var byteData = Encoding.UTF8.GetBytes(a);

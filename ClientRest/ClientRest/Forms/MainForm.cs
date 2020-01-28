@@ -1,6 +1,7 @@
 ﻿using ClientRest.Models.In;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace ClientRest.Forms
@@ -21,19 +22,9 @@ namespace ClientRest.Forms
             InitializeComponent();
         }
 
-        private void NPButton_Click(object sender, EventArgs e)
-        {
-            NewProduct newProduct = new NewProduct();
-            newProduct.TopLevel = false;
-            newProduct.AutoScroll = true;
-            NPPanel.Controls.Clear();
-            NPPanel.Controls.Add(newProduct);
-            newProduct.Show();
-        }
-
         private void ISButton_Click(object sender, EventArgs e)
         {
-            InvoiceSellForm invoiceSell = new InvoiceSellForm();
+            InvoiceSellForm invoiceSell = new InvoiceSellForm(this);
             invoiceSell.TopLevel = false;
             invoiceSell.AutoScroll = true;
             NPPanel.Controls.Clear();
@@ -43,7 +34,7 @@ namespace ClientRest.Forms
 
         private void IBButton_Click(object sender, EventArgs e)
         {
-            NewInvoiceBuyForm invoiceBuy = new NewInvoiceBuyForm();
+            NewInvoiceBuyForm invoiceBuy = new NewInvoiceBuyForm(this);
             invoiceBuy.TopLevel = false;
             invoiceBuy.AutoScroll = true;
             NPPanel.Controls.Clear();
@@ -115,7 +106,35 @@ namespace ClientRest.Forms
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (File.Exists("settings"))
+            {
+                int x;
+                using (FileStream stream = new FileStream("settings", FileMode.Open))
+                {
+                    using (BinaryReader reader = new BinaryReader(stream))
+                    {
+                        x = reader.ReadInt32();
+                    }
+                }
+                if (x == 0)
+                {
+                    if(File.Exists("token")) File.Delete("token");
+                }
+            }
+            Application.Exit();
+        }
 
+        private void LogoutButton_Click(object sender, EventArgs e)
+        {
+            using (FileStream stream = new FileStream("settings", FileMode.Create))
+            {
+                using (BinaryWriter writer = new BinaryWriter(stream))
+                {
+                    writer.Write(0);
+                }
+            }
+            if (File.Exists("token")) File.Delete("token");
+            Application.Exit();
         }
     }
 }

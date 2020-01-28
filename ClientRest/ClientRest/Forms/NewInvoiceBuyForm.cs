@@ -10,6 +10,7 @@ namespace ClientRest.Forms
 {
     public partial class NewInvoiceBuyForm : Form
     {
+        MainForm main = new MainForm();
         List<ProductBuyOut> products = new List<ProductBuyOut>();
         List<Product> list = new List<Product>();
         List<Category> categories = new List<Category>();
@@ -19,9 +20,11 @@ namespace ClientRest.Forms
         RestClass rest = new RestClass();
         double sumNetto = 0;
         double sumBrutto = 0;
-        public NewInvoiceBuyForm()
+        public NewInvoiceBuyForm(MainForm main)
         {
             InitializeComponent();
+            this.main = main;
+            
             categories = rest.getRequest<List<Category>>(controller.categories);
             if(categories.Count == 0)
             {
@@ -238,10 +241,10 @@ namespace ClientRest.Forms
                 invoiceBuyOut.PriceNetto = x;
                 invoiceBuyOut.Code = CodeTB.Text;
                 InvoiceBuy responseInvoiceBuy = rest.postRequest<InvoiceBuy, InvoiceBuyOut>(invoiceBuyOut, controller.invoicebuys);
-                //Reset();
-                this.Refresh();
+                Reset();
+                //this.Refresh();
 
-                Application.DoEvents();
+                //Application.DoEvents();
 
             }
             else
@@ -439,7 +442,7 @@ namespace ClientRest.Forms
         private void NewCategoryButton_Click(object sender, EventArgs e)
         {
             NewCategoryForm newCategoryForm = new NewCategoryForm();
-            newCategoryForm.Show();
+            newCategoryForm.ShowDialog();
             categories = rest.getRequest<List<Category>>(controller.categories);
         }
     }

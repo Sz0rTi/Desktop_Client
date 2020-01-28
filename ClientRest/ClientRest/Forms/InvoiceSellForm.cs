@@ -15,16 +15,18 @@ namespace ClientRest.Forms
 {
     public partial class InvoiceSellForm : Form
     {
+        MainForm main = new MainForm();
         List<ProductSellOut> products = new List<ProductSellOut>();
         List<Product> list = new List<Product>();
         Company company = new Company();
         RestClass rest = new RestClass();
         double sumNetto = 0;
         double sumBrutto = 0;
-        public InvoiceSellForm()
+        public InvoiceSellForm(MainForm main)
         {
             InitializeComponent();
-
+            this.main = main;
+            CreateButton.Click += main.InvoiceSellsButton_Click;
             ClientNameCB.SelectedIndex = -1;
             ClientNameCB.ValueMember = "id";
             ClientNameCB.DisplayMember = "name";
@@ -181,7 +183,6 @@ namespace ClientRest.Forms
                 invoiceSellOut.PriceNetto = x;
                 InvoiceSell responseInvoiceSell = rest.postRequest<InvoiceSell,InvoiceSellOut>(invoiceSellOut, controller.invoicesells);
                 Reset();
-                
             }
             else
             {
