@@ -38,6 +38,7 @@ namespace ClientRest
         units,
         users,
         sellers,
+        summaries,
         taxstages
     }
     class RestClass
@@ -120,6 +121,37 @@ namespace ClientRest
                 stream.Write(byteData, 0, byteData.Length);
             }
             HttpWebResponse response = (HttpWebResponse) request.GetResponse();
+            var responseString = new StreamReader(response.GetResponseStream(), Encoding.UTF8).ReadToEnd();
+            httpMethod = httpVerb.GET;
+            return JsonConvert.DeserializeObject<T>(responseString);
+            //return item;
+        }
+
+        public T postRequest<T, T2>(T2 item, controller controller, string parameters)
+        {
+            //var storage = new LocalStorage();
+            string token;
+            using (FileStream stream = new FileStream("token", FileMode.Open))
+            {
+                using (BinaryReader reader = new BinaryReader(stream))
+                {
+                    token = reader.ReadString();
+                }
+            }
+            //request.Headers.Add("bearer", token);
+            string a = JsonConvert.SerializeObject(item, Formatting.Indented);
+            var byteData = Encoding.UTF8.GetBytes(a);
+            endPoint = address + controller.ToString() + parameters;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint);
+            httpMethod = httpVerb.POST;
+            request.Method = httpMethod.ToString();
+            request.ContentType = "application/json";
+            request.Headers.Add("Authorization", "bearer " + token);
+            using (var stream = request.GetRequestStream())
+            {
+                stream.Write(byteData, 0, byteData.Length);
+            }
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             var responseString = new StreamReader(response.GetResponseStream(), Encoding.UTF8).ReadToEnd();
             httpMethod = httpVerb.GET;
             return JsonConvert.DeserializeObject<T>(responseString);

@@ -42,6 +42,16 @@ namespace ClientRest.Forms
             invoiceBuy.Show();
         }
 
+        private void SummariesButton_Click(object sender, EventArgs e)
+        {
+            SummariesForm summaries = new SummariesForm();
+            summaries.TopLevel = false;
+            summaries.AutoScroll = true;
+            NPPanel.Controls.Clear();
+            NPPanel.Controls.Add(summaries);
+            summaries.Show();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             ProductsList productsList = new ProductsList();
@@ -142,5 +152,7 @@ namespace ClientRest.Forms
             if (File.Exists("token")) File.Delete("token");
             Application.Exit();
         }
+
+        
     }
 }

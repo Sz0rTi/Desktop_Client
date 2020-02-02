@@ -62,8 +62,9 @@ namespace ClientRest.Forms
 
             ProductNameCB.SelectedIndex = -1;
 
-            SummaryNetto.Text = sumNetto.ToString() + "zł";
-            SummaryBrutto.Text = sumBrutto.ToString() + "zł";
+            BasePriceLabel2.Text = "";
+            //SummaryNetto.Text = sumNetto.ToString() + "zł";
+            //SummaryBrutto.Text = sumBrutto.ToString() + "zł";
         }
 
         private void AddProductButton_Click(object sender, EventArgs e)
