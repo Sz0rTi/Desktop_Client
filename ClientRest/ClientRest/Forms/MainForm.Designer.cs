@@ -139,6 +139,7 @@
             this.ClientsButton.TabIndex = 9;
             this.ClientsButton.Text = "Klienci";
             this.ClientsButton.UseVisualStyleBackColor = true;
+            this.ClientsButton.Click += new System.EventHandler(this.ClientsButton_Click);
             // 
             // SellersButton
             // 
@@ -148,6 +149,7 @@
             this.SellersButton.TabIndex = 10;
             this.SellersButton.Text = "Sprzedawcy";
             this.SellersButton.UseVisualStyleBackColor = true;
+            this.SellersButton.Click += new System.EventHandler(this.SellersButton_Click);
             // 
             // SummariesButton
             // 

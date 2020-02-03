@@ -153,6 +153,24 @@ namespace ClientRest.Forms
             Application.Exit();
         }
 
-        
+        private void ClientsButton_Click(object sender, EventArgs e)
+        {
+            Clients clients = new Clients();
+            clients.TopLevel = false;
+            clients.AutoScroll = true;
+            NPPanel.Controls.Clear();
+            NPPanel.Controls.Add(clients);
+            clients.Show();
+        }
+
+        private void SellersButton_Click(object sender, EventArgs e)
+        {
+            Sellers sellers = new Sellers();
+            sellers.TopLevel = false;
+            sellers.AutoScroll = true;
+            NPPanel.Controls.Clear();
+            NPPanel.Controls.Add(sellers);
+            sellers.Show();
+        }
     }
 }

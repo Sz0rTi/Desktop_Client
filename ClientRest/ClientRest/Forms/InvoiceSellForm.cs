@@ -158,9 +158,6 @@ namespace ClientRest.Forms
 
         private void ProductNameCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /* JEŚLI JEST - ostatnia cena dla danego klianta, dla danego produktu.
-               Uśredniona cena zakupu. 
-            */
             Product product = (Product)ProductNameCB.SelectedItem;
             if (ProductNameCB.SelectedIndex != -1)
             {
@@ -406,8 +403,8 @@ namespace ClientRest.Forms
             string a = ProductNameCB.Text;
             if (ProductNameCB.Text != "")
             {
-                if (!(a.Length < 3))
-                {
+                //if (!(a.Length < 3))
+                //{
                     List<Product> temp = new List<Product>();
                     foreach (Product item in list)
                     {
@@ -419,7 +416,7 @@ namespace ClientRest.Forms
                     ProductNameCB.DataSource = temp;
                     ProductNameCB.SelectedIndex = -1;
                     ProductNameCB.Text = a;
-                }
+                //}
 
             }
             else
