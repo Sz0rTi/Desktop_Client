@@ -40,7 +40,8 @@ namespace ClientRest.Forms
 
             CreateButton.Click += main.InvoiceSellsButton_Click;
 
-            
+            PAYDATE.Value = DateTime.Now.AddMinutes(1);
+
             PaymentMethodCB.ValueMember = "id";
             PaymentMethodCB.DisplayMember = "name";
             PaymentMethodCB.DataSource = PaymentMethods;
@@ -379,7 +380,7 @@ namespace ClientRest.Forms
             if(ClientNameCB.SelectedIndex != -1)
             {
                 Client client = (Client)ClientNameCB.SelectedItem;
-                ClientCityPostCodeTB.Text = client.PostCode;
+                ClientCityPostCodeTB.Text = client.PostCode + " " + client.City;
                 ClientNIPTB.Text = client.NIP;
                 if (client.Number[client.Number.Length - 1].Equals('/'))
                 {

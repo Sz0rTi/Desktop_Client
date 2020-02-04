@@ -201,9 +201,6 @@ namespace ClientRest.Forms
 
         private void ProductNameCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /* JEŚLI JEST - ostatnia cena dla danego klianta, dla danego produktu.
-               Uśredniona cena zakupu. 
-            */
             Product product = (Product)ProductNameCB.SelectedItem;
             if (ProductNameCB.SelectedIndex == -1) UnitsCB.SelectedIndex = -1;
             else
@@ -431,7 +428,7 @@ namespace ClientRest.Forms
             if (SellerNameCB.SelectedIndex != -1)
             {
                 Seller Seller = (Seller)SellerNameCB.SelectedItem;
-                SellerCityPostCodeTB.Text = Seller.PostCode;
+                SellerCityPostCodeTB.Text = Seller.PostCode + " " + Seller.City;
                 SellerNIPTB.Text = Seller.NIP;
                 if (Seller.Number[Seller.Number.Length - 1].Equals('/'))
                 {

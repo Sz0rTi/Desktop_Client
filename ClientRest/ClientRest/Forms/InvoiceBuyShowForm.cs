@@ -53,7 +53,7 @@ namespace ClientRest.Forms
             }
             listView1.Refresh();
             PMLabel.Text = PaymentMethod.Name;
-            PDLabel.Text = invoice.PaymentDeadline.ToString("dd.mm.yyyy") + ".r";
+            PDLabel.Text = invoice.PaymentDeadline.ToShortDateString() + ".r";
             if (invoice.IsPaid) IsPaidLabel.Text = "Tak";
             else IsPaidLabel.Text = "Nie";
             CNameLabel.Text = Seller.Name;
@@ -61,7 +61,7 @@ namespace ClientRest.Forms
             CCodeLabel.Text = Seller.PostCode + " " + Seller.City;
             CNipLabel.Text = Seller.NIP;
             CodeLabel.Text = invoice.Code;
-            DateLabel2.Text = invoice.Date.ToString("dd.mm.yyyy")+".r";
+            DateLabel2.Text = invoice.Date.ToShortDateString() + ".r";
 
             SummaryNetto.Text = invoice.PriceNetto.ToString("C2");
             SummaryBrutto.Text = invoice.PriceBrutto.ToString("C2");

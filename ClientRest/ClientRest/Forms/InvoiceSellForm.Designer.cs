@@ -69,6 +69,7 @@
             this.ProductAmountLabel1 = new System.Windows.Forms.Label();
             this.ProductAmountLabel2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.IsPaidChB = new System.Windows.Forms.CheckBox();
             this.PaymentMethodCB = new System.Windows.Forms.ComboBox();
             this.PaymentMethodLabel = new System.Windows.Forms.Label();
             this.PaymentDeadlineLabel = new System.Windows.Forms.Label();
@@ -78,7 +79,6 @@
             this.BasePriceLabel2 = new System.Windows.Forms.Label();
             this.BasePriceLabel = new System.Windows.Forms.Label();
             this.productSellOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.IsPaidChB = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.PricePerItemNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmountTB)).BeginInit();
             this.Summary.SuspendLayout();
@@ -471,6 +471,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Płatność";
             // 
+            // IsPaidChB
+            // 
+            this.IsPaidChB.AutoSize = true;
+            this.IsPaidChB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.IsPaidChB.Location = new System.Drawing.Point(105, 97);
+            this.IsPaidChB.Name = "IsPaidChB";
+            this.IsPaidChB.Size = new System.Drawing.Size(86, 19);
+            this.IsPaidChB.TabIndex = 4;
+            this.IsPaidChB.Text = "Opłacona?";
+            this.IsPaidChB.UseVisualStyleBackColor = true;
+            // 
             // PaymentMethodCB
             // 
             this.PaymentMethodCB.FormattingEnabled = true;
@@ -558,17 +569,6 @@
             // productSellOutBindingSource
             // 
             this.productSellOutBindingSource.DataSource = typeof(ClientRest.Models.Out.ProductSellOut);
-            // 
-            // IsPaidChB
-            // 
-            this.IsPaidChB.AutoSize = true;
-            this.IsPaidChB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.IsPaidChB.Location = new System.Drawing.Point(105, 97);
-            this.IsPaidChB.Name = "IsPaidChB";
-            this.IsPaidChB.Size = new System.Drawing.Size(86, 19);
-            this.IsPaidChB.TabIndex = 4;
-            this.IsPaidChB.Text = "Opłacona?";
-            this.IsPaidChB.UseVisualStyleBackColor = true;
             // 
             // InvoiceSellForm
             // 
